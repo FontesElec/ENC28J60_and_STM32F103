@@ -1,0 +1,38 @@
+Dependencies for Project 'EthernetOneWireThermometer', Target 'Target 1': (DO NOT MODIFY !)
+F (.\CMSIS\startup_stm32f10x_xl.s)(0x4D788318)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527" --pd "STM32F10X_MD SETA 1"--list .\listings\startup_stm32f10x_xl.lst --xref -o .\objects\startup_stm32f10x_xl.o --depend .\objects\startup_stm32f10x_xl.d)
+F (.\CMSIS\system_stm32f10x.c)(0x4D788300)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)
+I (CMSIS\stm32f10x.h)(0x5D7FBA09)
+I (CMSIS\core_cm3.h)(0x4D5281A8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (CMSIS\system_stm32f10x.h)(0x4D7882FA)
+F (.\User\core\src\main.c)(0x69772FA5)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\User\core\inc\rcc.h)(0x697720EE)
+I (.\CMSIS\stm32f10x.h)(0x5D7FBA09)
+I (.\CMSIS\core_cm3.h)(0x4D5281A8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\CMSIS\system_stm32f10x.h)(0x4D7882FA)
+I (.\User\ENC28J60\Interaface\inc\enc28j60.h)(0x6985B5BD)
+F (.\User\core\src\rcc.c)(0x697720EC)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\rcc.o --omf_browse .\objects\rcc.crf --depend .\objects\rcc.d)
+I (.\User\core\inc\rcc.h)(0x697720EE)
+I (.\CMSIS\stm32f10x.h)(0x5D7FBA09)
+I (.\CMSIS\core_cm3.h)(0x4D5281A8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\CMSIS\system_stm32f10x.h)(0x4D7882FA)
+F (.\User\ENC28J60\Interaface\src\enc28j60.c)(0x69779579)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60.o --omf_browse .\objects\enc28j60.crf --depend .\objects\enc28j60.d)
+I (.\User\ENC28J60\Middleware\inc\enc28j60_middleware.h)(0x6985D123)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_register_map.h)(0x69876814)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (.\User\ENC28J60\Interaface\inc\enc28j60.h)(0x6985B5BD)
+F (.\User\ENC28J60\Middleware\src\enc28j60_middlware.c)(0x6985D301)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60_middlware.o --omf_browse .\objects\enc28j60_middlware.crf --depend .\objects\enc28j60_middlware.d)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_hardware.h)(0x6979CD18)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\User\ENC28J60\Middleware\inc\enc28j60_middleware.h)(0x6985D123)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_register_map.h)(0x69876814)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+F (.\User\ENC28J60\Hardware\src\enc28j60_hardware.c)(0x6979CD61)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60_hardware.o --omf_browse .\objects\enc28j60_hardware.crf --depend .\objects\enc28j60_hardware.d)
+I (.\CMSIS\stm32f10x.h)(0x5D7FBA09)
+I (.\CMSIS\core_cm3.h)(0x4D5281A8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\CMSIS\system_stm32f10x.h)(0x4D7882FA)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_hardware.h)(0x6979CD18)
