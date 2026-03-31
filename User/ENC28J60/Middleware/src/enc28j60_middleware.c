@@ -42,7 +42,12 @@ void mw_test(void){
 		}		
 	#endif
 	
-	//Test2	
+	//Test2
+
+	do{
+		answer = enc28j60_read_reg(&ESTAT);		
+	}
+	while(!(((ESTAT_REG*)(&answer))->CLKRDY));
 		
 	enc28j60_write_reg(&MAMXFLL,test_val);
 	answer = enc28j60_read_reg(&MAMXFLL);
@@ -274,15 +279,83 @@ void enc28j60_mid_init(void){
 		mw_test();
 	#endif
 	
+	uint16_t status = 0;
+	
 	//Before receiving any packets, the receive buffer must be initialized by programming the ERXST and ERXND Pointers.
 	//No explicit action is required to initialize the transmission buffer.
 	enc28j60_write_reg(&ERXSTL,RX_BUFFER_START_ADDR);
 	enc28j60_write_reg(&ERXNDL,RX_BUFFER_END_ADDR);
-
+	
+	//For tracking purposes, the ERXRDPT registers should additionally be programmed with the same value.
+	enc28j60_write_reg(&ERXRDPTL, RX_BUFFER_START_ADDR);
+	
 	//The appropriate receive filters should be enabled or disabled by writing to the ERXFCON register.
 	//Trying to start without filters
+	//..............................................................
+	
+	//If ECON2.AUTOINC is set, it will be able to sequentially read the entire packet without ever modifying the ERDPT registers.
+	status = enc28j60_read_reg(&ECON2);
+	((ECON2_REG*)(&status))->AUTOINC = 1; 
+	enc28j60_write_reg(&ECON2, status);
+	
+	/*If the initialization procedure is being executed immediately following a Power-on Reset, the ESTAT.CLKRDY
+	bit should be polled to make certain that enough time has elapsed before proceeding to modify the MAC and
+	PHY registers.
+	*/
+	do{
+		status = enc28j60_read_reg(&ESTAT);		
+	}
+	while(!(((ESTAT_REG*)(&status))->CLKRDY));
+	
+	/*Set the MARXEN bit in MACON1 to enable the MAC to receive frames. If using full duplex, 
+	most applications should also set TXPAUS and RXPAUS to allow IEEE defined flow control to function.
+	*/
+	status = enc28j60_read_reg(&MACON1);
+	((MACON1_REG*)(&status))->MARXEN = 1;
+	((MACON1_REG*)(&status))->TXPAUS = 1;
+	((MACON1_REG*)(&status))->RXPAUS = 1;
+	enc28j60_write_reg(&MACON1, status);
+	
+	/*Configure the PADCFG, TXCRCEN and FULDPX bits of MACON3. Most applications should enable automatic padding to at least
+	60 bytes and always append a valid CRC. For convenience, many applications may wish to set the FRMLNEN bit as well 
+	to enable frame length status reporting. 
+	The FULDPX bit should be set if the application will be connected to a full-duplex configured remote node; otherwise, it
+	should be left clear.
+	*/
+	status = enc28j60_read_reg(&MACON3);
+	((MACON3_REG*)(&status))->PADCFG = MACON3_64B_PADDED;
+	((MACON3_REG*)(&status))->TXCRCEN = 1;
+	((MACON3_REG*)(&status))->FRMLNEN = 1;
+	((MACON3_REG*)(&status))->FULLDPX = 1;
+	enc28j60_write_reg(&MACON3, status);
 	
 	
-	#warning TODO: NEED TO SET AUTOINC BIT IN ECON2
+	//Configure the bits in MACON4. For conformance to the IEEE 802.3 standard, set the DEFER bit.
+	//We will using full duplex, so setting of MACON4 is not needed
+	//.................................................................
 	
+	/*Program the MAMXFL registers with the maximum frame length to be permitted to be received or transmitted. 
+	Normal network nodes are designed to handle packets that are 1518 bytes or less.
+	*/
+	enc28j60_write_reg(&MAMXFLL, 1518);
+	
+	/*Configure the Back-to-Back Inter-Packet Gap register, MABBIPG. 
+	Most applications will program this register with 15h when Full-Duplex mode is used 
+	and 12h when Half-Duplex mode is used.
+	*/
+	enc28j60_write_reg(&MABBIPG, 0x15);
+	
+	//Program the local MAC address into the MAADR1:MAADR6 registers.
+	#warning TODO: MAC as a macros in separate config file or in function init parameter
+	enc28j60_write_reg(&MAADR1, 0x02);
+	enc28j60_write_reg(&MAADR2, 0x00);
+	enc28j60_write_reg(&MAADR3, 0x00);
+	enc28j60_write_reg(&MAADR4, 0x00);
+	enc28j60_write_reg(&MAADR5, 0x00);
+	enc28j60_write_reg(&MAADR6, 0x01);
+	
+	#ifdef LOGGING
+		uint8_t init_copleted[] = "ECN28J60 init completed\n";
+		enc28j60_hw_send_log_msg(init_copleted);
+	#endif
 }

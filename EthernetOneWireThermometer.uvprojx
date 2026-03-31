@@ -418,9 +418,9 @@
               <FilePath>.\User\ENC28J60\Interaface\src\enc28j60.c</FilePath>
             </File>
             <File>
-              <FileName>enc28j60_middlware.c</FileName>
+              <FileName>enc28j60_middleware.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\ENC28J60\Middleware\src\enc28j60_middlware.c</FilePath>
+              <FilePath>.\User\ENC28J60\Middleware\src\enc28j60_middleware.c</FilePath>
             </File>
             <File>
               <FileName>enc28j60_hardware.c</FileName>

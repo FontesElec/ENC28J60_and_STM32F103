@@ -4,7 +4,7 @@
 ".\objects\main.o"
 ".\objects\rcc.o"
 ".\objects\enc28j60.o"
-".\objects\enc28j60_middlware.o"
+".\objects\enc28j60_middleware.o"
 ".\objects\enc28j60_hardware.o"
 --strict --scatter ".\Objects\EthernetOneWireThermometer.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

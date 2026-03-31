@@ -258,6 +258,37 @@ static const Reg_t PHLCON		= {PHY, Common, 0x14, 2};
 
 //-----------------------------REGISTERS-----------------------
 
+//Ethernet status register
+typedef struct __attribute__((packed)){
+	uint8_t CLKRDY					: 1;
+	uint8_t TXABRT					: 1;
+	uint8_t RXBUSY					: 1;
+	uint8_t UNIMPLEMENTED		:	1;
+	uint8_t LATECOL					: 1;
+	uint8_t RESERVED				: 1;
+	uint8_t BUFER						: 1;
+	uint8_t INT							: 1;
+}ESTAT_REG;
+
+//MAC control register 1
+typedef struct __attribute__((packed)){
+	uint8_t MARXEN					: 1;		//MAC Receive enable bit
+	uint8_t PASSALL					: 1;		//Pass all received frames enable bit
+	uint8_t	RXPAUS					:	1;		//Pause control frame reception enable bit
+	uint8_t TXPAUS					: 1;		//Pause control frame tranmission enable bit
+	uint8_t RESERVED				: 1;
+	uint8_t UNIMPLEMENTED		:	3;	
+}MACON1_REG;
+
+//MAC control register 3
+typedef struct __attribute__((packed)){
+	uint8_t FULLDPX					: 1;		//MACON1_REG full-duplex enable bit
+	uint8_t FRMLNEN					: 1;		//Frame length checking enable bit
+	uint8_t HFRMEN					: 1;		//Huge frame enable bit
+	uint8_t PHDREN					:	1;		//Proprieary header enable
+	uint8_t TXCRCEN					: 1;		//Transmit CRC enable bit
+	uint8_t PADCFG					: 3;		//Automatic pad and CRC config bits
+}MACON3_REG;
 
 //ETHERNET CONTROL REGISTER 1
 typedef struct __attribute__((packed)){
@@ -319,3 +350,11 @@ typedef struct __attribute__((packed)){
 	uint16_t TXSTAT					:	1;	//PHY transmit status bit
 	uint16_t UNIMPLEMENTED3	:	2;	//Read as 0
 }PHSTAT2_REG_16;
+
+
+
+//CONFIG PARAMETERS
+#define MACON3_NO_AUTOPAD			0x00
+#define MACON3_60B_PADDED			0x01
+#define MACON3_64B_PADDED			0x03
+#define MACON3_AUTO_VLAN_DET	0x05
