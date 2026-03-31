@@ -4,6 +4,14 @@
 #include "stdint.h"
 #include "enc28j60_register_map.h"
 
+#define MW_TEST
+
+#ifdef MW_TEST
+	#ifndef LOGGING
+		#define LOGGING
+	#endif
+#endif
+
 /**
 	After a System Reset, all PHY registers should not be read or written to until at least 50 μs have passed since the Reset has ended. 
 	All registers will revert to their Reset default values. The dual port buffer memory will maintain state throughout the System Reset.

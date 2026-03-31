@@ -319,4 +319,3 @@ typedef struct __attribute__((packed)){
 	uint16_t TXSTAT					:	1;	//PHY transmit status bit
 	uint16_t UNIMPLEMENTED3	:	2;	//Read as 0
 }PHSTAT2_REG_16;
-

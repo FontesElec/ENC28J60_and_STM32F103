@@ -3,7 +3,6 @@
 #define SELFTEST
 #define LOGGING
 
-//#define READ_MASK 					0x80	//Маска для работы по SPI
 #define READ_MASK 					0x00	//Маска для работы по SPI
 
 
