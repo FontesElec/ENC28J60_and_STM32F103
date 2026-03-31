@@ -6,7 +6,7 @@
 //--------------------------CONFIGURATION----------------------
 
 //Memory allocation
-#define RX_BUFFER_START_ADDR	0x0050
+#define RX_BUFFER_START_ADDR	0x0fff 
 #define RX_BUFFER_END_ADDR		0x1fff
 
 //------------------------CONSTANT ADDRESSES-------------------

@@ -8,7 +8,7 @@ int main(void){
 	
 		SetCoreClock();
 		enc28j60_Init();
-	
+
 	
     RCC->APB2ENR|=RCC_APB2ENR_IOPCEN;//подаём тактирование на порт С
     GPIOC->CRH&=~GPIO_CRH_CNF13;

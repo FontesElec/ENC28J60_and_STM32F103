@@ -51,4 +51,7 @@ void enc28j60_bitfield_set(const Reg_t* reg, uint8_t mask);
 void enc28j60_bitfield_clear(const Reg_t* reg, uint8_t mask);
 
 
+#warning TODO: Add UART log functions
+
+
 void enc28j60_mid_init(void);

@@ -3,8 +3,8 @@
 #define SELFTEST
 #define LOGGING
 
-
-#define READ_MASK 					0x80	//Маска для работы по SPI
+//#define READ_MASK 					0x80	//Маска для работы по SPI
+#define READ_MASK 					0x00	//Маска для работы по SPI
 
 
 typedef enum{
@@ -17,6 +17,7 @@ typedef enum{
 #ifdef LOGGING
 void enc28j60_hw_uart_init(void);
 void enc28j60_hw_send_log_8b(uint8_t data);
+void enc28j60_hw_send_log_msg(uint8_t* msg);
 #endif
 
 void enc28j60_hw_spi_init(void);
