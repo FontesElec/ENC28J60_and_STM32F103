@@ -63,22 +63,23 @@ void enc28j60_hw_cs_low(void){
 	GPIOA->BSRR|=GPIO_BSRR_BR4;
 }
 
-void enc28j60_hw_send_short_cmd(uint8_t cmd){
+//Used to quick read/write operation with buffer
+uint8_t enc28j60_hw_send_short_cmd(uint8_t cmd){
 	*(uint8_t*)&(SPI1	->DR) = cmd;																	//sent data to spi buffer
-	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));																//waiting for SPI receive buffer to fill
-	(void)(SPI1->DR);	
+	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));		//waiting for SPI receive buffer to fill
 	while(SPI1->SR & SPI_SR_BSY);
+	return SPI1->DR;	
 }
 
 void enc28j60_hw_send_data_8b(uint8_t reg, uint8_t data){
 	*(uint8_t*)&(SPI1	->DR) = reg;																	//sent data to spi buffer
-	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));																//waiting for SPI receive buffer to fill
+	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));		//waiting for SPI receive buffer to fill
 	(void)(SPI1->DR);																								//read buffer
 	while(SPI1->SR & SPI_SR_BSY);
 	
 	
 	*(uint8_t*)&(SPI1	->DR) = data;																	//sent data to spi buffer
-	while((!(SPI1->SR & SPI_SR_RXNE)) || (SPI1->SR & SPI_SR_BSY));																//waiting for SPI receive buffer to fill
+	while((!(SPI1->SR & SPI_SR_RXNE)) || (SPI1->SR & SPI_SR_BSY));	//waiting for SPI receive buffer to fill
 	(void)(SPI1->DR);																								//read buffer
 	while(SPI1->SR & SPI_SR_BSY);
 }
@@ -97,17 +98,17 @@ uint8_t enc28j60_hw_read_data_8b(uint8_t reg){
 void enc28j60_hw_send_data_16b(uint8_t reg, uint16_t data){
 	
 	*(uint8_t*)&(SPI1	->DR) = reg;																	//send data to spi buffer
-	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));																//waiting for SPI receive buffer to fill
+	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));		//waiting for SPI receive buffer to fill
 	(void)(SPI1->DR);																								//read buffer
 	while(SPI1->SR & SPI_SR_BSY);
 	
 	*(uint8_t*)&(SPI1	->DR) = data >> 8;														//send first byte of data to spi buffer
-	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));																//waiting for SPI receive buffer to fill
+	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));		//waiting for SPI receive buffer to fill
 	(void)(SPI1->DR);																								//read buffer
 	while(SPI1->SR & SPI_SR_BSY);
 	
 	*(uint8_t*)&(SPI1	->DR) = data;																	//send last byte of data to spi buffer
-	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));																//waiting for SPI receive buffer to fill
+	while(!(SPI1->SR & SPI_SR_RXNE) || (SPI1->SR & SPI_SR_BSY));		//waiting for SPI receive buffer to fill
 	(void)(SPI1->DR);																								//read buffer
 	while(SPI1->SR & SPI_SR_BSY);
 }

@@ -6,8 +6,8 @@
 //--------------------------CONFIGURATION----------------------
 
 //Memory allocation
-#define RX_BUFFER_START_ADDR	0x0fff 
-#define RX_BUFFER_END_ADDR		0x1fff
+#define RX_BUFFER_START_ADDR	0x0
+#define RX_BUFFER_END_ADDR		0x17ff
 
 //------------------------CONSTANT ADDRESSES-------------------
 
@@ -350,6 +350,19 @@ typedef struct __attribute__((packed)){
 	uint16_t TXSTAT					:	1;	//PHY transmit status bit
 	uint16_t UNIMPLEMENTED3	:	2;	//Read as 0
 }PHSTAT2_REG_16;
+
+//PHCON1: PHY control register 1
+typedef struct __attribute__((packed)){
+	uint16_t UNIPLEMENTED		: 6;
+	uint16_t RESERVED				: 1;
+	uint16_t PDPXMD					: 1;	//PHY duplex mode bit
+	uint16_t UINIPLEMENTED2	: 1;
+	uint16_t RESERVED2			: 1;
+	uint16_t PPWRSV					:	1;	//PHY power_down bit
+	uint16_t UNIMPLEMENTED3	: 2;
+	uint16_t PLOOPBK				: 1;	//PHY loopback bit
+	uint16_t PRST						:	1;	//PHY software reset bit
+}PHCON1_REG_16;
 
 
 

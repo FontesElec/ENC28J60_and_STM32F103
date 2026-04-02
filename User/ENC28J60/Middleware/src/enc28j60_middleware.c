@@ -7,8 +7,6 @@
 static Bank_t current_bank = Common;
 
 //Нужен тестик на работу записи и чтения всех регистров
-#warning TODO: TESTS FOR HARD AND MIDDLE
-
 void mw_test(void){
 	#ifdef LOGGING
 		enc28j60_hw_uart_init();
@@ -18,6 +16,7 @@ void mw_test(void){
 		uint8_t test1[] = " MidWare Test1: Trying to write and read the ETH register\n";
 		uint8_t test2[] = "MidWare Test2: Trying to write and read the MAC register\n";
 		uint8_t test3[] = "MidWare Test3: Trying to write and read the PHY register\n";
+	  uint8_t test4[] = "MidWare Test4: Trying to write and read buffer memory\n";
 	
 	#endif
 	
@@ -83,6 +82,46 @@ void mw_test(void){
 			while(1){}
 		}
 	#endif
+		
+	//Test4
+		
+	uint8_t test_vals[4] = {0x12, 0x34, 0x56, 0x78};
+	uint8_t returned_vals[4] = {0};
+	
+	//set address autoinc
+	answer = enc28j60_read_reg(&ECON2);
+	((ECON2_REG*)(&answer))->AUTOINC = 1; 
+	enc28j60_write_reg(&ECON2, answer);
+	
+	//configure fifo buffer
+	enc28j60_write_reg(&ERXSTL,0x00);
+	enc28j60_write_reg(&ERXNDL,0xfff);
+
+	//set the pointer to a place to write
+	enc28j60_write_reg(&EWRPTL,0x1000);
+	enc28j60_write_buf(test_vals, 4);
+	
+	//set the pointer to a place to read
+	enc28j60_write_reg(&ERDPTL,0x1000);
+	enc28j60_read_buf(returned_vals, 4);
+	
+	#ifdef LOGGING
+		enc28j60_hw_send_log_msg(test4);
+		for(uint8_t i = 0; i < 4; i++){
+			if(test_vals[i] != returned_vals[i]){
+				enc28j60_hw_send_log_msg(failed);
+				while(1){}
+			}
+		}
+		enc28j60_hw_send_log_msg(passed);
+	#else
+		for(uint8_t i = 0; i < 4; i++){
+			if(test_vals[i] != returned_vals[i]){
+				while(1){}
+			}
+		}
+	#endif
+	
 	//Reset after test to prevent untracted mistakes
 	enc28j60_soft_reset();
 }
@@ -121,7 +160,6 @@ void enc28j60_write_reg(const Reg_t* reg, uint16_t value){
 			}
 			break;
 		}
-		#warning TODO: NEED TO CHECK
 		case PHY:
 			//Write the address of the PHY register to write to into the MIREGADR register.
 			enc28j60_hw_send_data_8b( WriteControlRegister | MIREGADR.reg_addr, reg->reg_addr);
@@ -242,6 +280,27 @@ uint16_t enc28j60_read_reg(const Reg_t* reg){
 	enc28j60_hw_cs_high();
 	return ret;
 }
+//Attention!!! Function works only if AUTOINC set in the ECON2 register
+void enc28j60_write_buf(uint8_t* buf, uint16_t buf_lng){
+	enc28j60_hw_cs_low();
+	//Send comand to write data in the TX buffer
+	enc28j60_hw_send_short_cmd( WriteBufferMemory | BUFFER_MEMORY_ARG);
+	for(int16_t i = 0; i < buf_lng; i++){
+		enc28j60_hw_send_short_cmd(*(buf + i));
+	}
+	enc28j60_hw_cs_high();
+}
+
+uint16_t enc28j60_read_buf(uint8_t *buf, uint16_t length){
+	enc28j60_hw_cs_low();
+	//Send comand to read data from the RX buffer
+	enc28j60_hw_send_short_cmd( ReadBufferMemory | BUFFER_MEMORY_ARG);
+	for(uint16_t i = 0; i < length; i++){
+		//Reading via short comand, parameter of short_cmd have not mean
+		*(buf + i) = enc28j60_hw_send_short_cmd(0xFF);
+	}
+	enc28j60_hw_cs_high();
+}
 
 void enc28j60_bitfield_set(const Reg_t* reg, uint8_t mask){
 	if(reg->type == ETH){
@@ -249,7 +308,7 @@ void enc28j60_bitfield_set(const Reg_t* reg, uint8_t mask){
 			enc28j60_bank_changing(reg -> bank);
 		}
 		enc28j60_hw_cs_low();
-		enc28j60_hw_send_data_8b( BitFieldSet | reg->reg_addr, mask);\
+		enc28j60_hw_send_data_8b( BitFieldSet | reg->reg_addr, mask);
 		//The BFS operation is terminated by raising the CS pin.
 		enc28j60_hw_cs_high();
 	}	
@@ -328,8 +387,7 @@ void enc28j60_mid_init(void){
 	((MACON3_REG*)(&status))->FRMLNEN = 1;
 	((MACON3_REG*)(&status))->FULLDPX = 1;
 	enc28j60_write_reg(&MACON3, status);
-	
-	
+		
 	//Configure the bits in MACON4. For conformance to the IEEE 802.3 standard, set the DEFER bit.
 	//We will using full duplex, so setting of MACON4 is not needed
 	//.................................................................
@@ -353,6 +411,11 @@ void enc28j60_mid_init(void){
 	enc28j60_write_reg(&MAADR4, 0x00);
 	enc28j60_write_reg(&MAADR5, 0x00);
 	enc28j60_write_reg(&MAADR6, 0x01);
+	
+	//Manually set PHCON1.PDPXMD register to set the full duplex mode
+	status = enc28j60_read_reg(&PHCON1);
+	((PHCON1_REG_16*)(&status))->PDPXMD = 1;
+	enc28j60_write_reg(&PHCON1, status);
 	
 	#ifdef LOGGING
 		uint8_t init_copleted[] = "ECN28J60 init completed\n";

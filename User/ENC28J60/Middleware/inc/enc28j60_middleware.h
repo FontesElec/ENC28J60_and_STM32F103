@@ -60,6 +60,25 @@ void enc28j60_bitfield_clear(const Reg_t* reg, uint8_t mask);
 
 
 /**
+	The Write Buffer Memory (WBM) command allows the host controller to write bytes to the integrated 8-Kbyte
+	transmit and receive buffer memory.
+	ATTENTION!!! function may work with set AUTOINC bit in ECON2 register
+	@param buf - pointer to the data to be written
+	@param buf_lng - how many bytes need to be written
+*/
+void enc28j60_write_buf(uint8_t* buf, uint16_t buf_lng);
+
+/**
+	The Read Buffer Memory (RBM) command allows the host controller to read bytes from the integrated 8-Kbyte
+	transmit and receive buffer memory.
+	ATTENTION!!! function may work with set AUTOINC bit in ECON2 register
+	@param buf - pointer to the place where the data will be written 
+	@param length - how many bytes need to be read
+*/
+uint16_t enc28j60_read_buf(uint8_t *buf, uint16_t length);
+
+
+/**
 	Initializing the enc28j60 at full_duplex mode
 */
 void enc28j60_mid_init(void);

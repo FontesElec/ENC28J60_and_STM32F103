@@ -19,20 +19,20 @@ I (.\CMSIS\core_cm3.h)(0x4D5281A8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
 I (.\CMSIS\system_stm32f10x.h)(0x4D7882FA)
 F (.\User\ENC28J60\Interaface\src\enc28j60.c)(0x69779579)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60.o --omf_browse .\objects\enc28j60.crf --depend .\objects\enc28j60.d)
-I (.\User\ENC28J60\Middleware\inc\enc28j60_middleware.h)(0x69CBECE6)
+I (.\User\ENC28J60\Middleware\inc\enc28j60_middleware.h)(0x69CE59FA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
-I (.\User\ENC28J60\Hardware\inc\enc28j60_register_map.h)(0x69CBD696)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_register_map.h)(0x69CE330E)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
 I (.\User\ENC28J60\Interaface\inc\enc28j60.h)(0x6985B5BD)
-F (.\User\ENC28J60\Middleware\src\enc28j60_middleware.c)(0x69CBF3E3)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60_middleware.o --omf_browse .\objects\enc28j60_middleware.crf --depend .\objects\enc28j60_middleware.d)
-I (.\User\ENC28J60\Hardware\inc\enc28j60_hardware.h)(0x69CB9A6A)
+F (.\User\ENC28J60\Middleware\src\enc28j60_middleware.c)(0x69CE5B98)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60_middleware.o --omf_browse .\objects\enc28j60_middleware.crf --depend .\objects\enc28j60_middleware.d)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_hardware.h)(0x69CE536F)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
-I (.\User\ENC28J60\Middleware\inc\enc28j60_middleware.h)(0x69CBECE6)
-I (.\User\ENC28J60\Hardware\inc\enc28j60_register_map.h)(0x69CBD696)
+I (.\User\ENC28J60\Middleware\inc\enc28j60_middleware.h)(0x69CE59FA)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_register_map.h)(0x69CE330E)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
-F (.\User\ENC28J60\Hardware\src\enc28j60_hardware.c)(0x69CB7E59)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60_hardware.o --omf_browse .\objects\enc28j60_hardware.crf --depend .\objects\enc28j60_hardware.d)
+F (.\User\ENC28J60\Hardware\src\enc28j60_hardware.c)(0x69CE5399)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\User -I .\User\core\inc -I .\User\ENC28J60\Hardware\inc -I .\User\ENC28J60\Middleware\inc -I .\User\ENC28J60\Interaface\inc-I.\RTE\_Target_1-ID:\KeilPacks\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_MD-o .\objects\enc28j60_hardware.o --omf_browse .\objects\enc28j60_hardware.crf --depend .\objects\enc28j60_hardware.d)
 I (.\CMSIS\stm32f10x.h)(0x5D7FBA09)
 I (.\CMSIS\core_cm3.h)(0x4D5281A8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
 I (.\CMSIS\system_stm32f10x.h)(0x4D7882FA)
-I (.\User\ENC28J60\Hardware\inc\enc28j60_hardware.h)(0x69CB9A6A)
+I (.\User\ENC28J60\Hardware\inc\enc28j60_hardware.h)(0x69CE536F)
