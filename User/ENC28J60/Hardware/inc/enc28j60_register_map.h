@@ -8,6 +8,7 @@
 //Memory allocation
 #define RX_BUFFER_START_ADDR	0x0
 #define RX_BUFFER_END_ADDR		0x17ff
+#define TX_BUFFER_START_ADDR	0x1800
 
 //------------------------CONSTANT ADDRESSES-------------------
 

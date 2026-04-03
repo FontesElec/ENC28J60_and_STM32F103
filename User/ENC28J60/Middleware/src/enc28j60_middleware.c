@@ -383,7 +383,7 @@ void enc28j60_mid_init(MAC_addr_t* my_addr){
 	should be left clear.
 	*/
 	status = enc28j60_read_reg(&MACON3);
-	((MACON3_REG*)(&status))->PADCFG = MACON3_64B_PADDED;
+	((MACON3_REG*)(&status))->PADCFG = MACON3_60B_PADDED;
 	((MACON3_REG*)(&status))->TXCRCEN = 1;
 	((MACON3_REG*)(&status))->FRMLNEN = 1;
 	((MACON3_REG*)(&status))->FULLDPX = 1;
