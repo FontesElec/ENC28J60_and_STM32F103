@@ -4,13 +4,16 @@
 #include "stdint.h"
 #include "enc28j60_register_map.h"
 
-#define MW_TEST
+typedef struct{
+	uint8_t addr1;
+	uint8_t addr2;
+	uint8_t addr3;
+	uint8_t addr4;
+	uint8_t addr5;
+	uint8_t addr6;	
+}MAC_addr_t;
 
-#ifdef MW_TEST
-	#ifndef LOGGING
-		#define LOGGING
-	#endif
-#endif
+#define MW_TEST
 
 /**
 	After a System Reset, all PHY registers should not be read or written to until at least 50 μs have passed since the Reset has ended. 
@@ -75,10 +78,10 @@ void enc28j60_write_buf(uint8_t* buf, uint16_t buf_lng);
 	@param buf - pointer to the place where the data will be written 
 	@param length - how many bytes need to be read
 */
-uint16_t enc28j60_read_buf(uint8_t *buf, uint16_t length);
+void enc28j60_read_buf(uint8_t *buf, uint16_t length);
 
 
 /**
 	Initializing the enc28j60 at full_duplex mode
 */
-void enc28j60_mid_init(void);
+void enc28j60_mid_init(MAC_addr_t* my_addr);

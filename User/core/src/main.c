@@ -5,11 +5,16 @@
 #include "enc28j60.h"
 
 int main(void){
-	
+	  
+	  static uint8_t eth_buffer[1500];
+		static MAC_addr_t my_MAC_addr = {02, 00, 00, 00, 00, 01};
+		static eth_frame_t eth_frame;
+		static ETH_rx_header_t rx_header;
+		
 		SetCoreClock();
-		enc28j60_Init();
-
-	
+		
+		enc28j60_Init(&my_MAC_addr, eth_buffer, &rx_header, &eth_frame);
+		
     RCC->APB2ENR|=RCC_APB2ENR_IOPCEN;//подаём тактирование на порт С
     GPIOC->CRH&=~GPIO_CRH_CNF13;
     GPIOC->CRH|=GPIO_CRH_MODE13_1;
@@ -23,6 +28,7 @@ int main(void){
         GPIOC->ODR=0b1111111111111111;
         //GPIOC->BSRR|=GPIO_BSRR_BS13;
         for(int i=10000000;i>0;i--);
+				polling_eth();
     }
     
       //GPIOC->ODR |= (1<<13);  

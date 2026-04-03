@@ -151,7 +151,7 @@ void enc28j60_write_reg(const Reg_t* reg, uint16_t value){
 	}
 	enc28j60_hw_cs_low(); 
 	switch(reg->type){
-		case ETH: case MAC: case MII:{
+		case ETH_R: case MAC_R: case MII_R:{
 			enc28j60_hw_send_data_8b( WriteControlRegister | reg->reg_addr, value & 0xff);
 			if(reg->length == 2){
 				enc28j60_hw_cs_high();
@@ -160,7 +160,7 @@ void enc28j60_write_reg(const Reg_t* reg, uint16_t value){
 			}
 			break;
 		}
-		case PHY:
+		case PHY_R:
 			//Write the address of the PHY register to write to into the MIREGADR register.
 			enc28j60_hw_send_data_8b( WriteControlRegister | MIREGADR.reg_addr, reg->reg_addr);
 		  enc28j60_hw_cs_high();
@@ -194,7 +194,7 @@ uint16_t enc28j60_read_reg(const Reg_t* reg){
 	}
 	enc28j60_hw_cs_low();
 	switch (reg->type){
-		case ETH:{
+		case ETH_R:{
 			ret = enc28j60_hw_read_data_8b(ReadControlRegister | reg->reg_addr);	
 			if(reg->length == 2){
 				enc28j60_hw_cs_high();
@@ -204,7 +204,7 @@ uint16_t enc28j60_read_reg(const Reg_t* reg){
 			}
 			break;
 		}
-		case MAC: case MII:{
+		case MAC_R: case MII_R:{
 			//For MAC and MII registers first readed byte is dummy and skipped
 			ret = (enc28j60_hw_read_data_16b(ReadControlRegister | reg->reg_addr)) & 0xff;			
 			if(reg->length == 2){
@@ -214,7 +214,7 @@ uint16_t enc28j60_read_reg(const Reg_t* reg){
 			}
 			break;
 		}
-		case PHY:{
+		case PHY_R:{
 			enc28j60_bank_changing(MIREGADR.bank);
 			enc28j60_hw_cs_low();
 			
@@ -291,7 +291,7 @@ void enc28j60_write_buf(uint8_t* buf, uint16_t buf_lng){
 	enc28j60_hw_cs_high();
 }
 
-uint16_t enc28j60_read_buf(uint8_t *buf, uint16_t length){
+void enc28j60_read_buf(uint8_t *buf, uint16_t length){
 	enc28j60_hw_cs_low();
 	//Send comand to read data from the RX buffer
 	enc28j60_hw_send_short_cmd( ReadBufferMemory | BUFFER_MEMORY_ARG);
@@ -303,7 +303,7 @@ uint16_t enc28j60_read_buf(uint8_t *buf, uint16_t length){
 }
 
 void enc28j60_bitfield_set(const Reg_t* reg, uint8_t mask){
-	if(reg->type == ETH){
+	if(reg->type == ETH_R){
 		if((current_bank != reg -> bank) && (reg -> bank != Common)){
 			enc28j60_bank_changing(reg -> bank);
 		}
@@ -315,7 +315,7 @@ void enc28j60_bitfield_set(const Reg_t* reg, uint8_t mask){
 }
 
 void enc28j60_bitfield_clear(const Reg_t* reg, uint8_t mask){
-	if(reg->type == ETH){
+	if(reg->type == ETH_R){
 		if((current_bank != reg -> bank) && (reg -> bank != Common)){
 			enc28j60_bank_changing(reg -> bank);
 		}
@@ -326,7 +326,7 @@ void enc28j60_bitfield_clear(const Reg_t* reg, uint8_t mask){
 	}	
 }
 
-void enc28j60_mid_init(void){
+void enc28j60_mid_init(MAC_addr_t* my_addr){
 	
 	//Initialize SPI communication
   enc28j60_hw_spi_init();	
@@ -346,11 +346,12 @@ void enc28j60_mid_init(void){
 	enc28j60_write_reg(&ERXNDL,RX_BUFFER_END_ADDR);
 	
 	//For tracking purposes, the ERXRDPT registers should additionally be programmed with the same value.
-	enc28j60_write_reg(&ERXRDPTL, RX_BUFFER_START_ADDR);
+	enc28j60_write_reg(&ERXRDPTL, RX_BUFFER_END_ADDR);
 	
 	//The appropriate receive filters should be enabled or disabled by writing to the ERXFCON register.
-	//Trying to start without filters
-	//..............................................................
+	status = enc28j60_read_reg(&ERXFCON);
+	((ERXFCON_REG*)(&status))->CRCEN = 1;
+	enc28j60_write_reg(&ERXFCON, status);
 	
 	//If ECON2.AUTOINC is set, it will be able to sequentially read the entire packet without ever modifying the ERDPT registers.
 	status = enc28j60_read_reg(&ECON2);
@@ -404,21 +405,27 @@ void enc28j60_mid_init(void){
 	enc28j60_write_reg(&MABBIPG, 0x15);
 	
 	//Program the local MAC address into the MAADR1:MAADR6 registers.
-	#warning TODO: MAC as a macros in separate config file or in function init parameter
-	enc28j60_write_reg(&MAADR1, 0x02);
-	enc28j60_write_reg(&MAADR2, 0x00);
-	enc28j60_write_reg(&MAADR3, 0x00);
-	enc28j60_write_reg(&MAADR4, 0x00);
-	enc28j60_write_reg(&MAADR5, 0x00);
-	enc28j60_write_reg(&MAADR6, 0x01);
+	enc28j60_write_reg(&MAADR1, my_addr->addr1);
+	enc28j60_write_reg(&MAADR2, my_addr->addr2);
+	enc28j60_write_reg(&MAADR3, my_addr->addr3);
+	enc28j60_write_reg(&MAADR4, my_addr->addr4);
+	enc28j60_write_reg(&MAADR5, my_addr->addr5);
+	enc28j60_write_reg(&MAADR6, my_addr->addr6);
 	
 	//Manually set PHCON1.PDPXMD register to set the full duplex mode
 	status = enc28j60_read_reg(&PHCON1);
 	((PHCON1_REG_16*)(&status))->PDPXMD = 1;
 	enc28j60_write_reg(&PHCON1, status);
 	
+	//Set RX on
+	status = enc28j60_read_reg(&ECON1);
+	((ECON1_REG*)(&status))->RXEN = 1;
+	enc28j60_write_reg(&ECON1, status);
+	
 	#ifdef LOGGING
 		uint8_t init_copleted[] = "ECN28J60 init completed\n";
 		enc28j60_hw_send_log_msg(init_copleted);
 	#endif
 }
+
+

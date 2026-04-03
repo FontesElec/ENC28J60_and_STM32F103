@@ -5,3 +5,6 @@
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: .\CMSIS\system_stm32f10x.h
 .\objects\main.o: .\User\ENC28J60\Interaface\inc\enc28j60.h
+.\objects\main.o: .\User\ENC28J60\Middleware\inc\enc28j60_middleware.h
+.\objects\main.o: .\User\ENC28J60\Hardware\inc\enc28j60_register_map.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h

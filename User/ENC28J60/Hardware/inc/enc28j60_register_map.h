@@ -42,10 +42,10 @@ typedef enum{
 
 //Register type
 typedef enum{
-	ETH = 0x00,
-	MAC,
-	MII,	
-	PHY,
+	ETH_R = 0x00,
+	MAC_R,
+	MII_R,	
+	PHY_R,
 }RegType_t;
 
 //Register parameters
@@ -59,202 +59,89 @@ typedef struct __attribute__((packed)){
 
 //--------------------------REGISTER MAP-----------------------
 
-static const Reg_t EIE 			= {ETH, Common,	0x1b, 1};
-static const Reg_t EIR 			= {ETH, Common, 0x1c, 1};
-static const Reg_t ESTAT		=	{ETH, Common, 0x1d, 1};
-static const Reg_t ECON2  	= {ETH, Common, 0x1e, 1};	//Controlled main functions (Power management, pointer/packed decrement or increment)
-static const Reg_t ECON1  	= {ETH, Common, 0x1f, 1};	//Controlled main functions (RX/TX, DMA, bank selection)
+//Common for all bank registers
+static const Reg_t EIE 			= {ETH_R, Common,	0x1b, 1};
+static const Reg_t EIR 			= {ETH_R, Common, 0x1c, 1};
+static const Reg_t ESTAT		=	{ETH_R, Common, 0x1d, 1};
+static const Reg_t ECON2  	= {ETH_R, Common, 0x1e, 1};	//Controlled main functions (Power management, pointer/packed decrement or increment)
+static const Reg_t ECON1  	= {ETH_R, Common, 0x1f, 1};	//Controlled main functions (RX/TX, DMA, bank selection)
 
+//Bank 0 registers
+static const Reg_t ERDPTL 	= {ETH_R, Bank0,	0x00, 2};	//Receive buffer current position pointer
+static const Reg_t EWRPTL 	= {ETH_R, Bank0,	0x02, 2}; //Transmit buffer current position pointer
+static const Reg_t ETXSTL		=	{ETH_R, Bank0,	0x04, 2};	//Transmit buffer start address
+static const Reg_t ETXNDL 	= {ETH_R, Bank0,	0x06, 2};	//Transmit buffer end address
+static const Reg_t ERXSTL 	= {ETH_R, Bank0,	0x08, 2}; //Receive buffer start address
+static const Reg_t ERXNDL 	= {ETH_R, Bank0,	0x0a, 2};	//Receive buffer end address
+static const Reg_t ERXRDPTL	= {ETH_R, Bank0,	0x0c, 2};
+static const Reg_t ERXWRPTL = {ETH_R, Bank0,	0x0e, 2};	//Internal hardware copy of ERXST
+static const Reg_t EDMASTL	= {ETH_R, Bank0,	0x10, 2};
+static const Reg_t EDMANDL  = {ETH_R, Bank0,	0x12, 2};
+static const Reg_t EDMADSTL = {ETH_R, Bank0,	0x14, 2};
+static const Reg_t EDMACSL	= {ETH_R, Bank0,	0x16, 2};
 
-static const Reg_t ERDPTL 	= {ETH, Bank0,	0x00, 2};	//Receive buffer current position pointer
-static const Reg_t EWRPTL 	= {ETH, Bank0,	0x02, 2}; //Transmit buffer current position pointer
-static const Reg_t ETXSTL		=	{ETH, Bank0,	0x04, 2};	//Transmit buffer start address
-static const Reg_t ETXNDL 	= {ETH, Bank0,	0x06, 2};	//Transmit buffer end address
-static const Reg_t ERXSTL 	= {ETH, Bank0,	0x08, 2}; //Receive buffer start address
-static const Reg_t ERXNDL 	= {ETH, Bank0,	0x0a, 2};	//Receive buffer end address
-static const Reg_t ERXRDPTL	= {ETH, Bank0,	0x0c, 2};
-static const Reg_t ERXWRPTL = {ETH, Bank0,	0x0e, 2};	//Internal hardware copy of ERXST
-static const Reg_t EDMASTL	= {ETH, Bank0,	0x10, 2};
-static const Reg_t EDMANDL  = {ETH, Bank0,	0x12, 2};
-static const Reg_t EDMADSTL = {ETH, Bank0,	0x14, 2};
-static const Reg_t EDMACSL	= {ETH, Bank0,	0x16, 2};
+//Bank 1 registers
+static const Reg_t EHT0			= {ETH_R, Bank1,  0x00, 1};
+static const Reg_t EHT1			= {ETH_R, Bank1,  0x01, 1};
+static const Reg_t EHT2			= {ETH_R, Bank1,  0x02, 1};
+static const Reg_t EHT3			= {ETH_R, Bank1,  0x03, 1};
+static const Reg_t EHT4			= {ETH_R, Bank1,  0x04, 1};
+static const Reg_t EHT5			= {ETH_R, Bank1,  0x05, 1};
+static const Reg_t EHT6			= {ETH_R, Bank1,  0x06, 1};
+static const Reg_t EHT7			= {ETH_R, Bank1,  0x07, 1};
+static const Reg_t EPMM0		= {ETH_R, Bank1,  0x08, 1};
+static const Reg_t EPMM1		= {ETH_R, Bank1,  0x09, 1};
+static const Reg_t EPMM2		= {ETH_R, Bank1,  0x0a, 1};
+static const Reg_t EPMM3		= {ETH_R, Bank1,  0x0b, 1};
+static const Reg_t EPMM4		= {ETH_R, Bank1,  0x0c, 1};
+static const Reg_t EPMM5		= {ETH_R, Bank1,  0x0d, 1};
+static const Reg_t EPMM6		= {ETH_R, Bank1,  0x0e, 1};
+static const Reg_t EPMM7		= {ETH_R, Bank1,  0x0f, 1};
+static const Reg_t EPMCSL		= {ETH_R, Bank1,  0x10, 2};
+static const Reg_t EPMOL		=	{ETH_R, Bank1,  0x14, 2};
+static const Reg_t ERXFCON	= {ETH_R, Bank1,  0x18, 1};
+static const Reg_t EPKTCNT	= {ETH_R, Bank1,  0x19, 1};
 
+//Bank 2 registers
+static const Reg_t MACON1		= {MAC_R, Bank2,	0x00, 1};
+static const Reg_t MACON3		=	{MAC_R, Bank2,	0x02, 1};
+static const Reg_t MACON4		= {MAC_R, Bank2,	0x03, 1};
+static const Reg_t MABBIPG	=	{MAC_R, Bank2,	0x04, 1};
+static const Reg_t MAIPGL		=	{MAC_R, Bank2,	0x06, 2};
+static const Reg_t MACLCON1 = {MAC_R, Bank2,	0x08, 1};
+static const Reg_t MACLCON2 = {MAC_R, Bank2,	0x09, 1};
+static const Reg_t MAMXFLL	= {MAC_R, Bank2,	0x0a, 2};
+static const Reg_t MICMD		=	{MII_R, Bank2,	0x12, 1};
+static const Reg_t MIREGADR	=	{MII_R, Bank2,	0x14, 1};
+static const Reg_t MIWRL		= {MII_R, Bank2,	0x16, 2};
+static const Reg_t MIRDL		=	{MII_R, Bank2,	0x18, 2};
 
-static const Reg_t EHT0			= {ETH, Bank1,  0x00, 1};
-static const Reg_t EHT1			= {ETH, Bank1,  0x01, 1};
-static const Reg_t EHT2			= {ETH, Bank1,  0x02, 1};
-static const Reg_t EHT3			= {ETH, Bank1,  0x03, 1};
-static const Reg_t EHT4			= {ETH, Bank1,  0x04, 1};
-static const Reg_t EHT5			= {ETH, Bank1,  0x05, 1};
-static const Reg_t EHT6			= {ETH, Bank1,  0x06, 1};
-static const Reg_t EHT7			= {ETH, Bank1,  0x07, 1};
-static const Reg_t EPMM0		= {ETH, Bank1,  0x08, 1};
-static const Reg_t EPMM1		= {ETH, Bank1,  0x09, 1};
-static const Reg_t EPMM2		= {ETH, Bank1,  0x0a, 1};
-static const Reg_t EPMM3		= {ETH, Bank1,  0x0b, 1};
-static const Reg_t EPMM4		= {ETH, Bank1,  0x0c, 1};
-static const Reg_t EPMM5		= {ETH, Bank1,  0x0d, 1};
-static const Reg_t EPMM6		= {ETH, Bank1,  0x0e, 1};
-static const Reg_t EPMM7		= {ETH, Bank1,  0x0f, 1};
-static const Reg_t EPMCSL		= {ETH, Bank1,  0x10, 2};
-static const Reg_t EPMOL		=	{ETH, Bank1,  0x14, 2};
-static const Reg_t ERXFCON	= {ETH, Bank1,  0x18, 1};
-static const Reg_t EPKTCNT	= {ETH, Bank1,  0x19, 1};
+//Bank 3 registers
+static const Reg_t MAADR5		= {MAC_R, Bank3,	0x00, 1};
+static const Reg_t MAADR6		=	{MAC_R, Bank3,	0x01, 1};
+static const Reg_t MAADR3		=	{MAC_R, Bank3,	0x02, 1};
+static const Reg_t MAADR4		= {MAC_R, Bank3,	0x03, 1};
+static const Reg_t MAADR1		=	{MAC_R, Bank3,	0x04, 1};
+static const Reg_t MAADR2		=	{MAC_R, Bank3,	0x05, 1};
+static const Reg_t EBSTSD		=	{ETH_R, Bank3,	0x06, 1};
+static const Reg_t EBSTCON	= {ETH_R, Bank3,	0x07, 1};
+static const Reg_t EBSTCSL	=	{ETH_R, Bank3,	0x08, 2};
+static const Reg_t MISTAT		=	{MII_R, Bank3,	0x0a, 1};
+static const Reg_t EREVID		=	{ETH_R, Bank3,	0x12, 1};
+static const Reg_t ECOCON		=	{ETH_R, Bank3,	0x15, 1};
+static const Reg_t EFLOCON	=	{ETH_R, Bank3,	0x17, 1};
+static const Reg_t EPAUSL		=	{ETH_R, Bank3,	0x18, 2};
 
-
-static const Reg_t MACON1		= {MAC, Bank2,	0x00, 1};
-static const Reg_t MACON3		=	{MAC, Bank2,	0x02, 1};
-static const Reg_t MACON4		= {MAC, Bank2,	0x03, 1};
-static const Reg_t MABBIPG	=	{MAC, Bank2,	0x04, 1};
-static const Reg_t MAIPGL		=	{MAC, Bank2,	0x06, 2};
-static const Reg_t MACLCON1 = {MAC, Bank2,	0x08, 1};
-static const Reg_t MACLCON2 = {MAC, Bank2,	0x09, 1};
-static const Reg_t MAMXFLL	= {MAC, Bank2,	0x0a, 2};
-static const Reg_t MICMD		=	{MII, Bank2,	0x12, 1};
-static const Reg_t MIREGADR	=	{MII, Bank2,	0x14, 1};
-static const Reg_t MIWRL		= {MII, Bank2,	0x16, 2};
-static const Reg_t MIRDL		=	{MII, Bank2,	0x18, 2};
-
-
-static const Reg_t MAADR5		= {MAC, Bank3,	0x00, 1};
-static const Reg_t MAADR6		=	{MAC, Bank3,	0x01, 1};
-static const Reg_t MAADR3		=	{MAC, Bank3,	0x02, 1};
-static const Reg_t MAADR4		= {MAC, Bank3,	0x03, 1};
-static const Reg_t MAADR1		=	{MAC, Bank3,	0x04, 1};
-static const Reg_t MAADR2		=	{MAC, Bank3,	0x05, 1};
-static const Reg_t EBSTSD		=	{ETH, Bank3,	0x06, 1};
-static const Reg_t EBSTCON	= {ETH, Bank3,	0x07, 1};
-static const Reg_t EBSTCSL	=	{ETH, Bank3,	0x08, 2};
-static const Reg_t MISTAT		=	{MII, Bank3,	0x0a, 1};
-static const Reg_t EREVID		=	{ETH, Bank3,	0x12, 1};
-static const Reg_t ECOCON		=	{ETH, Bank3,	0x15, 1};
-static const Reg_t EFLOCON	=	{ETH, Bank3,	0x17, 1};
-static const Reg_t EPAUSL		=	{ETH, Bank3,	0x18, 2};
-
-static const Reg_t PHCON1		=	{PHY, Common, 0x00, 2};
-static const Reg_t PHSTAT1	=	{PHY, Common, 0x01, 2};
-static const Reg_t PHID1		=	{PHY, Common, 0x02, 2};
-static const Reg_t PHID2		=	{PHY, Common, 0x03, 2};
-static const Reg_t PHCON2		=	{PHY, Common, 0x10, 2};
-static const Reg_t PHSTAT2	= {PHY, Common, 0x11, 2};
-static const Reg_t PHIE			= {PHY, Common, 0x12, 2};
-static const Reg_t PHIR			=	{PHY, Common, 0x13, 2};
-static const Reg_t PHLCON		= {PHY, Common, 0x14, 2};
-
-
-
-
-
-//------------------------COMMON REGISTERS---------------------
-//typedef enum{
-//	EIE 		= 0x1b,
-//	EIR,
-//	ESTAT,
-//	ECON2,										
-//	ECON1,										
-//} ENC28J60_COMMON_TypeDef;
-
-
-
-
-//----------------------------BANK0 (ETHERNET BUFFER REGISTERS)----------------------------
-//typedef enum{
-//	ERDPTL 		= 0x00,					//Receive buffer current position pointer lower register
-//	ERDPTH,										//Receive buffer current position pointer upper register
-//	EWRPTL,										//Transmit buffer current position pointer lower register
-//	EWRPTH,										//Transmit buffer current position pointer upper register
-//	ETXSTL,										//Transmit buffer start address lower register
-//	ETXSTH,										//Transmit buffer start address upper register
-//	ETXNDL,										//Transmit buffer end address lower register
-//	ETXNDH,										//Transmit buffer end address upper register
-//	ERXSTL,										//Receive buffer start address lower register
-//	ERXSTH,										//Receive buffer start address upper register
-//	ERXNDL,										//Receive buffer end address lower register
-//	ERXNDH,										//Receive buffer end address upper register
-//	ERXRDPTL,
-//	ERXRDPTH,
-//	ERXWRPTL,									//Internal hardware copy of ERXST lower register (readonly)
-//	ERXWRPTH,									//Internal hardware copy of ERXST upper register (readonly)
-//	EDMASTL,
-//	EDMASTH,
-//	EDMANDL,
-//	EDMANDH,
-//	EDMADSTL,
-//	EDMADSTH,
-//	EDMACSL,
-//	EDMACSH,
-//} ENC28J60_BANK0_TypeDef;
-
-
-//----------------------------BANK1----------------------------
-//typedef enum{
-//	EHT0 			= 0x00,
-//	EHT1,
-//	EHT2,
-//	EHT3,
-//	EHT4,
-//	EHT5,
-//	EHT6,
-//	EHT7,
-//	EPMM0,
-//	EPMM1,
-//	EPMM2,
-//	EPMM3,
-//	EPMM4,
-//	EPMM5,
-//	EPMM6,
-//	EPMM7,
-//	EPMCSL,
-//	SPMCSH,
-//	EPMOL 		= 0x14,
-//	EPMOH,
-//	ERXFCON 	= 0x18,
-//	EPKTCNT,
-//}	ENC28J60_BANK1_TypeDef;
-
-
-//----------------------------BANK2----------------------------
-//typedef enum{
-//	MACON1 		= 0x00,
-//	MACON3 		= 0x02,
-//	MACON4,
-//	MABBIPG,
-//	MAIPGL 		= 0x06,
-//	MAIPGH,
-//	MACLCON1,
-//	MACLCON2,
-//	MAMXFLL,
-//	MAMXFLH,
-//	MICMD 		= 0x12,
-//	MIREGADR 	= 0x14,
-//	MIWRL 		= 0x16,
-//	MIWRH,
-//	MIRDL,
-//	MIRDH,	
-//}NC28J60_BANK2_TypeDef;
-
-
-
-//----------------------------BANK3----------------------------
-//typedef enum{
-//	MAADR5 = 0x00,
-//	MAADR6,
-//	MAADR3,
-//	MAADR4,
-//	MAADR1,
-//	MAADR2,
-//	EBSTSD,
-//	EBSTCON,
-//	EBSTCSL,
-//	EBSTCSH,
-//	MISTAT,
-//	EREVID = 0x12,
-//	ECOCON = 0x15,
-//	EFLOCON = 0x17,
-//	EPAUSL,
-//	EPAUSH,
-//}NC28J60_BANK3_TypeDef;
-
+//PHY registers
+static const Reg_t PHCON1		=	{PHY_R, Common, 0x00, 2};
+static const Reg_t PHSTAT1	=	{PHY_R, Common, 0x01, 2};
+static const Reg_t PHID1		=	{PHY_R, Common, 0x02, 2};
+static const Reg_t PHID2		=	{PHY_R, Common, 0x03, 2};
+static const Reg_t PHCON2		=	{PHY_R, Common, 0x10, 2};
+static const Reg_t PHSTAT2	= {PHY_R, Common, 0x11, 2};
+static const Reg_t PHIE			= {PHY_R, Common, 0x12, 2};
+static const Reg_t PHIR			=	{PHY_R, Common, 0x13, 2};
+static const Reg_t PHLCON		= {PHY_R, Common, 0x14, 2};
 
 //-----------------------------REGISTERS-----------------------
 
@@ -269,6 +156,18 @@ typedef struct __attribute__((packed)){
 	uint8_t BUFER						: 1;
 	uint8_t INT							: 1;
 }ESTAT_REG;
+
+//Ethernet receive filter control register
+typedef struct __attribute__((packed)){
+	uint8_t BCEN						: 1;		//Broadcast filter enable bit
+	uint8_t MCEN						: 1;		//Multicast filter enable bit
+	uint8_t HTEN						: 1;		//Hash table filter enable bit
+	uint8_t MPEN						: 1;		//Magic packet filter enable bit
+	uint8_t PMEN						:	1;		//Pattern match filter enable bit
+	uint8_t CRCEN						:	1;		//Post-filter CRC check enable bit
+	uint8_t ANDOR						: 1;		//AND/OR filter select bit
+	uint8_t UCEN						: 1;		//Unicast filter enable bit
+}ERXFCON_REG;
 
 //MAC control register 1
 typedef struct __attribute__((packed)){
@@ -364,9 +263,8 @@ typedef struct __attribute__((packed)){
 	uint16_t PRST						:	1;	//PHY software reset bit
 }PHCON1_REG_16;
 
+//---------------------CONFIG PARAMETERS-----------------------
 
-
-//CONFIG PARAMETERS
 #define MACON3_NO_AUTOPAD			0x00
 #define MACON3_60B_PADDED			0x01
 #define MACON3_64B_PADDED			0x03
