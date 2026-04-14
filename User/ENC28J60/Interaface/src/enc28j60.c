@@ -6,6 +6,8 @@
 #define CRC_SIZE 				4
 #define H_SIZE 					(ENC_HEADER_SIZE + ETH_FRAME_SIZE + CRC_SIZE)
 
+static uint16_t tx_ptr = TX_BUFFER_START_ADDR;
+
 
 
 //Pointer to frame payload 
@@ -152,43 +154,106 @@ void processing(void){
 	
 }
 
-void polling_eth(void){
+
+uint16_t enc28j60_receive_packet(uint8_t *buf, uint16_t maxlen){
 	//Checking new received frames
-	while(enc28j60_read_reg(&EPKTCNT)){
+	if(enc28j60_read_reg(&EPKTCNT)){
 		
 		enc28j60_write_reg(&ERDPTL, c_rx_ptr);
-		
 		enc28j60_read_rx_header(enc_header);
 		
-		//Payload value calculation
-		uint16_t frame_length = 0;
-		if(enc_header->next_packet_ptr > c_rx_ptr){
-			frame_length = enc_header->next_packet_ptr - c_rx_ptr - RX_BUFFER_START_ADDR - H_SIZE;
-		}
-		else{
-			frame_length = RX_BUFFER_END_ADDR - (RX_BUFFER_START_ADDR << 1) - c_rx_ptr + enc_header->next_packet_ptr - H_SIZE;
-		}
+		uint16_t len = enc_header->byte_count;
+
+    if (len > 4) len -= 4; //Ignore the CRC
+    if (len > maxlen) len = maxlen; //ignore rest data if len more than maximum length
 		
-		//Get ETH header
-		enc28j60_read_ETH_header(frame_params);
-		
-		if(frame_params->etype == E_TYPE_ARP){
-			frame_params->payload_val = frame_length;
-			enc28j60_read_payload(buffer_ptr, frame_length);
-			if(buffer_ptr[24] == 169 && buffer_ptr[25] == 254 && buffer_ptr[26] == 25 && buffer_ptr[27] == 63){
-				processing();
-			}
-		}
+		enc28j60_read_buf(buf, len);
 		
 		//Move forward pointers
 		c_rx_ptr = enc_header->next_packet_ptr;
 		enc28j60_write_reg(&ERDPTL, c_rx_ptr);
-		enc28j60_write_reg(&ERXRDPTL, enc_header->next_packet_ptr - 1);
+		if (enc_header->next_packet_ptr == RX_BUFFER_START_ADDR){
+			enc28j60_write_reg(&ERXRDPTL, RX_BUFFER_END_ADDR);
+		}
+		else{
+			enc28j60_write_reg(&ERXRDPTL, enc_header->next_packet_ptr - 1);
+		}
 		
 		//Decrement the counter
 		#warning TODO: need to made via bitset
 		uint8_t reg_data = enc28j60_read_reg(&ECON2);
 		((ECON2_REG*)(&reg_data))->PKTDEC = 1;
 		enc28j60_write_reg(&ECON2, reg_data);
+		return len;
 	}
+	return 0;
 }
+
+void enc28j60_send_packet(uint8_t* buf, uint16_t length){
+	//Set pointer to tx start writing
+	enc28j60_write_reg(&EWRPTL, TX_BUFFER_START_ADDR);
+	
+	//Send to buffer
+	enc28j60_write_buf(buf, length);
+	
+	//Wait if the transmitting in process
+	uint16_t tmp;
+	do{
+    tmp = enc28j60_read_reg(&ECON1);
+	}while(((ECON1_REG*)&tmp)->TXRTS);
+	
+	//Send of frame ptr
+	enc28j60_write_reg(&ETXNDL, TX_BUFFER_START_ADDR + length - 1);
+	enc28j60_write_reg(&ETXSTL, TX_BUFFER_START_ADDR);
+	
+	//Set to write flag
+	uint16_t tmp16 = enc28j60_read_reg(&ECON1);
+	((ECON1_REG*)(&tmp16))->TXRTS = 1;
+	enc28j60_write_reg(&ECON1, tmp16);	
+	
+	//Wait to the end of writing process
+	do{
+		tmp16 = enc28j60_read_reg(&ECON1);
+	}while(((ECON1_REG*)(&tmp16))->TXRTS == 1);
+}
+
+void enc28j60_write_to_tx(uint8_t* buf, uint16_t length){
+		//Set pointer to tx start writing
+		enc28j60_write_reg(&EWRPTL, tx_ptr);
+	
+		//Send to buffer
+		enc28j60_write_buf(buf, length);	
+	
+		tx_ptr += length;
+}
+
+void enc28j60_ready_to_send(void){
+	//Wait if the transmitting in process
+	uint16_t tmp;
+	do{
+    tmp = enc28j60_read_reg(&ECON1);
+	}while(((ECON1_REG*)&tmp)->TXRTS);
+	
+	//Send of frame ptr
+	enc28j60_write_reg(&ETXNDL, tx_ptr - 1);
+	enc28j60_write_reg(&ETXSTL, TX_BUFFER_START_ADDR);
+	
+	
+	//Set to write flag
+	tmp = enc28j60_read_reg(&ECON1);
+	((ECON1_REG*)(&tmp))->TXRTS = 1;
+	enc28j60_write_reg(&ECON1, tmp);	
+	
+	//Wait to the end of writing process
+	do{
+		tmp = enc28j60_read_reg(&ECON1);
+	}while(((ECON1_REG*)(&tmp))->TXRTS == 1);
+	
+	//return tx_ptr to initial value
+	tx_ptr = TX_BUFFER_START_ADDR;
+}
+
+void enc28j60_prepare_to_tx(void){
+	tx_ptr = TX_BUFFER_START_ADDR;
+}
+
