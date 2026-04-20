@@ -9,6 +9,7 @@
 #include "netif/etharp.h"
 #include "lwip/init.h"
 
+static enc28j60_t enc;
 volatile uint32_t sys_time = 0;
 //extern volatile uint32_t sys_time;
 
@@ -25,7 +26,7 @@ static struct netif netif;
 
 struct pbuf *low_level_input(struct netif *netif, uint8_t* buf, uint16_t buf_size){
 	//uint8_t buf[1520];
-  uint16_t len = enc28j60_receive_packet(buf, buf_size);
+  uint16_t len = enc28j60_receive_packet(&enc, buf, buf_size);
   if (len == 0){
 		return NULL;
 	}
@@ -38,13 +39,13 @@ struct pbuf *low_level_input(struct netif *netif, uint8_t* buf, uint16_t buf_siz
 }
 
 err_t low_level_output(struct netif *netif, struct pbuf *p){
-	enc28j60_prepare_to_tx();
+	enc28j60_prepare_to_tx(&enc);
 	uint8_t control = 0x00;
-	enc28j60_write_to_tx(&control, 1);
+	enc28j60_write_to_tx(&enc, &control, 1);
 	for (struct pbuf *q = p; q != NULL; q = q->next){
-		enc28j60_write_to_tx((uint8_t *)q->payload, q->len);
+		enc28j60_write_to_tx(&enc, (uint8_t *)q->payload, q->len);
 	}
-	enc28j60_ready_to_send();
+	enc28j60_ready_to_send(&enc);
 	return ERR_OK;
 }	
 	
@@ -92,11 +93,13 @@ int main(void){
 	
 		//ENC part
 	  static uint8_t eth_buffer[1520];
-		static MAC_addr_t my_MAC_addr = {02, 00, 00, 00, 00, 01};
-		static eth_frame_t eth_frame;
-		static ETH_rx_header_t rx_header;
+		//static MAC_addr_t my_MAC_addr = {02, 00, 00, 00, 00, 01};
+		//static eth_frame_t eth_frame;
+		//static ETH_rx_header_t rx_header;
+  	static MAC_addr_t my_MAC_addr = {02, 00, 00, 00, 00, 01};
 		
-		enc28j60_Init(&my_MAC_addr, eth_buffer, &rx_header, &eth_frame);
+		//enc28j60_Init(&my_MAC_addr, eth_buffer, &rx_header, &eth_frame);
+		enc28j60_init(&enc, &my_MAC_addr);
 		
 		//LWIP  part
 		ip4_addr_t ipaddr, netmask, gw;
@@ -104,7 +107,7 @@ int main(void){
 		IP4_ADDR(&ipaddr, 169,254,25,63);
 		//IP4_ADDR(&ipaddr, 192,168,1,100);
 		IP4_ADDR(&netmask, 255,255,255,0);
-		IP4_ADDR(&gw, 192,168,1,1);
+		IP4_ADDR(&gw, 0,0,0,0);
 		
 		lwip_init();
 		

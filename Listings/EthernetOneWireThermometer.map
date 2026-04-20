@@ -18,11 +18,13 @@ Section Cross References
     main.o(i.low_level_input) refers to enc28j60.o(i.enc28j60_receive_packet) for enc28j60_receive_packet
     main.o(i.low_level_input) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
     main.o(i.low_level_input) refers to pbuf.o(i.pbuf_take) for pbuf_take
+    main.o(i.low_level_input) refers to main.o(.bss) for enc
     main.o(i.low_level_output) refers to enc28j60.o(i.enc28j60_prepare_to_tx) for enc28j60_prepare_to_tx
     main.o(i.low_level_output) refers to enc28j60.o(i.enc28j60_write_to_tx) for enc28j60_write_to_tx
     main.o(i.low_level_output) refers to enc28j60.o(i.enc28j60_ready_to_send) for enc28j60_ready_to_send
+    main.o(i.low_level_output) refers to main.o(.bss) for enc
     main.o(i.main) refers to rcc.o(i.SetCoreClock) for SetCoreClock
-    main.o(i.main) refers to enc28j60.o(i.enc28j60_Init) for enc28j60_Init
+    main.o(i.main) refers to enc28j60.o(i.enc28j60_init) for enc28j60_init
     main.o(i.main) refers to init.o(i.lwip_init) for lwip_init
     main.o(i.main) refers to netif.o(i.netif_add) for netif_add
     main.o(i.main) refers to netif.o(i.netif_set_default) for netif_set_default
@@ -31,98 +33,11 @@ Section Cross References
     main.o(i.main) refers to pbuf.o(i.pbuf_free) for pbuf_free
     main.o(i.main) refers to timeouts.o(i.sys_check_timeouts) for sys_check_timeouts
     main.o(i.main) refers to system_stm32f10x.o(.data) for SystemCoreClock
-    main.o(i.main) refers to main.o(.bss) for eth_frame
-    main.o(i.main) refers to main.o(.data) for rx_header
+    main.o(i.main) refers to main.o(.data) for my_MAC_addr
+    main.o(i.main) refers to main.o(.bss) for enc
     main.o(i.main) refers to ethernet.o(i.ethernet_input) for ethernet_input
     main.o(i.main) refers to main.o(i.ethernetif_init) for ethernetif_init
     main.o(i.sys_now) refers to main.o(.data) for sys_time
-    enc28j60.o(i.enc28j60_Init) refers to enc28j60_middleware.o(i.enc28j60_mid_init) for enc28j60_mid_init
-    enc28j60.o(i.enc28j60_Init) refers to enc28j60.o(.data) for buffer_ptr
-    enc28j60.o(i.enc28j60_prepare_to_tx) refers to enc28j60.o(.data) for tx_ptr
-    enc28j60.o(i.enc28j60_read_ETH_header) refers to enc28j60_middleware.o(i.enc28j60_read_buf) for enc28j60_read_buf
-    enc28j60.o(i.enc28j60_read_payload) refers to enc28j60_middleware.o(i.enc28j60_read_buf) for enc28j60_read_buf
-    enc28j60.o(i.enc28j60_read_rx_header) refers to enc28j60_middleware.o(i.enc28j60_read_buf) for enc28j60_read_buf
-    enc28j60.o(i.enc28j60_ready_to_send) refers to enc28j60_middleware.o(i.enc28j60_read_reg) for enc28j60_read_reg
-    enc28j60.o(i.enc28j60_ready_to_send) refers to enc28j60_middleware.o(i.enc28j60_write_reg) for enc28j60_write_reg
-    enc28j60.o(i.enc28j60_ready_to_send) refers to enc28j60.o(.constdata) for ECON1
-    enc28j60.o(i.enc28j60_ready_to_send) refers to enc28j60.o(.data) for tx_ptr
-    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60_middleware.o(i.enc28j60_read_reg) for enc28j60_read_reg
-    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60_middleware.o(i.enc28j60_write_reg) for enc28j60_write_reg
-    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60.o(i.enc28j60_read_rx_header) for enc28j60_read_rx_header
-    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60_middleware.o(i.enc28j60_read_buf) for enc28j60_read_buf
-    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60.o(.constdata) for EPKTCNT
-    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60.o(.data) for c_rx_ptr
-    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60_middleware.o(i.enc28j60_write_reg) for enc28j60_write_reg
-    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60_middleware.o(i.enc28j60_write_buf) for enc28j60_write_buf
-    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60_middleware.o(i.enc28j60_read_reg) for enc28j60_read_reg
-    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60.o(.constdata) for EWRPTL
-    enc28j60.o(i.enc28j60_write_to_tx) refers to enc28j60_middleware.o(i.enc28j60_write_reg) for enc28j60_write_reg
-    enc28j60.o(i.enc28j60_write_to_tx) refers to enc28j60_middleware.o(i.enc28j60_write_buf) for enc28j60_write_buf
-    enc28j60.o(i.enc28j60_write_to_tx) refers to enc28j60.o(.data) for tx_ptr
-    enc28j60.o(i.enc28j60_write_to_tx) refers to enc28j60.o(.constdata) for EWRPTL
-    enc28j60.o(i.processing) refers to enc28j60_middleware.o(i.enc28j60_write_reg) for enc28j60_write_reg
-    enc28j60.o(i.processing) refers to enc28j60_middleware.o(i.enc28j60_write_buf) for enc28j60_write_buf
-    enc28j60.o(i.processing) refers to enc28j60_middleware.o(i.enc28j60_read_reg) for enc28j60_read_reg
-    enc28j60.o(i.processing) refers to enc28j60.o(.constdata) for EWRPTL
-    enc28j60.o(i.processing) refers to enc28j60.o(.data) for buffer_ptr
-    enc28j60_middleware.o(i.enc28j60_bank_changing) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_bank_changing) refers to enc28j60_hardware.o(i.enc28j60_hw_read_data_8b) for enc28j60_hw_read_data_8b
-    enc28j60_middleware.o(i.enc28j60_bank_changing) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_bank_changing) refers to enc28j60_hardware.o(i.enc28j60_hw_send_data_8b) for enc28j60_hw_send_data_8b
-    enc28j60_middleware.o(i.enc28j60_bank_changing) refers to enc28j60_middleware.o(.constdata) for ECON1
-    enc28j60_middleware.o(i.enc28j60_bank_changing) refers to enc28j60_middleware.o(.data) for current_bank
-    enc28j60_middleware.o(i.enc28j60_bitfield_clear) refers to enc28j60_middleware.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
-    enc28j60_middleware.o(i.enc28j60_bitfield_clear) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_bitfield_clear) refers to enc28j60_hardware.o(i.enc28j60_hw_send_data_8b) for enc28j60_hw_send_data_8b
-    enc28j60_middleware.o(i.enc28j60_bitfield_clear) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_bitfield_clear) refers to enc28j60_middleware.o(.data) for current_bank
-    enc28j60_middleware.o(i.enc28j60_bitfield_set) refers to enc28j60_middleware.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
-    enc28j60_middleware.o(i.enc28j60_bitfield_set) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_bitfield_set) refers to enc28j60_hardware.o(i.enc28j60_hw_send_data_8b) for enc28j60_hw_send_data_8b
-    enc28j60_middleware.o(i.enc28j60_bitfield_set) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_bitfield_set) refers to enc28j60_middleware.o(.data) for current_bank
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to enc28j60_hardware.o(i.enc28j60_hw_spi_init) for enc28j60_hw_spi_init
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to enc28j60_middleware.o(i.enc28j60_soft_reset) for enc28j60_soft_reset
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to enc28j60_middleware.o(i.mw_test) for mw_test
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to enc28j60_middleware.o(i.enc28j60_write_reg) for enc28j60_write_reg
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to enc28j60_middleware.o(i.enc28j60_read_reg) for enc28j60_read_reg
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to memmovea.o(.text) for __aeabi_memcpy4
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to enc28j60_hardware.o(i.enc28j60_hw_send_log_msg) for enc28j60_hw_send_log_msg
-    enc28j60_middleware.o(i.enc28j60_mid_init) refers to enc28j60_middleware.o(.constdata) for ERXSTL
-    enc28j60_middleware.o(i.enc28j60_read_buf) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_read_buf) refers to enc28j60_hardware.o(i.enc28j60_hw_send_short_cmd) for enc28j60_hw_send_short_cmd
-    enc28j60_middleware.o(i.enc28j60_read_buf) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_middleware.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_read_data_8b) for enc28j60_hw_read_data_8b
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_read_data_16b) for enc28j60_hw_read_data_16b
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_send_data_8b) for enc28j60_hw_send_data_8b
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_middleware.o(.data) for current_bank
-    enc28j60_middleware.o(i.enc28j60_read_reg) refers to enc28j60_middleware.o(.constdata) for MIREGADR
-    enc28j60_middleware.o(i.enc28j60_soft_reset) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_soft_reset) refers to enc28j60_hardware.o(i.enc28j60_hw_send_short_cmd) for enc28j60_hw_send_short_cmd
-    enc28j60_middleware.o(i.enc28j60_soft_reset) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_write_buf) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_write_buf) refers to enc28j60_hardware.o(i.enc28j60_hw_send_short_cmd) for enc28j60_hw_send_short_cmd
-    enc28j60_middleware.o(i.enc28j60_write_buf) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_write_reg) refers to enc28j60_middleware.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
-    enc28j60_middleware.o(i.enc28j60_write_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
-    enc28j60_middleware.o(i.enc28j60_write_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_send_data_8b) for enc28j60_hw_send_data_8b
-    enc28j60_middleware.o(i.enc28j60_write_reg) refers to enc28j60_hardware.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
-    enc28j60_middleware.o(i.enc28j60_write_reg) refers to enc28j60_middleware.o(i.enc28j60_read_reg) for enc28j60_read_reg
-    enc28j60_middleware.o(i.enc28j60_write_reg) refers to enc28j60_middleware.o(.data) for current_bank
-    enc28j60_middleware.o(i.enc28j60_write_reg) refers to enc28j60_middleware.o(.constdata) for MIREGADR
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_hardware.o(i.enc28j60_hw_uart_init) for enc28j60_hw_uart_init
-    enc28j60_middleware.o(i.mw_test) refers to memmovea.o(.text) for __aeabi_memcpy4
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_middleware.o(i.enc28j60_write_reg) for enc28j60_write_reg
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_middleware.o(i.enc28j60_read_reg) for enc28j60_read_reg
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_hardware.o(i.enc28j60_hw_send_log_msg) for enc28j60_hw_send_log_msg
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_middleware.o(i.enc28j60_write_buf) for enc28j60_write_buf
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_middleware.o(i.enc28j60_read_buf) for enc28j60_read_buf
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_middleware.o(i.enc28j60_soft_reset) for enc28j60_soft_reset
-    enc28j60_middleware.o(i.mw_test) refers to enc28j60_middleware.o(.constdata) for ERXSTL
-    enc28j60_hardware.o(i.enc28j60_hw_send_log_msg) refers to enc28j60_hardware.o(i.enc28j60_hw_send_log_8b) for enc28j60_hw_send_log_8b
     def.o(i.lwip_itoa) refers to memmovea.o(.text) for __aeabi_memmove
     def.o(i.lwip_strnistr) refers to strlen.o(.text) for strlen
     def.o(i.lwip_strnistr) refers to def.o(i.lwip_strnicmp) for lwip_strnicmp
@@ -478,6 +393,56 @@ Section Cross References
     timeouts.o(i.sys_untimeout) refers to timeouts.o(.data) for next_timeout
     timeouts.o(.constdata) refers to ip4_frag.o(i.ip_reass_tmr) for ip_reass_tmr
     timeouts.o(.constdata) refers to etharp.o(i.etharp_tmr) for etharp_tmr
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_ll.o(i.enc28j60_ll_init) for enc28j60_ll_init
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_cs_high) for enc28j60_hw_cs_high
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_cs_low) for enc28j60_hw_cs_low
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_read_data_8b) for enc28j60_hw_read_data_8b
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_read_data_16b) for enc28j60_hw_read_data_16b
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_send_data_8b) for enc28j60_hw_send_data_8b
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_send_data_16b) for enc28j60_hw_send_data_16b
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_send_short_cmd) for enc28j60_hw_send_short_cmd
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_spi_init) for enc28j60_hw_spi_init
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_uart_init) for enc28j60_hw_uart_init
+    enc28j60.o(i.enc28j60_init) refers to enc28j60_port.o(i.enc28j60_hw_send_log_msg) for enc28j60_hw_send_log_msg
+    enc28j60.o(i.enc28j60_read_payload) refers to enc28j60_ll.o(i.enc28j60_read_buf) for enc28j60_read_buf
+    enc28j60.o(i.enc28j60_read_rx_header) refers to enc28j60_ll.o(i.enc28j60_read_buf) for enc28j60_read_buf
+    enc28j60.o(i.enc28j60_ready_to_send) refers to enc28j60_ll.o(i.enc28j60_read_reg) for enc28j60_read_reg
+    enc28j60.o(i.enc28j60_ready_to_send) refers to enc28j60_ll.o(i.enc28j60_write_reg) for enc28j60_write_reg
+    enc28j60.o(i.enc28j60_ready_to_send) refers to enc28j60.o(.constdata) for ECON1
+    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60_ll.o(i.enc28j60_read_reg) for enc28j60_read_reg
+    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60_ll.o(i.enc28j60_write_reg) for enc28j60_write_reg
+    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60.o(i.enc28j60_read_rx_header) for enc28j60_read_rx_header
+    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60_ll.o(i.enc28j60_read_buf) for enc28j60_read_buf
+    enc28j60.o(i.enc28j60_receive_packet) refers to enc28j60.o(.constdata) for EPKTCNT
+    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60_ll.o(i.enc28j60_write_reg) for enc28j60_write_reg
+    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60_ll.o(i.enc28j60_write_buf) for enc28j60_write_buf
+    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60_ll.o(i.enc28j60_read_reg) for enc28j60_read_reg
+    enc28j60.o(i.enc28j60_send_packet) refers to enc28j60.o(.constdata) for EWRPTL
+    enc28j60.o(i.enc28j60_write_to_tx) refers to enc28j60_ll.o(i.enc28j60_write_reg) for enc28j60_write_reg
+    enc28j60.o(i.enc28j60_write_to_tx) refers to enc28j60_ll.o(i.enc28j60_write_buf) for enc28j60_write_buf
+    enc28j60.o(i.enc28j60_write_to_tx) refers to enc28j60.o(.constdata) for EWRPTL
+    enc28j60_ll.o(i.enc28j60_bank_changing) refers to enc28j60_ll.o(.constdata) for ECON1
+    enc28j60_ll.o(i.enc28j60_bitfield_clear) refers to enc28j60_ll.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
+    enc28j60_ll.o(i.enc28j60_bitfield_set) refers to enc28j60_ll.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
+    enc28j60_ll.o(i.enc28j60_ll_init) refers to enc28j60_ll.o(i.enc28j60_soft_reset) for enc28j60_soft_reset
+    enc28j60_ll.o(i.enc28j60_ll_init) refers to enc28j60_ll.o(i.ll_test) for ll_test
+    enc28j60_ll.o(i.enc28j60_ll_init) refers to enc28j60_ll.o(i.enc28j60_write_reg) for enc28j60_write_reg
+    enc28j60_ll.o(i.enc28j60_ll_init) refers to enc28j60_ll.o(i.enc28j60_read_reg) for enc28j60_read_reg
+    enc28j60_ll.o(i.enc28j60_ll_init) refers to memmovea.o(.text) for __aeabi_memcpy4
+    enc28j60_ll.o(i.enc28j60_ll_init) refers to enc28j60_ll.o(.constdata) for ERXSTL
+    enc28j60_ll.o(i.enc28j60_read_reg) refers to enc28j60_ll.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
+    enc28j60_ll.o(i.enc28j60_read_reg) refers to enc28j60_ll.o(.constdata) for MIREGADR
+    enc28j60_ll.o(i.enc28j60_write_reg) refers to enc28j60_ll.o(i.enc28j60_bank_changing) for enc28j60_bank_changing
+    enc28j60_ll.o(i.enc28j60_write_reg) refers to enc28j60_ll.o(i.enc28j60_read_reg) for enc28j60_read_reg
+    enc28j60_ll.o(i.enc28j60_write_reg) refers to enc28j60_ll.o(.constdata) for MIREGADR
+    enc28j60_ll.o(i.ll_test) refers to memmovea.o(.text) for __aeabi_memcpy4
+    enc28j60_ll.o(i.ll_test) refers to enc28j60_ll.o(i.enc28j60_write_reg) for enc28j60_write_reg
+    enc28j60_ll.o(i.ll_test) refers to enc28j60_ll.o(i.enc28j60_read_reg) for enc28j60_read_reg
+    enc28j60_ll.o(i.ll_test) refers to enc28j60_ll.o(i.enc28j60_write_buf) for enc28j60_write_buf
+    enc28j60_ll.o(i.ll_test) refers to enc28j60_ll.o(i.enc28j60_read_buf) for enc28j60_read_buf
+    enc28j60_ll.o(i.ll_test) refers to enc28j60_ll.o(i.enc28j60_soft_reset) for enc28j60_soft_reset
+    enc28j60_ll.o(i.ll_test) refers to enc28j60_ll.o(.constdata) for ERXSTL
+    enc28j60_port.o(i.enc28j60_hw_send_log_msg) refers to enc28j60_port.o(i.enc28j60_hw_send_log_8b) for enc28j60_hw_send_log_8b
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
@@ -774,14 +739,6 @@ Removing Unused input sections from the image.
 
     Removing startup_stm32f10x_xl.o(HEAP), (0 bytes).
     Removing system_stm32f10x.o(i.SystemCoreClockUpdate), (164 bytes).
-    Removing enc28j60.o(i.enc28j60_read_ETH_header), (14 bytes).
-    Removing enc28j60.o(i.enc28j60_read_payload), (16 bytes).
-    Removing enc28j60.o(i.enc28j60_send_packet), (144 bytes).
-    Removing enc28j60.o(i.processing), (352 bytes).
-    Removing enc28j60_middleware.o(i.enc28j60_bitfield_clear), (60 bytes).
-    Removing enc28j60_middleware.o(i.enc28j60_bitfield_set), (60 bytes).
-    Removing enc28j60_hardware.o(i.enc28j60_hw_is_spi_on), (24 bytes).
-    Removing enc28j60_hardware.o(i.enc28j60_hw_send_data_16b), (152 bytes).
     Removing def.o(i.lwip_htonl), (26 bytes).
     Removing def.o(i.lwip_itoa), (148 bytes).
     Removing def.o(i.lwip_memcmp_consttime), (36 bytes).
@@ -841,6 +798,11 @@ Removing Unused input sections from the image.
     Removing timeouts.o(i.sys_restart_timeouts), (48 bytes).
     Removing timeouts.o(i.sys_timeouts_sleeptime), (192 bytes).
     Removing timeouts.o(i.sys_untimeout), (80 bytes).
+    Removing enc28j60.o(i.enc28j60_read_payload), (20 bytes).
+    Removing enc28j60.o(i.enc28j60_send_packet), (160 bytes).
+    Removing enc28j60_ll.o(i.enc28j60_bitfield_clear), (58 bytes).
+    Removing enc28j60_ll.o(i.enc28j60_bitfield_set), (58 bytes).
+    Removing enc28j60_port.o(i.enc28j60_hw_is_spi_on), (24 bytes).
     Removing dadd.o(.text), (334 bytes).
     Removing dmul.o(.text), (228 bytes).
     Removing ddiv.o(.text), (222 bytes).
@@ -848,7 +810,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-75 unused section(s) (total 7546 bytes) removed from the image.
+72 unused section(s) (total 7044 bytes) removed from the image.
 
 ==============================================================================
 
@@ -858,49 +820,49 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isdigit_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  iscntrl_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isblank_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isgraph_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isxdigit_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isupper_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ispunct_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isprint_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isblank_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  islower_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  iscntrl_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isdigit_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isgraph_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isxdigit_o.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/fflush.c          0x00000000   Number         0  fflush.o ABSOLUTE
     ../clib/microlib/stdio/fputc.c           0x00000000   Number         0  fputc.o ABSOLUTE
@@ -908,19 +870,19 @@ Image Symbol Table
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/stdlib/abort.c          0x00000000   Number         0  abort.o ABSOLUTE
     ../clib/microlib/string/memcmp.c         0x00000000   Number         0  memcmp.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmoveb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovea.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmoveb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/string/strlen.c         0x00000000   Number         0  strlen.o ABSOLUTE
     ../clib/microlib/string/strncmp.c        0x00000000   Number         0  strncmp.o ABSOLUTE
-    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusesemip.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  _chval.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  strtol.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  _strtoul.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  strtol.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  atoi.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  _chval.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
@@ -928,12 +890,12 @@ Image Symbol Table
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
     CMSIS\startup_stm32f10x_xl.s             0x00000000   Number         0  startup_stm32f10x_xl.o ABSOLUTE
     CMSIS\system_stm32f10x.c                 0x00000000   Number         0  system_stm32f10x.o ABSOLUTE
-    User\ENC28J60\Hardware\src\enc28j60_hardware.c 0x00000000   Number         0  enc28j60_hardware.o ABSOLUTE
-    User\ENC28J60\Interaface\src\enc28j60.c  0x00000000   Number         0  enc28j60.o ABSOLUTE
-    User\ENC28J60\Middleware\src\enc28j60_middleware.c 0x00000000   Number         0  enc28j60_middleware.o ABSOLUTE
-    User\arch\sys_arch.c                     0x00000000   Number         0  sys_arch_1.o ABSOLUTE
+    User\arch\sys_arch.c                     0x00000000   Number         0  sys_arch.o ABSOLUTE
     User\core\src\main.c                     0x00000000   Number         0  main.o ABSOLUTE
     User\core\src\rcc.c                      0x00000000   Number         0  rcc.o ABSOLUTE
+    User\enc28j60\interface\src\enc28j60.c   0x00000000   Number         0  enc28j60.o ABSOLUTE
+    User\enc28j60\lowlayer\src\enc28j60_ll.c 0x00000000   Number         0  enc28j60_ll.o ABSOLUTE
+    User\enc28j60\port\src\enc28j60_port.c   0x00000000   Number         0  enc28j60_port.o ABSOLUTE
     User\lwip\src\core\def.c                 0x00000000   Number         0  def.o ABSOLUTE
     User\lwip\src\core\inet_chksum.c         0x00000000   Number         0  inet_chksum.o ABSOLUTE
     User\lwip\src\core\init.c                0x00000000   Number         0  init.o ABSOLUTE
@@ -970,8 +932,8 @@ Image Symbol Table
     .text                                    0x080001cc   Section        0  memcmp.o(.text)
     .text                                    0x080001e6   Section        0  uidiv.o(.text)
     .text                                    0x08000214   Section       36  init.o(.text)
-    .text                                    0x08000238   Section        0  semi.o(.text)
     .text                                    0x08000238   Section        0  iusesemip.o(.text)
+    .text                                    0x08000238   Section        0  semi.o(.text)
     i.SetCoreClock                           0x08000238   Section        0  rcc.o(i.SetCoreClock)
     i.SetSysClock                            0x0800023a   Section        0  system_stm32f10x.o(i.SetSysClock)
     SetSysClock                              0x0800023b   Thumb Code     8  system_stm32f10x.o(i.SetSysClock)
@@ -993,235 +955,231 @@ Image Symbol Table
     do_memp_free_pool                        0x08000599   Thumb Code    88  memp.o(i.do_memp_free_pool)
     i.do_memp_malloc_pool                    0x08000654   Section        0  memp.o(i.do_memp_malloc_pool)
     do_memp_malloc_pool                      0x08000655   Thumb Code   102  memp.o(i.do_memp_malloc_pool)
-    i.enc28j60_Init                          0x08000724   Section        0  enc28j60.o(i.enc28j60_Init)
-    i.enc28j60_bank_changing                 0x08000760   Section        0  enc28j60_middleware.o(i.enc28j60_bank_changing)
-    i.enc28j60_hw_cs_high                    0x080007a8   Section        0  enc28j60_hardware.o(i.enc28j60_hw_cs_high)
-    i.enc28j60_hw_cs_low                     0x080007bc   Section        0  enc28j60_hardware.o(i.enc28j60_hw_cs_low)
-    i.enc28j60_hw_read_data_16b              0x080007d0   Section        0  enc28j60_hardware.o(i.enc28j60_hw_read_data_16b)
-    i.enc28j60_hw_read_data_8b               0x08000858   Section        0  enc28j60_hardware.o(i.enc28j60_hw_read_data_8b)
-    i.enc28j60_hw_send_data_8b               0x080008b4   Section        0  enc28j60_hardware.o(i.enc28j60_hw_send_data_8b)
-    i.enc28j60_hw_send_log_8b                0x0800091c   Section        0  enc28j60_hardware.o(i.enc28j60_hw_send_log_8b)
-    i.enc28j60_hw_send_log_msg               0x08000938   Section        0  enc28j60_hardware.o(i.enc28j60_hw_send_log_msg)
-    i.enc28j60_hw_send_short_cmd             0x08000950   Section        0  enc28j60_hardware.o(i.enc28j60_hw_send_short_cmd)
-    i.enc28j60_hw_spi_init                   0x0800098c   Section        0  enc28j60_hardware.o(i.enc28j60_hw_spi_init)
-    i.enc28j60_hw_uart_init                  0x08000a1c   Section        0  enc28j60_hardware.o(i.enc28j60_hw_uart_init)
-    i.enc28j60_mid_init                      0x08000a90   Section        0  enc28j60_middleware.o(i.enc28j60_mid_init)
-    i.enc28j60_prepare_to_tx                 0x08000c98   Section        0  enc28j60.o(i.enc28j60_prepare_to_tx)
-    i.enc28j60_read_buf                      0x08000ca8   Section        0  enc28j60_middleware.o(i.enc28j60_read_buf)
-    i.enc28j60_read_reg                      0x08000cd4   Section        0  enc28j60_middleware.o(i.enc28j60_read_reg)
-    i.enc28j60_read_rx_header                0x08000e78   Section        0  enc28j60.o(i.enc28j60_read_rx_header)
-    i.enc28j60_ready_to_send                 0x08000e88   Section        0  enc28j60.o(i.enc28j60_ready_to_send)
-    i.enc28j60_receive_packet                0x08000f08   Section        0  enc28j60.o(i.enc28j60_receive_packet)
-    i.enc28j60_soft_reset                    0x08000fc0   Section        0  enc28j60_middleware.o(i.enc28j60_soft_reset)
-    i.enc28j60_write_buf                     0x08000fd2   Section        0  enc28j60_middleware.o(i.enc28j60_write_buf)
-    i.enc28j60_write_reg                     0x08000ffc   Section        0  enc28j60_middleware.o(i.enc28j60_write_reg)
-    i.enc28j60_write_to_tx                   0x080010dc   Section        0  enc28j60.o(i.enc28j60_write_to_tx)
-    i.etharp_find_entry                      0x08001108   Section        0  etharp.o(i.etharp_find_entry)
-    etharp_find_entry                        0x08001109   Thumb Code   554  etharp.o(i.etharp_find_entry)
-    i.etharp_free_entry                      0x0800141c   Section        0  etharp.o(i.etharp_free_entry)
-    etharp_free_entry                        0x0800141d   Thumb Code    58  etharp.o(i.etharp_free_entry)
-    i.etharp_input                           0x0800145c   Section        0  etharp.o(i.etharp_input)
-    i.etharp_output                          0x08001530   Section        0  etharp.o(i.etharp_output)
-    i.etharp_output_to_arp_index             0x08001754   Section        0  etharp.o(i.etharp_output_to_arp_index)
-    etharp_output_to_arp_index               0x08001755   Thumb Code   220  etharp.o(i.etharp_output_to_arp_index)
-    i.etharp_query                           0x080018b0   Section        0  etharp.o(i.etharp_query)
-    i.etharp_raw                             0x08001b88   Section        0  etharp.o(i.etharp_raw)
-    etharp_raw                               0x08001b89   Thumb Code   248  etharp.o(i.etharp_raw)
-    i.etharp_request                         0x08001d14   Section        0  etharp.o(i.etharp_request)
-    i.etharp_request_dst                     0x08001d2c   Section        0  etharp.o(i.etharp_request_dst)
-    etharp_request_dst                       0x08001d2d   Thumb Code    38  etharp.o(i.etharp_request_dst)
-    i.etharp_tmr                             0x08001d58   Section        0  etharp.o(i.etharp_tmr)
-    i.etharp_update_arp_entry                0x08001e34   Section        0  etharp.o(i.etharp_update_arp_entry)
-    etharp_update_arp_entry                  0x08001e35   Thumb Code   220  etharp.o(i.etharp_update_arp_entry)
-    i.ethernet_input                         0x08001f84   Section        0  ethernet.o(i.ethernet_input)
-    i.ethernet_output                        0x08002048   Section        0  ethernet.o(i.ethernet_output)
-    i.ethernetif_init                        0x08002140   Section        0  main.o(i.ethernetif_init)
-    i.fputc                                  0x08002194   Section        0  fputc.o(i.fputc)
-    i.icmp_dest_unreach                      0x080021a6   Section        0  icmp.o(i.icmp_dest_unreach)
-    i.icmp_input                             0x080021b8   Section        0  icmp.o(i.icmp_input)
-    i.icmp_send_response                     0x0800244c   Section        0  icmp.o(i.icmp_send_response)
-    icmp_send_response                       0x0800244d   Thumb Code   178  icmp.o(i.icmp_send_response)
-    i.icmp_time_exceeded                     0x08002574   Section        0  icmp.o(i.icmp_time_exceeded)
-    i.inet_chksum                            0x08002586   Section        0  inet_chksum.o(i.inet_chksum)
-    i.inet_chksum_pbuf                       0x0800259a   Section        0  inet_chksum.o(i.inet_chksum_pbuf)
-    i.ip4_addr_isbroadcast_u32               0x080025f0   Section        0  ip4_addr.o(i.ip4_addr_isbroadcast_u32)
-    i.ip4_frag                               0x08002640   Section        0  ip4_frag.o(i.ip4_frag)
-    i.ip4_input                              0x080028d8   Section        0  ip4.o(i.ip4_input)
-    i.ip4_input_accept                       0x08002a6c   Section        0  ip4.o(i.ip4_input_accept)
-    ip4_input_accept                         0x08002a6d   Thumb Code    48  ip4.o(i.ip4_input_accept)
-    i.ip4_output_if                          0x08002aa0   Section        0  ip4.o(i.ip4_output_if)
-    i.ip4_output_if_src                      0x08002ad8   Section        0  ip4.o(i.ip4_output_if_src)
-    i.ip4_reass                              0x08002cd0   Section        0  ip4_frag.o(i.ip4_reass)
-    i.ip4_route                              0x08002fd8   Section        0  ip4.o(i.ip4_route)
-    i.ip_frag_alloc_pbuf_custom_ref          0x0800306c   Section        0  ip4_frag.o(i.ip_frag_alloc_pbuf_custom_ref)
-    ip_frag_alloc_pbuf_custom_ref            0x0800306d   Thumb Code    10  ip4_frag.o(i.ip_frag_alloc_pbuf_custom_ref)
-    i.ip_frag_free_pbuf_custom_ref           0x08003078   Section        0  ip4_frag.o(i.ip_frag_free_pbuf_custom_ref)
-    ip_frag_free_pbuf_custom_ref             0x08003079   Thumb Code    46  ip4_frag.o(i.ip_frag_free_pbuf_custom_ref)
-    i.ip_reass_chain_frag_into_datagram_and_validate 0x08003100   Section        0  ip4_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate)
-    ip_reass_chain_frag_into_datagram_and_validate 0x08003101   Thumb Code   568  ip4_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate)
-    i.ip_reass_dequeue_datagram              0x08003410   Section        0  ip4_frag.o(i.ip_reass_dequeue_datagram)
-    ip_reass_dequeue_datagram                0x08003411   Thumb Code    70  ip4_frag.o(i.ip_reass_dequeue_datagram)
-    i.ip_reass_enqueue_new_datagram          0x080034c4   Section        0  ip4_frag.o(i.ip_reass_enqueue_new_datagram)
-    ip_reass_enqueue_new_datagram            0x080034c5   Thumb Code    80  ip4_frag.o(i.ip_reass_enqueue_new_datagram)
-    i.ip_reass_free_complete_datagram        0x08003518   Section        0  ip4_frag.o(i.ip_reass_free_complete_datagram)
-    ip_reass_free_complete_datagram          0x08003519   Thumb Code   320  ip4_frag.o(i.ip_reass_free_complete_datagram)
-    i.ip_reass_remove_oldest_datagram        0x0800370c   Section        0  ip4_frag.o(i.ip_reass_remove_oldest_datagram)
-    ip_reass_remove_oldest_datagram          0x0800370d   Thumb Code   130  ip4_frag.o(i.ip_reass_remove_oldest_datagram)
-    i.ip_reass_tmr                           0x08003794   Section        0  ip4_frag.o(i.ip_reass_tmr)
-    i.ipfrag_free_pbuf_custom                0x080037c8   Section        0  ip4_frag.o(i.ipfrag_free_pbuf_custom)
-    ipfrag_free_pbuf_custom                  0x080037c9   Thumb Code    90  ip4_frag.o(i.ipfrag_free_pbuf_custom)
-    i.low_level_input                        0x08003888   Section        0  main.o(i.low_level_input)
-    i.low_level_output                       0x080038c6   Section        0  main.o(i.low_level_output)
-    i.lwip_cyclic_timer                      0x080038f8   Section        0  timeouts.o(i.lwip_cyclic_timer)
-    lwip_cyclic_timer                        0x080038f9   Thumb Code    70  timeouts.o(i.lwip_cyclic_timer)
-    i.lwip_htons                             0x08003948   Section        0  def.o(i.lwip_htons)
-    i.lwip_init                              0x08003954   Section        0  init.o(i.lwip_init)
-    i.lwip_standard_chksum                   0x080039dc   Section        0  inet_chksum.o(i.lwip_standard_chksum)
-    i.main                                   0x08003a3c   Section        0  main.o(i.main)
-    i.mem_free                               0x08003ba4   Section        0  mem.o(i.mem_free)
-    i.mem_init                               0x08003d54   Section        0  mem.o(i.mem_init)
-    i.mem_link_valid                         0x08003db0   Section        0  mem.o(i.mem_link_valid)
-    mem_link_valid                           0x08003db1   Thumb Code    82  mem.o(i.mem_link_valid)
-    i.mem_malloc                             0x08003e08   Section        0  mem.o(i.mem_malloc)
-    i.mem_to_ptr                             0x080040c4   Section        0  mem.o(i.mem_to_ptr)
-    mem_to_ptr                               0x080040c5   Thumb Code    12  mem.o(i.mem_to_ptr)
-    i.mem_trim                               0x080040d4   Section        0  mem.o(i.mem_trim)
-    i.memp_free                              0x0800432c   Section        0  memp.o(i.memp_free)
-    i.memp_init                              0x08004354   Section        0  memp.o(i.memp_init)
-    i.memp_init_pool                         0x08004374   Section        0  memp.o(i.memp_init_pool)
-    i.memp_malloc                            0x080043a0   Section        0  memp.o(i.memp_malloc)
-    i.mw_test                                0x080043c4   Section        0  enc28j60_middleware.o(i.mw_test)
-    i.netif_add                              0x08004680   Section        0  netif.o(i.netif_add)
-    i.netif_do_ip_addr_changed               0x08004840   Section        0  netif.o(i.netif_do_ip_addr_changed)
-    netif_do_ip_addr_changed                 0x08004841   Thumb Code     2  netif.o(i.netif_do_ip_addr_changed)
-    i.netif_do_set_gw                        0x08004842   Section        0  netif.o(i.netif_do_set_gw)
-    netif_do_set_gw                          0x08004843   Thumb Code    38  netif.o(i.netif_do_set_gw)
-    i.netif_do_set_ipaddr                    0x08004868   Section        0  netif.o(i.netif_do_set_ipaddr)
-    netif_do_set_ipaddr                      0x08004869   Thumb Code   130  netif.o(i.netif_do_set_ipaddr)
-    i.netif_do_set_netmask                   0x08004940   Section        0  netif.o(i.netif_do_set_netmask)
-    netif_do_set_netmask                     0x08004941   Thumb Code    38  netif.o(i.netif_do_set_netmask)
-    i.netif_init                             0x08004966   Section        0  netif.o(i.netif_init)
-    i.netif_issue_reports                    0x08004968   Section        0  netif.o(i.netif_issue_reports)
-    netif_issue_reports                      0x08004969   Thumb Code    94  netif.o(i.netif_issue_reports)
-    i.netif_null_output_ip4                  0x08004a30   Section        0  netif.o(i.netif_null_output_ip4)
-    netif_null_output_ip4                    0x08004a31   Thumb Code     8  netif.o(i.netif_null_output_ip4)
-    i.netif_set_addr                         0x08004a38   Section        0  netif.o(i.netif_set_addr)
-    i.netif_set_default                      0x08004a98   Section        0  netif.o(i.netif_set_default)
-    i.netif_set_up                           0x08004aa4   Section        0  netif.o(i.netif_set_up)
-    i.pbuf_add_header                        0x08004ad6   Section        0  pbuf.o(i.pbuf_add_header)
-    i.pbuf_add_header_impl                   0x08004ae8   Section        0  pbuf.o(i.pbuf_add_header_impl)
-    pbuf_add_header_impl                     0x08004ae9   Thumb Code   138  pbuf.o(i.pbuf_add_header_impl)
-    i.pbuf_alloc                             0x08004bc4   Section        0  pbuf.o(i.pbuf_alloc)
-    i.pbuf_alloc_reference                   0x08004e60   Section        0  pbuf.o(i.pbuf_alloc_reference)
-    i.pbuf_alloced_custom                    0x08004f10   Section        0  pbuf.o(i.pbuf_alloced_custom)
-    i.pbuf_cat                               0x08004f64   Section        0  pbuf.o(i.pbuf_cat)
-    i.pbuf_clen                              0x080050a0   Section        0  pbuf.o(i.pbuf_clen)
-    i.pbuf_clone                             0x080050b4   Section        0  pbuf.o(i.pbuf_clone)
-    i.pbuf_copy                              0x08005158   Section        0  pbuf.o(i.pbuf_copy)
-    i.pbuf_copy_partial_pbuf                 0x08005178   Section        0  pbuf.o(i.pbuf_copy_partial_pbuf)
-    i.pbuf_free                              0x08005324   Section        0  pbuf.o(i.pbuf_free)
-    i.pbuf_header_force                      0x080054e0   Section        0  pbuf.o(i.pbuf_header_force)
-    i.pbuf_header_impl                       0x080054f2   Section        0  pbuf.o(i.pbuf_header_impl)
-    pbuf_header_impl                         0x080054f3   Thumb Code    34  pbuf.o(i.pbuf_header_impl)
-    i.pbuf_init_alloced_pbuf                 0x08005514   Section        0  pbuf.o(i.pbuf_init_alloced_pbuf)
-    pbuf_init_alloced_pbuf                   0x08005515   Thumb Code    30  pbuf.o(i.pbuf_init_alloced_pbuf)
-    i.pbuf_realloc                           0x08005534   Section        0  pbuf.o(i.pbuf_realloc)
-    i.pbuf_ref                               0x080056e0   Section        0  pbuf.o(i.pbuf_ref)
-    i.pbuf_remove_header                     0x0800578c   Section        0  pbuf.o(i.pbuf_remove_header)
-    i.pbuf_take                              0x08005840   Section        0  pbuf.o(i.pbuf_take)
-    i.plug_holes                             0x08005978   Section        0  mem.o(i.plug_holes)
-    plug_holes                               0x08005979   Thumb Code   278  mem.o(i.plug_holes)
-    i.ptr_to_mem                             0x08005b5c   Section        0  mem.o(i.ptr_to_mem)
-    ptr_to_mem                               0x08005b5d   Thumb Code    10  mem.o(i.ptr_to_mem)
-    i.sys_check_timeouts                     0x08005b6c   Section        0  timeouts.o(i.sys_check_timeouts)
-    i.sys_now                                0x08005bc0   Section        0  main.o(i.sys_now)
-    i.sys_timeout                            0x08005bcc   Section        0  timeouts.o(i.sys_timeout)
-    i.sys_timeout_abs                        0x08005c90   Section        0  timeouts.o(i.sys_timeout_abs)
-    sys_timeout_abs                          0x08005c91   Thumb Code   168  timeouts.o(i.sys_timeout_abs)
-    i.sys_timeouts_init                      0x08005dc4   Section        0  timeouts.o(i.sys_timeouts_init)
-    .constdata                               0x08005dec   Section       32  enc28j60.o(.constdata)
-    ECON2                                    0x08005dec   Data           4  enc28j60.o(.constdata)
-    ECON1                                    0x08005df0   Data           4  enc28j60.o(.constdata)
-    ERDPTL                                   0x08005df4   Data           4  enc28j60.o(.constdata)
-    EWRPTL                                   0x08005df8   Data           4  enc28j60.o(.constdata)
-    ETXSTL                                   0x08005dfc   Data           4  enc28j60.o(.constdata)
-    ETXNDL                                   0x08005e00   Data           4  enc28j60.o(.constdata)
-    ERXRDPTL                                 0x08005e04   Data           4  enc28j60.o(.constdata)
-    EPKTCNT                                  0x08005e08   Data           4  enc28j60.o(.constdata)
-    .constdata                               0x08005e0c   Section      104  enc28j60_middleware.o(.constdata)
-    ESTAT                                    0x08005e0c   Data           4  enc28j60_middleware.o(.constdata)
-    ECON2                                    0x08005e10   Data           4  enc28j60_middleware.o(.constdata)
-    ECON1                                    0x08005e14   Data           4  enc28j60_middleware.o(.constdata)
-    ERDPTL                                   0x08005e18   Data           4  enc28j60_middleware.o(.constdata)
-    EWRPTL                                   0x08005e1c   Data           4  enc28j60_middleware.o(.constdata)
-    ERXSTL                                   0x08005e20   Data           4  enc28j60_middleware.o(.constdata)
-    ERXNDL                                   0x08005e24   Data           4  enc28j60_middleware.o(.constdata)
-    ERXRDPTL                                 0x08005e28   Data           4  enc28j60_middleware.o(.constdata)
-    ERXFCON                                  0x08005e2c   Data           4  enc28j60_middleware.o(.constdata)
-    MACON1                                   0x08005e30   Data           4  enc28j60_middleware.o(.constdata)
-    MACON3                                   0x08005e34   Data           4  enc28j60_middleware.o(.constdata)
-    MABBIPG                                  0x08005e38   Data           4  enc28j60_middleware.o(.constdata)
-    MAMXFLL                                  0x08005e3c   Data           4  enc28j60_middleware.o(.constdata)
-    MICMD                                    0x08005e40   Data           4  enc28j60_middleware.o(.constdata)
-    MIREGADR                                 0x08005e44   Data           4  enc28j60_middleware.o(.constdata)
-    MIWRL                                    0x08005e48   Data           4  enc28j60_middleware.o(.constdata)
-    MIRDL                                    0x08005e4c   Data           4  enc28j60_middleware.o(.constdata)
-    MAADR5                                   0x08005e50   Data           4  enc28j60_middleware.o(.constdata)
-    MAADR6                                   0x08005e54   Data           4  enc28j60_middleware.o(.constdata)
-    MAADR3                                   0x08005e58   Data           4  enc28j60_middleware.o(.constdata)
-    MAADR4                                   0x08005e5c   Data           4  enc28j60_middleware.o(.constdata)
-    MAADR1                                   0x08005e60   Data           4  enc28j60_middleware.o(.constdata)
-    MAADR2                                   0x08005e64   Data           4  enc28j60_middleware.o(.constdata)
-    MISTAT                                   0x08005e68   Data           4  enc28j60_middleware.o(.constdata)
-    PHCON1                                   0x08005e6c   Data           4  enc28j60_middleware.o(.constdata)
-    PHLCON                                   0x08005e70   Data           4  enc28j60_middleware.o(.constdata)
-    .constdata                               0x08005e74   Section       80  memp.o(.constdata)
-    .constdata                               0x08005ec4   Section        8  ip4_addr.o(.constdata)
-    .constdata                               0x08005ecc   Section       12  ethernet.o(.constdata)
-    .constdata                               0x08005ed8   Section       20  timeouts.o(.constdata)
-    .conststring                             0x08005eec   Section       65  init.o(.conststring)
-    .conststring                             0x08005f30   Section       65  etharp.o(.conststring)
+    i.enc28j60_bank_changing                 0x08000724   Section        0  enc28j60_ll.o(i.enc28j60_bank_changing)
+    i.enc28j60_hw_cs_high                    0x08000768   Section        0  enc28j60_port.o(i.enc28j60_hw_cs_high)
+    i.enc28j60_hw_cs_low                     0x0800077c   Section        0  enc28j60_port.o(i.enc28j60_hw_cs_low)
+    i.enc28j60_hw_read_data_16b              0x08000790   Section        0  enc28j60_port.o(i.enc28j60_hw_read_data_16b)
+    i.enc28j60_hw_read_data_8b               0x08000818   Section        0  enc28j60_port.o(i.enc28j60_hw_read_data_8b)
+    i.enc28j60_hw_send_data_16b              0x08000874   Section        0  enc28j60_port.o(i.enc28j60_hw_send_data_16b)
+    i.enc28j60_hw_send_data_8b               0x0800090c   Section        0  enc28j60_port.o(i.enc28j60_hw_send_data_8b)
+    i.enc28j60_hw_send_log_8b                0x08000974   Section        0  enc28j60_port.o(i.enc28j60_hw_send_log_8b)
+    i.enc28j60_hw_send_log_msg               0x08000990   Section        0  enc28j60_port.o(i.enc28j60_hw_send_log_msg)
+    i.enc28j60_hw_send_short_cmd             0x080009a8   Section        0  enc28j60_port.o(i.enc28j60_hw_send_short_cmd)
+    i.enc28j60_hw_spi_init                   0x080009e4   Section        0  enc28j60_port.o(i.enc28j60_hw_spi_init)
+    i.enc28j60_hw_uart_init                  0x08000a74   Section        0  enc28j60_port.o(i.enc28j60_hw_uart_init)
+    i.enc28j60_init                          0x08000ae8   Section        0  enc28j60.o(i.enc28j60_init)
+    i.enc28j60_ll_init                       0x08000b58   Section        0  enc28j60_ll.o(i.enc28j60_ll_init)
+    i.enc28j60_prepare_to_tx                 0x08000d98   Section        0  enc28j60.o(i.enc28j60_prepare_to_tx)
+    i.enc28j60_read_buf                      0x08000da0   Section        0  enc28j60_ll.o(i.enc28j60_read_buf)
+    i.enc28j60_read_reg                      0x08000dd0   Section        0  enc28j60_ll.o(i.enc28j60_read_reg)
+    i.enc28j60_read_rx_header                0x08000f7c   Section        0  enc28j60.o(i.enc28j60_read_rx_header)
+    i.enc28j60_ready_to_send                 0x08000f90   Section        0  enc28j60.o(i.enc28j60_ready_to_send)
+    i.enc28j60_receive_packet                0x08001018   Section        0  enc28j60.o(i.enc28j60_receive_packet)
+    i.enc28j60_soft_reset                    0x080010c0   Section        0  enc28j60_ll.o(i.enc28j60_soft_reset)
+    i.enc28j60_write_buf                     0x080010d4   Section        0  enc28j60_ll.o(i.enc28j60_write_buf)
+    i.enc28j60_write_reg                     0x08001104   Section        0  enc28j60_ll.o(i.enc28j60_write_reg)
+    i.enc28j60_write_to_tx                   0x080011e8   Section        0  enc28j60.o(i.enc28j60_write_to_tx)
+    i.etharp_find_entry                      0x08001210   Section        0  etharp.o(i.etharp_find_entry)
+    etharp_find_entry                        0x08001211   Thumb Code   554  etharp.o(i.etharp_find_entry)
+    i.etharp_free_entry                      0x08001524   Section        0  etharp.o(i.etharp_free_entry)
+    etharp_free_entry                        0x08001525   Thumb Code    58  etharp.o(i.etharp_free_entry)
+    i.etharp_input                           0x08001564   Section        0  etharp.o(i.etharp_input)
+    i.etharp_output                          0x08001638   Section        0  etharp.o(i.etharp_output)
+    i.etharp_output_to_arp_index             0x0800185c   Section        0  etharp.o(i.etharp_output_to_arp_index)
+    etharp_output_to_arp_index               0x0800185d   Thumb Code   220  etharp.o(i.etharp_output_to_arp_index)
+    i.etharp_query                           0x080019b8   Section        0  etharp.o(i.etharp_query)
+    i.etharp_raw                             0x08001c90   Section        0  etharp.o(i.etharp_raw)
+    etharp_raw                               0x08001c91   Thumb Code   248  etharp.o(i.etharp_raw)
+    i.etharp_request                         0x08001e1c   Section        0  etharp.o(i.etharp_request)
+    i.etharp_request_dst                     0x08001e34   Section        0  etharp.o(i.etharp_request_dst)
+    etharp_request_dst                       0x08001e35   Thumb Code    38  etharp.o(i.etharp_request_dst)
+    i.etharp_tmr                             0x08001e60   Section        0  etharp.o(i.etharp_tmr)
+    i.etharp_update_arp_entry                0x08001f3c   Section        0  etharp.o(i.etharp_update_arp_entry)
+    etharp_update_arp_entry                  0x08001f3d   Thumb Code   220  etharp.o(i.etharp_update_arp_entry)
+    i.ethernet_input                         0x0800208c   Section        0  ethernet.o(i.ethernet_input)
+    i.ethernet_output                        0x08002150   Section        0  ethernet.o(i.ethernet_output)
+    i.ethernetif_init                        0x08002248   Section        0  main.o(i.ethernetif_init)
+    i.fputc                                  0x0800229c   Section        0  fputc.o(i.fputc)
+    i.icmp_dest_unreach                      0x080022ae   Section        0  icmp.o(i.icmp_dest_unreach)
+    i.icmp_input                             0x080022c0   Section        0  icmp.o(i.icmp_input)
+    i.icmp_send_response                     0x08002554   Section        0  icmp.o(i.icmp_send_response)
+    icmp_send_response                       0x08002555   Thumb Code   178  icmp.o(i.icmp_send_response)
+    i.icmp_time_exceeded                     0x0800267c   Section        0  icmp.o(i.icmp_time_exceeded)
+    i.inet_chksum                            0x0800268e   Section        0  inet_chksum.o(i.inet_chksum)
+    i.inet_chksum_pbuf                       0x080026a2   Section        0  inet_chksum.o(i.inet_chksum_pbuf)
+    i.ip4_addr_isbroadcast_u32               0x080026f8   Section        0  ip4_addr.o(i.ip4_addr_isbroadcast_u32)
+    i.ip4_frag                               0x08002748   Section        0  ip4_frag.o(i.ip4_frag)
+    i.ip4_input                              0x080029e0   Section        0  ip4.o(i.ip4_input)
+    i.ip4_input_accept                       0x08002b74   Section        0  ip4.o(i.ip4_input_accept)
+    ip4_input_accept                         0x08002b75   Thumb Code    48  ip4.o(i.ip4_input_accept)
+    i.ip4_output_if                          0x08002ba8   Section        0  ip4.o(i.ip4_output_if)
+    i.ip4_output_if_src                      0x08002be0   Section        0  ip4.o(i.ip4_output_if_src)
+    i.ip4_reass                              0x08002dd8   Section        0  ip4_frag.o(i.ip4_reass)
+    i.ip4_route                              0x080030e0   Section        0  ip4.o(i.ip4_route)
+    i.ip_frag_alloc_pbuf_custom_ref          0x08003174   Section        0  ip4_frag.o(i.ip_frag_alloc_pbuf_custom_ref)
+    ip_frag_alloc_pbuf_custom_ref            0x08003175   Thumb Code    10  ip4_frag.o(i.ip_frag_alloc_pbuf_custom_ref)
+    i.ip_frag_free_pbuf_custom_ref           0x08003180   Section        0  ip4_frag.o(i.ip_frag_free_pbuf_custom_ref)
+    ip_frag_free_pbuf_custom_ref             0x08003181   Thumb Code    46  ip4_frag.o(i.ip_frag_free_pbuf_custom_ref)
+    i.ip_reass_chain_frag_into_datagram_and_validate 0x08003208   Section        0  ip4_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate)
+    ip_reass_chain_frag_into_datagram_and_validate 0x08003209   Thumb Code   568  ip4_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate)
+    i.ip_reass_dequeue_datagram              0x08003518   Section        0  ip4_frag.o(i.ip_reass_dequeue_datagram)
+    ip_reass_dequeue_datagram                0x08003519   Thumb Code    70  ip4_frag.o(i.ip_reass_dequeue_datagram)
+    i.ip_reass_enqueue_new_datagram          0x080035cc   Section        0  ip4_frag.o(i.ip_reass_enqueue_new_datagram)
+    ip_reass_enqueue_new_datagram            0x080035cd   Thumb Code    80  ip4_frag.o(i.ip_reass_enqueue_new_datagram)
+    i.ip_reass_free_complete_datagram        0x08003620   Section        0  ip4_frag.o(i.ip_reass_free_complete_datagram)
+    ip_reass_free_complete_datagram          0x08003621   Thumb Code   320  ip4_frag.o(i.ip_reass_free_complete_datagram)
+    i.ip_reass_remove_oldest_datagram        0x08003814   Section        0  ip4_frag.o(i.ip_reass_remove_oldest_datagram)
+    ip_reass_remove_oldest_datagram          0x08003815   Thumb Code   130  ip4_frag.o(i.ip_reass_remove_oldest_datagram)
+    i.ip_reass_tmr                           0x0800389c   Section        0  ip4_frag.o(i.ip_reass_tmr)
+    i.ipfrag_free_pbuf_custom                0x080038d0   Section        0  ip4_frag.o(i.ipfrag_free_pbuf_custom)
+    ipfrag_free_pbuf_custom                  0x080038d1   Thumb Code    90  ip4_frag.o(i.ipfrag_free_pbuf_custom)
+    i.ll_test                                0x08003990   Section        0  enc28j60_ll.o(i.ll_test)
+    i.low_level_input                        0x08003c74   Section        0  main.o(i.low_level_input)
+    i.low_level_output                       0x08003cb8   Section        0  main.o(i.low_level_output)
+    i.lwip_cyclic_timer                      0x08003cf4   Section        0  timeouts.o(i.lwip_cyclic_timer)
+    lwip_cyclic_timer                        0x08003cf5   Thumb Code    70  timeouts.o(i.lwip_cyclic_timer)
+    i.lwip_htons                             0x08003d44   Section        0  def.o(i.lwip_htons)
+    i.lwip_init                              0x08003d50   Section        0  init.o(i.lwip_init)
+    i.lwip_standard_chksum                   0x08003dd8   Section        0  inet_chksum.o(i.lwip_standard_chksum)
+    i.main                                   0x08003e38   Section        0  main.o(i.main)
+    i.mem_free                               0x08003f94   Section        0  mem.o(i.mem_free)
+    i.mem_init                               0x08004144   Section        0  mem.o(i.mem_init)
+    i.mem_link_valid                         0x080041a0   Section        0  mem.o(i.mem_link_valid)
+    mem_link_valid                           0x080041a1   Thumb Code    82  mem.o(i.mem_link_valid)
+    i.mem_malloc                             0x080041f8   Section        0  mem.o(i.mem_malloc)
+    i.mem_to_ptr                             0x080044b4   Section        0  mem.o(i.mem_to_ptr)
+    mem_to_ptr                               0x080044b5   Thumb Code    12  mem.o(i.mem_to_ptr)
+    i.mem_trim                               0x080044c4   Section        0  mem.o(i.mem_trim)
+    i.memp_free                              0x0800471c   Section        0  memp.o(i.memp_free)
+    i.memp_init                              0x08004744   Section        0  memp.o(i.memp_init)
+    i.memp_init_pool                         0x08004764   Section        0  memp.o(i.memp_init_pool)
+    i.memp_malloc                            0x08004790   Section        0  memp.o(i.memp_malloc)
+    i.netif_add                              0x080047b4   Section        0  netif.o(i.netif_add)
+    i.netif_do_ip_addr_changed               0x08004974   Section        0  netif.o(i.netif_do_ip_addr_changed)
+    netif_do_ip_addr_changed                 0x08004975   Thumb Code     2  netif.o(i.netif_do_ip_addr_changed)
+    i.netif_do_set_gw                        0x08004976   Section        0  netif.o(i.netif_do_set_gw)
+    netif_do_set_gw                          0x08004977   Thumb Code    38  netif.o(i.netif_do_set_gw)
+    i.netif_do_set_ipaddr                    0x0800499c   Section        0  netif.o(i.netif_do_set_ipaddr)
+    netif_do_set_ipaddr                      0x0800499d   Thumb Code   130  netif.o(i.netif_do_set_ipaddr)
+    i.netif_do_set_netmask                   0x08004a74   Section        0  netif.o(i.netif_do_set_netmask)
+    netif_do_set_netmask                     0x08004a75   Thumb Code    38  netif.o(i.netif_do_set_netmask)
+    i.netif_init                             0x08004a9a   Section        0  netif.o(i.netif_init)
+    i.netif_issue_reports                    0x08004a9c   Section        0  netif.o(i.netif_issue_reports)
+    netif_issue_reports                      0x08004a9d   Thumb Code    94  netif.o(i.netif_issue_reports)
+    i.netif_null_output_ip4                  0x08004b64   Section        0  netif.o(i.netif_null_output_ip4)
+    netif_null_output_ip4                    0x08004b65   Thumb Code     8  netif.o(i.netif_null_output_ip4)
+    i.netif_set_addr                         0x08004b6c   Section        0  netif.o(i.netif_set_addr)
+    i.netif_set_default                      0x08004bcc   Section        0  netif.o(i.netif_set_default)
+    i.netif_set_up                           0x08004bd8   Section        0  netif.o(i.netif_set_up)
+    i.pbuf_add_header                        0x08004c0a   Section        0  pbuf.o(i.pbuf_add_header)
+    i.pbuf_add_header_impl                   0x08004c1c   Section        0  pbuf.o(i.pbuf_add_header_impl)
+    pbuf_add_header_impl                     0x08004c1d   Thumb Code   138  pbuf.o(i.pbuf_add_header_impl)
+    i.pbuf_alloc                             0x08004cf8   Section        0  pbuf.o(i.pbuf_alloc)
+    i.pbuf_alloc_reference                   0x08004f94   Section        0  pbuf.o(i.pbuf_alloc_reference)
+    i.pbuf_alloced_custom                    0x08005044   Section        0  pbuf.o(i.pbuf_alloced_custom)
+    i.pbuf_cat                               0x08005098   Section        0  pbuf.o(i.pbuf_cat)
+    i.pbuf_clen                              0x080051d4   Section        0  pbuf.o(i.pbuf_clen)
+    i.pbuf_clone                             0x080051e8   Section        0  pbuf.o(i.pbuf_clone)
+    i.pbuf_copy                              0x0800528c   Section        0  pbuf.o(i.pbuf_copy)
+    i.pbuf_copy_partial_pbuf                 0x080052ac   Section        0  pbuf.o(i.pbuf_copy_partial_pbuf)
+    i.pbuf_free                              0x08005458   Section        0  pbuf.o(i.pbuf_free)
+    i.pbuf_header_force                      0x08005614   Section        0  pbuf.o(i.pbuf_header_force)
+    i.pbuf_header_impl                       0x08005626   Section        0  pbuf.o(i.pbuf_header_impl)
+    pbuf_header_impl                         0x08005627   Thumb Code    34  pbuf.o(i.pbuf_header_impl)
+    i.pbuf_init_alloced_pbuf                 0x08005648   Section        0  pbuf.o(i.pbuf_init_alloced_pbuf)
+    pbuf_init_alloced_pbuf                   0x08005649   Thumb Code    30  pbuf.o(i.pbuf_init_alloced_pbuf)
+    i.pbuf_realloc                           0x08005668   Section        0  pbuf.o(i.pbuf_realloc)
+    i.pbuf_ref                               0x08005814   Section        0  pbuf.o(i.pbuf_ref)
+    i.pbuf_remove_header                     0x080058c0   Section        0  pbuf.o(i.pbuf_remove_header)
+    i.pbuf_take                              0x08005974   Section        0  pbuf.o(i.pbuf_take)
+    i.plug_holes                             0x08005aac   Section        0  mem.o(i.plug_holes)
+    plug_holes                               0x08005aad   Thumb Code   278  mem.o(i.plug_holes)
+    i.ptr_to_mem                             0x08005c90   Section        0  mem.o(i.ptr_to_mem)
+    ptr_to_mem                               0x08005c91   Thumb Code    10  mem.o(i.ptr_to_mem)
+    i.sys_check_timeouts                     0x08005ca0   Section        0  timeouts.o(i.sys_check_timeouts)
+    i.sys_now                                0x08005cf4   Section        0  main.o(i.sys_now)
+    i.sys_timeout                            0x08005d00   Section        0  timeouts.o(i.sys_timeout)
+    i.sys_timeout_abs                        0x08005dc4   Section        0  timeouts.o(i.sys_timeout_abs)
+    sys_timeout_abs                          0x08005dc5   Thumb Code   168  timeouts.o(i.sys_timeout_abs)
+    i.sys_timeouts_init                      0x08005ef8   Section        0  timeouts.o(i.sys_timeouts_init)
+    .constdata                               0x08005f20   Section       80  memp.o(.constdata)
+    .constdata                               0x08005f70   Section        8  ip4_addr.o(.constdata)
+    .constdata                               0x08005f78   Section       12  ethernet.o(.constdata)
+    .constdata                               0x08005f84   Section       20  timeouts.o(.constdata)
+    .constdata                               0x08005f98   Section       32  enc28j60.o(.constdata)
+    ECON2                                    0x08005f98   Data           4  enc28j60.o(.constdata)
+    ECON1                                    0x08005f9c   Data           4  enc28j60.o(.constdata)
+    ERDPTL                                   0x08005fa0   Data           4  enc28j60.o(.constdata)
+    EWRPTL                                   0x08005fa4   Data           4  enc28j60.o(.constdata)
+    ETXSTL                                   0x08005fa8   Data           4  enc28j60.o(.constdata)
+    ETXNDL                                   0x08005fac   Data           4  enc28j60.o(.constdata)
+    ERXRDPTL                                 0x08005fb0   Data           4  enc28j60.o(.constdata)
+    EPKTCNT                                  0x08005fb4   Data           4  enc28j60.o(.constdata)
+    .constdata                               0x08005fb8   Section      104  enc28j60_ll.o(.constdata)
+    ESTAT                                    0x08005fb8   Data           4  enc28j60_ll.o(.constdata)
+    ECON2                                    0x08005fbc   Data           4  enc28j60_ll.o(.constdata)
+    ECON1                                    0x08005fc0   Data           4  enc28j60_ll.o(.constdata)
+    ERDPTL                                   0x08005fc4   Data           4  enc28j60_ll.o(.constdata)
+    EWRPTL                                   0x08005fc8   Data           4  enc28j60_ll.o(.constdata)
+    ERXSTL                                   0x08005fcc   Data           4  enc28j60_ll.o(.constdata)
+    ERXNDL                                   0x08005fd0   Data           4  enc28j60_ll.o(.constdata)
+    ERXRDPTL                                 0x08005fd4   Data           4  enc28j60_ll.o(.constdata)
+    ERXFCON                                  0x08005fd8   Data           4  enc28j60_ll.o(.constdata)
+    MACON1                                   0x08005fdc   Data           4  enc28j60_ll.o(.constdata)
+    MACON3                                   0x08005fe0   Data           4  enc28j60_ll.o(.constdata)
+    MABBIPG                                  0x08005fe4   Data           4  enc28j60_ll.o(.constdata)
+    MAMXFLL                                  0x08005fe8   Data           4  enc28j60_ll.o(.constdata)
+    MICMD                                    0x08005fec   Data           4  enc28j60_ll.o(.constdata)
+    MIREGADR                                 0x08005ff0   Data           4  enc28j60_ll.o(.constdata)
+    MIWRL                                    0x08005ff4   Data           4  enc28j60_ll.o(.constdata)
+    MIRDL                                    0x08005ff8   Data           4  enc28j60_ll.o(.constdata)
+    MAADR5                                   0x08005ffc   Data           4  enc28j60_ll.o(.constdata)
+    MAADR6                                   0x08006000   Data           4  enc28j60_ll.o(.constdata)
+    MAADR3                                   0x08006004   Data           4  enc28j60_ll.o(.constdata)
+    MAADR4                                   0x08006008   Data           4  enc28j60_ll.o(.constdata)
+    MAADR1                                   0x0800600c   Data           4  enc28j60_ll.o(.constdata)
+    MAADR2                                   0x08006010   Data           4  enc28j60_ll.o(.constdata)
+    MISTAT                                   0x08006014   Data           4  enc28j60_ll.o(.constdata)
+    PHCON1                                   0x08006018   Data           4  enc28j60_ll.o(.constdata)
+    PHLCON                                   0x0800601c   Data           4  enc28j60_ll.o(.constdata)
+    .conststring                             0x08006020   Section       65  init.o(.conststring)
+    .conststring                             0x08006064   Section       65  etharp.o(.conststring)
     .data                                    0x20000000   Section       20  system_stm32f10x.o(.data)
-    .data                                    0x20000014   Section       16  main.o(.data)
+    .data                                    0x20000014   Section       10  main.o(.data)
     my_MAC_addr                              0x20000018   Data           6  main.o(.data)
-    rx_header                                0x2000001e   Data           6  main.o(.data)
-    .data                                    0x20000024   Section       24  enc28j60.o(.data)
-    tx_ptr                                   0x20000024   Data           2  enc28j60.o(.data)
-    .data                                    0x2000003c   Section        1  enc28j60_middleware.o(.data)
-    current_bank                             0x2000003c   Data           1  enc28j60_middleware.o(.data)
-    .data                                    0x20000040   Section       12  mem.o(.data)
-    ram                                      0x20000040   Data           4  mem.o(.data)
-    ram_end                                  0x20000044   Data           4  mem.o(.data)
-    lfree                                    0x20000048   Data           4  mem.o(.data)
-    .data                                    0x2000004c   Section       20  memp.o(.data)
-    memp_tab_REASSDATA                       0x2000004c   Data           4  memp.o(.data)
-    memp_tab_FRAG_PBUF                       0x20000050   Data           4  memp.o(.data)
-    memp_tab_SYS_TIMEOUT                     0x20000054   Data           4  memp.o(.data)
-    memp_tab_PBUF                            0x20000058   Data           4  memp.o(.data)
-    memp_tab_PBUF_POOL                       0x2000005c   Data           4  memp.o(.data)
-    .data                                    0x20000060   Section        9  netif.o(.data)
-    netif_num                                0x20000068   Data           1  netif.o(.data)
-    .data                                    0x20000069   Section        1  etharp.o(.data)
-    etharp_cached_entry                      0x20000069   Data           1  etharp.o(.data)
-    .data                                    0x2000006a   Section        2  ip4.o(.data)
-    ip_id                                    0x2000006a   Data           2  ip4.o(.data)
-    .data                                    0x2000006c   Section        6  ip4_frag.o(.data)
-    reassdatagrams                           0x2000006c   Data           4  ip4_frag.o(.data)
-    ip_reass_pbufcount                       0x20000070   Data           2  ip4_frag.o(.data)
-    .data                                    0x20000074   Section        8  timeouts.o(.data)
-    next_timeout                             0x20000074   Data           4  timeouts.o(.data)
-    current_timeout_due_time                 0x20000078   Data           4  timeouts.o(.data)
-    .data                                    0x2000007c   Section        4  stdout.o(.data)
-    .bss                                     0x20000080   Section     1592  main.o(.bss)
-    netif                                    0x20000080   Data          48  main.o(.bss)
-    eth_buffer                               0x200000b0   Data        1520  main.o(.bss)
-    eth_frame                                0x200006a0   Data          24  main.o(.bss)
-    .bss                                     0x200006b8   Section     1043  mem.o(.bss)
-    .bss                                     0x20000acb   Section      887  memp.o(.bss)
-    .bss                                     0x20000e44   Section      240  etharp.o(.bss)
-    arp_table                                0x20000e44   Data         240  etharp.o(.bss)
-    .bss                                     0x20000f34   Section       24  ip.o(.bss)
-    STACK                                    0x20000f50   Section     8192  startup_stm32f10x_xl.o(STACK)
+    .data                                    0x20000020   Section       12  mem.o(.data)
+    ram                                      0x20000020   Data           4  mem.o(.data)
+    ram_end                                  0x20000024   Data           4  mem.o(.data)
+    lfree                                    0x20000028   Data           4  mem.o(.data)
+    .data                                    0x2000002c   Section       20  memp.o(.data)
+    memp_tab_REASSDATA                       0x2000002c   Data           4  memp.o(.data)
+    memp_tab_FRAG_PBUF                       0x20000030   Data           4  memp.o(.data)
+    memp_tab_SYS_TIMEOUT                     0x20000034   Data           4  memp.o(.data)
+    memp_tab_PBUF                            0x20000038   Data           4  memp.o(.data)
+    memp_tab_PBUF_POOL                       0x2000003c   Data           4  memp.o(.data)
+    .data                                    0x20000040   Section        9  netif.o(.data)
+    netif_num                                0x20000048   Data           1  netif.o(.data)
+    .data                                    0x20000049   Section        1  etharp.o(.data)
+    etharp_cached_entry                      0x20000049   Data           1  etharp.o(.data)
+    .data                                    0x2000004a   Section        2  ip4.o(.data)
+    ip_id                                    0x2000004a   Data           2  ip4.o(.data)
+    .data                                    0x2000004c   Section        6  ip4_frag.o(.data)
+    reassdatagrams                           0x2000004c   Data           4  ip4_frag.o(.data)
+    ip_reass_pbufcount                       0x20000050   Data           2  ip4_frag.o(.data)
+    .data                                    0x20000054   Section        8  timeouts.o(.data)
+    next_timeout                             0x20000054   Data           4  timeouts.o(.data)
+    current_timeout_due_time                 0x20000058   Data           4  timeouts.o(.data)
+    .data                                    0x2000005c   Section        4  stdout.o(.data)
+    .bss                                     0x20000060   Section     1620  main.o(.bss)
+    enc                                      0x20000060   Data          52  main.o(.bss)
+    netif                                    0x20000094   Data          48  main.o(.bss)
+    eth_buffer                               0x200000c4   Data        1520  main.o(.bss)
+    .bss                                     0x200006b4   Section     1043  mem.o(.bss)
+    .bss                                     0x20000ac7   Section      887  memp.o(.bss)
+    .bss                                     0x20000e40   Section      240  etharp.o(.bss)
+    arp_table                                0x20000e40   Data         240  etharp.o(.bss)
+    .bss                                     0x20000f30   Section       24  ip.o(.bss)
+    STACK                                    0x20000f48   Section     8192  startup_stm32f10x_xl.o(STACK)
 
     Global Symbols
 
@@ -1385,123 +1343,119 @@ Image Symbol Table
     __scatterload_copy                       0x080003bb   Thumb Code    14  handlers.o(i.__scatterload_copy)
     __scatterload_null                       0x080003c9   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x080003cb   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    enc28j60_Init                            0x08000725   Thumb Code    42  enc28j60.o(i.enc28j60_Init)
-    enc28j60_bank_changing                   0x08000761   Thumb Code    62  enc28j60_middleware.o(i.enc28j60_bank_changing)
-    enc28j60_hw_cs_high                      0x080007a9   Thumb Code    14  enc28j60_hardware.o(i.enc28j60_hw_cs_high)
-    enc28j60_hw_cs_low                       0x080007bd   Thumb Code    14  enc28j60_hardware.o(i.enc28j60_hw_cs_low)
-    enc28j60_hw_read_data_16b                0x080007d1   Thumb Code   130  enc28j60_hardware.o(i.enc28j60_hw_read_data_16b)
-    enc28j60_hw_read_data_8b                 0x08000859   Thumb Code    88  enc28j60_hardware.o(i.enc28j60_hw_read_data_8b)
-    enc28j60_hw_send_data_8b                 0x080008b5   Thumb Code    98  enc28j60_hardware.o(i.enc28j60_hw_send_data_8b)
-    enc28j60_hw_send_log_8b                  0x0800091d   Thumb Code    22  enc28j60_hardware.o(i.enc28j60_hw_send_log_8b)
-    enc28j60_hw_send_log_msg                 0x08000939   Thumb Code    22  enc28j60_hardware.o(i.enc28j60_hw_send_log_msg)
-    enc28j60_hw_send_short_cmd               0x08000951   Thumb Code    54  enc28j60_hardware.o(i.enc28j60_hw_send_short_cmd)
-    enc28j60_hw_spi_init                     0x0800098d   Thumb Code   120  enc28j60_hardware.o(i.enc28j60_hw_spi_init)
-    enc28j60_hw_uart_init                    0x08000a1d   Thumb Code   104  enc28j60_hardware.o(i.enc28j60_hw_uart_init)
-    enc28j60_mid_init                        0x08000a91   Thumb Code   420  enc28j60_middleware.o(i.enc28j60_mid_init)
-    enc28j60_prepare_to_tx                   0x08000c99   Thumb Code    10  enc28j60.o(i.enc28j60_prepare_to_tx)
-    enc28j60_read_buf                        0x08000ca9   Thumb Code    42  enc28j60_middleware.o(i.enc28j60_read_buf)
-    enc28j60_read_reg                        0x08000cd5   Thumb Code   400  enc28j60_middleware.o(i.enc28j60_read_reg)
-    enc28j60_read_rx_header                  0x08000e79   Thumb Code    14  enc28j60.o(i.enc28j60_read_rx_header)
-    enc28j60_ready_to_send                   0x08000e89   Thumb Code   112  enc28j60.o(i.enc28j60_ready_to_send)
-    enc28j60_receive_packet                  0x08000f09   Thumb Code   158  enc28j60.o(i.enc28j60_receive_packet)
-    enc28j60_soft_reset                      0x08000fc1   Thumb Code    18  enc28j60_middleware.o(i.enc28j60_soft_reset)
-    enc28j60_write_buf                       0x08000fd3   Thumb Code    40  enc28j60_middleware.o(i.enc28j60_write_buf)
-    enc28j60_write_reg                       0x08000ffd   Thumb Code   208  enc28j60_middleware.o(i.enc28j60_write_reg)
-    enc28j60_write_to_tx                     0x080010dd   Thumb Code    36  enc28j60.o(i.enc28j60_write_to_tx)
-    etharp_input                             0x0800145d   Thumb Code   210  etharp.o(i.etharp_input)
-    etharp_output                            0x08001531   Thumb Code   416  etharp.o(i.etharp_output)
-    etharp_query                             0x080018b1   Thumb Code   548  etharp.o(i.etharp_query)
-    etharp_request                           0x08001d15   Thumb Code    18  etharp.o(i.etharp_request)
-    etharp_tmr                               0x08001d59   Thumb Code   214  etharp.o(i.etharp_tmr)
-    ethernet_input                           0x08001f85   Thumb Code   190  ethernet.o(i.ethernet_input)
-    ethernet_output                          0x08002049   Thumb Code   120  ethernet.o(i.ethernet_output)
-    ethernetif_init                          0x08002141   Thumb Code    74  main.o(i.ethernetif_init)
-    fputc                                    0x08002195   Thumb Code    18  fputc.o(i.fputc)
-    icmp_dest_unreach                        0x080021a7   Thumb Code    18  icmp.o(i.icmp_dest_unreach)
-    icmp_input                               0x080021b9   Thumb Code   480  icmp.o(i.icmp_input)
-    icmp_time_exceeded                       0x08002575   Thumb Code    18  icmp.o(i.icmp_time_exceeded)
-    inet_chksum                              0x08002587   Thumb Code    20  inet_chksum.o(i.inet_chksum)
-    inet_chksum_pbuf                         0x0800259b   Thumb Code    86  inet_chksum.o(i.inet_chksum_pbuf)
-    ip4_addr_isbroadcast_u32                 0x080025f1   Thumb Code    78  ip4_addr.o(i.ip4_addr_isbroadcast_u32)
-    ip4_frag                                 0x08002641   Thumb Code   536  ip4_frag.o(i.ip4_frag)
-    ip4_input                                0x080028d9   Thumb Code   394  ip4.o(i.ip4_input)
-    ip4_output_if                            0x08002aa1   Thumb Code    54  ip4.o(i.ip4_output_if)
-    ip4_output_if_src                        0x08002ad9   Thumb Code   364  ip4.o(i.ip4_output_if_src)
-    ip4_reass                                0x08002cd1   Thumb Code   618  ip4_frag.o(i.ip4_reass)
-    ip4_route                                0x08002fd9   Thumb Code   140  ip4.o(i.ip4_route)
-    ip_reass_tmr                             0x08003795   Thumb Code    48  ip4_frag.o(i.ip_reass_tmr)
-    low_level_input                          0x08003889   Thumb Code    62  main.o(i.low_level_input)
-    low_level_output                         0x080038c7   Thumb Code    48  main.o(i.low_level_output)
-    lwip_htons                               0x08003949   Thumb Code    12  def.o(i.lwip_htons)
-    lwip_init                                0x08003955   Thumb Code    64  init.o(i.lwip_init)
-    lwip_standard_chksum                     0x080039dd   Thumb Code    94  inet_chksum.o(i.lwip_standard_chksum)
-    main                                     0x08003a3d   Thumb Code   300  main.o(i.main)
-    mem_free                                 0x08003ba5   Thumb Code   194  mem.o(i.mem_free)
-    mem_init                                 0x08003d55   Thumb Code    74  mem.o(i.mem_init)
-    mem_malloc                               0x08003e09   Thumb Code   442  mem.o(i.mem_malloc)
-    mem_trim                                 0x080040d5   Thumb Code   442  mem.o(i.mem_trim)
-    memp_free                                0x0800432d   Thumb Code    36  memp.o(i.memp_free)
-    memp_init                                0x08004355   Thumb Code    26  memp.o(i.memp_init)
-    memp_init_pool                           0x08004375   Thumb Code    44  memp.o(i.memp_init_pool)
-    memp_malloc                              0x080043a1   Thumb Code    32  memp.o(i.memp_malloc)
-    mw_test                                  0x080043c5   Thumb Code   396  enc28j60_middleware.o(i.mw_test)
-    netif_add                                0x08004681   Thumb Code   294  netif.o(i.netif_add)
-    netif_init                               0x08004967   Thumb Code     2  netif.o(i.netif_init)
-    netif_set_addr                           0x08004a39   Thumb Code    92  netif.o(i.netif_set_addr)
-    netif_set_default                        0x08004a99   Thumb Code     6  netif.o(i.netif_set_default)
-    netif_set_up                             0x08004aa5   Thumb Code    50  netif.o(i.netif_set_up)
-    pbuf_add_header                          0x08004ad7   Thumb Code    18  pbuf.o(i.pbuf_add_header)
-    pbuf_alloc                               0x08004bc5   Thumb Code   428  pbuf.o(i.pbuf_alloc)
-    pbuf_alloc_reference                     0x08004e61   Thumb Code    86  pbuf.o(i.pbuf_alloc_reference)
-    pbuf_alloced_custom                      0x08004f11   Thumb Code    82  pbuf.o(i.pbuf_alloced_custom)
-    pbuf_cat                                 0x08004f65   Thumb Code   156  pbuf.o(i.pbuf_cat)
-    pbuf_clen                                0x080050a1   Thumb Code    18  pbuf.o(i.pbuf_clen)
-    pbuf_clone                               0x080050b5   Thumb Code    76  pbuf.o(i.pbuf_clone)
-    pbuf_copy                                0x08005159   Thumb Code    32  pbuf.o(i.pbuf_copy)
-    pbuf_copy_partial_pbuf                   0x08005179   Thumb Code   306  pbuf.o(i.pbuf_copy_partial_pbuf)
-    pbuf_free                                0x08005325   Thumb Code   284  pbuf.o(i.pbuf_free)
-    pbuf_header_force                        0x080054e1   Thumb Code    18  pbuf.o(i.pbuf_header_force)
-    pbuf_realloc                             0x08005535   Thumb Code   256  pbuf.o(i.pbuf_realloc)
-    pbuf_ref                                 0x080056e1   Thumb Code    84  pbuf.o(i.pbuf_ref)
-    pbuf_remove_header                       0x0800578d   Thumb Code   100  pbuf.o(i.pbuf_remove_header)
-    pbuf_take                                0x08005841   Thumb Code   194  pbuf.o(i.pbuf_take)
-    sys_check_timeouts                       0x08005b6d   Thumb Code    74  timeouts.o(i.sys_check_timeouts)
-    sys_now                                  0x08005bc1   Thumb Code     6  main.o(i.sys_now)
-    sys_timeout                              0x08005bcd   Thumb Code    66  timeouts.o(i.sys_timeout)
-    sys_timeouts_init                        0x08005dc5   Thumb Code    30  timeouts.o(i.sys_timeouts_init)
-    memp_REASSDATA                           0x08005e74   Data          12  memp.o(.constdata)
-    memp_FRAG_PBUF                           0x08005e80   Data          12  memp.o(.constdata)
-    memp_SYS_TIMEOUT                         0x08005e8c   Data          12  memp.o(.constdata)
-    memp_PBUF                                0x08005e98   Data          12  memp.o(.constdata)
-    memp_PBUF_POOL                           0x08005ea4   Data          12  memp.o(.constdata)
-    memp_pools                               0x08005eb0   Data          20  memp.o(.constdata)
-    ip_addr_any                              0x08005ec4   Data           4  ip4_addr.o(.constdata)
-    ip_addr_broadcast                        0x08005ec8   Data           4  ip4_addr.o(.constdata)
-    ethbroadcast                             0x08005ecc   Data           6  ethernet.o(.constdata)
-    ethzero                                  0x08005ed2   Data           6  ethernet.o(.constdata)
-    lwip_cyclic_timers                       0x08005ed8   Data          16  timeouts.o(.constdata)
-    lwip_num_cyclic_timers                   0x08005ee8   Data           4  timeouts.o(.constdata)
-    Region$$Table$$Base                      0x08005f74   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08005f94   Number         0  anon$$obj.o(Region$$Table)
+    enc28j60_bank_changing                   0x08000725   Thumb Code    64  enc28j60_ll.o(i.enc28j60_bank_changing)
+    enc28j60_hw_cs_high                      0x08000769   Thumb Code    14  enc28j60_port.o(i.enc28j60_hw_cs_high)
+    enc28j60_hw_cs_low                       0x0800077d   Thumb Code    14  enc28j60_port.o(i.enc28j60_hw_cs_low)
+    enc28j60_hw_read_data_16b                0x08000791   Thumb Code   130  enc28j60_port.o(i.enc28j60_hw_read_data_16b)
+    enc28j60_hw_read_data_8b                 0x08000819   Thumb Code    88  enc28j60_port.o(i.enc28j60_hw_read_data_8b)
+    enc28j60_hw_send_data_16b                0x08000875   Thumb Code   148  enc28j60_port.o(i.enc28j60_hw_send_data_16b)
+    enc28j60_hw_send_data_8b                 0x0800090d   Thumb Code    98  enc28j60_port.o(i.enc28j60_hw_send_data_8b)
+    enc28j60_hw_send_log_8b                  0x08000975   Thumb Code    22  enc28j60_port.o(i.enc28j60_hw_send_log_8b)
+    enc28j60_hw_send_log_msg                 0x08000991   Thumb Code    22  enc28j60_port.o(i.enc28j60_hw_send_log_msg)
+    enc28j60_hw_send_short_cmd               0x080009a9   Thumb Code    54  enc28j60_port.o(i.enc28j60_hw_send_short_cmd)
+    enc28j60_hw_spi_init                     0x080009e5   Thumb Code   120  enc28j60_port.o(i.enc28j60_hw_spi_init)
+    enc28j60_hw_uart_init                    0x08000a75   Thumb Code   104  enc28j60_port.o(i.enc28j60_hw_uart_init)
+    enc28j60_init                            0x08000ae9   Thumb Code    72  enc28j60.o(i.enc28j60_init)
+    enc28j60_ll_init                         0x08000b59   Thumb Code   474  enc28j60_ll.o(i.enc28j60_ll_init)
+    enc28j60_prepare_to_tx                   0x08000d99   Thumb Code     8  enc28j60.o(i.enc28j60_prepare_to_tx)
+    enc28j60_read_buf                        0x08000da1   Thumb Code    48  enc28j60_ll.o(i.enc28j60_read_buf)
+    enc28j60_read_reg                        0x08000dd1   Thumb Code   410  enc28j60_ll.o(i.enc28j60_read_reg)
+    enc28j60_read_rx_header                  0x08000f7d   Thumb Code    18  enc28j60.o(i.enc28j60_read_rx_header)
+    enc28j60_ready_to_send                   0x08000f91   Thumb Code   122  enc28j60.o(i.enc28j60_ready_to_send)
+    enc28j60_receive_packet                  0x08001019   Thumb Code   152  enc28j60.o(i.enc28j60_receive_packet)
+    enc28j60_soft_reset                      0x080010c1   Thumb Code    20  enc28j60_ll.o(i.enc28j60_soft_reset)
+    enc28j60_write_buf                       0x080010d5   Thumb Code    46  enc28j60_ll.o(i.enc28j60_write_buf)
+    enc28j60_write_reg                       0x08001105   Thumb Code   214  enc28j60_ll.o(i.enc28j60_write_reg)
+    enc28j60_write_to_tx                     0x080011e9   Thumb Code    36  enc28j60.o(i.enc28j60_write_to_tx)
+    etharp_input                             0x08001565   Thumb Code   210  etharp.o(i.etharp_input)
+    etharp_output                            0x08001639   Thumb Code   416  etharp.o(i.etharp_output)
+    etharp_query                             0x080019b9   Thumb Code   548  etharp.o(i.etharp_query)
+    etharp_request                           0x08001e1d   Thumb Code    18  etharp.o(i.etharp_request)
+    etharp_tmr                               0x08001e61   Thumb Code   214  etharp.o(i.etharp_tmr)
+    ethernet_input                           0x0800208d   Thumb Code   190  ethernet.o(i.ethernet_input)
+    ethernet_output                          0x08002151   Thumb Code   120  ethernet.o(i.ethernet_output)
+    ethernetif_init                          0x08002249   Thumb Code    74  main.o(i.ethernetif_init)
+    fputc                                    0x0800229d   Thumb Code    18  fputc.o(i.fputc)
+    icmp_dest_unreach                        0x080022af   Thumb Code    18  icmp.o(i.icmp_dest_unreach)
+    icmp_input                               0x080022c1   Thumb Code   480  icmp.o(i.icmp_input)
+    icmp_time_exceeded                       0x0800267d   Thumb Code    18  icmp.o(i.icmp_time_exceeded)
+    inet_chksum                              0x0800268f   Thumb Code    20  inet_chksum.o(i.inet_chksum)
+    inet_chksum_pbuf                         0x080026a3   Thumb Code    86  inet_chksum.o(i.inet_chksum_pbuf)
+    ip4_addr_isbroadcast_u32                 0x080026f9   Thumb Code    78  ip4_addr.o(i.ip4_addr_isbroadcast_u32)
+    ip4_frag                                 0x08002749   Thumb Code   536  ip4_frag.o(i.ip4_frag)
+    ip4_input                                0x080029e1   Thumb Code   394  ip4.o(i.ip4_input)
+    ip4_output_if                            0x08002ba9   Thumb Code    54  ip4.o(i.ip4_output_if)
+    ip4_output_if_src                        0x08002be1   Thumb Code   364  ip4.o(i.ip4_output_if_src)
+    ip4_reass                                0x08002dd9   Thumb Code   618  ip4_frag.o(i.ip4_reass)
+    ip4_route                                0x080030e1   Thumb Code   140  ip4.o(i.ip4_route)
+    ip_reass_tmr                             0x0800389d   Thumb Code    48  ip4_frag.o(i.ip_reass_tmr)
+    ll_test                                  0x08003991   Thumb Code   434  enc28j60_ll.o(i.ll_test)
+    low_level_input                          0x08003c75   Thumb Code    64  main.o(i.low_level_input)
+    low_level_output                         0x08003cb9   Thumb Code    56  main.o(i.low_level_output)
+    lwip_htons                               0x08003d45   Thumb Code    12  def.o(i.lwip_htons)
+    lwip_init                                0x08003d51   Thumb Code    64  init.o(i.lwip_init)
+    lwip_standard_chksum                     0x08003dd9   Thumb Code    94  inet_chksum.o(i.lwip_standard_chksum)
+    main                                     0x08003e39   Thumb Code   296  main.o(i.main)
+    mem_free                                 0x08003f95   Thumb Code   194  mem.o(i.mem_free)
+    mem_init                                 0x08004145   Thumb Code    74  mem.o(i.mem_init)
+    mem_malloc                               0x080041f9   Thumb Code   442  mem.o(i.mem_malloc)
+    mem_trim                                 0x080044c5   Thumb Code   442  mem.o(i.mem_trim)
+    memp_free                                0x0800471d   Thumb Code    36  memp.o(i.memp_free)
+    memp_init                                0x08004745   Thumb Code    26  memp.o(i.memp_init)
+    memp_init_pool                           0x08004765   Thumb Code    44  memp.o(i.memp_init_pool)
+    memp_malloc                              0x08004791   Thumb Code    32  memp.o(i.memp_malloc)
+    netif_add                                0x080047b5   Thumb Code   294  netif.o(i.netif_add)
+    netif_init                               0x08004a9b   Thumb Code     2  netif.o(i.netif_init)
+    netif_set_addr                           0x08004b6d   Thumb Code    92  netif.o(i.netif_set_addr)
+    netif_set_default                        0x08004bcd   Thumb Code     6  netif.o(i.netif_set_default)
+    netif_set_up                             0x08004bd9   Thumb Code    50  netif.o(i.netif_set_up)
+    pbuf_add_header                          0x08004c0b   Thumb Code    18  pbuf.o(i.pbuf_add_header)
+    pbuf_alloc                               0x08004cf9   Thumb Code   428  pbuf.o(i.pbuf_alloc)
+    pbuf_alloc_reference                     0x08004f95   Thumb Code    86  pbuf.o(i.pbuf_alloc_reference)
+    pbuf_alloced_custom                      0x08005045   Thumb Code    82  pbuf.o(i.pbuf_alloced_custom)
+    pbuf_cat                                 0x08005099   Thumb Code   156  pbuf.o(i.pbuf_cat)
+    pbuf_clen                                0x080051d5   Thumb Code    18  pbuf.o(i.pbuf_clen)
+    pbuf_clone                               0x080051e9   Thumb Code    76  pbuf.o(i.pbuf_clone)
+    pbuf_copy                                0x0800528d   Thumb Code    32  pbuf.o(i.pbuf_copy)
+    pbuf_copy_partial_pbuf                   0x080052ad   Thumb Code   306  pbuf.o(i.pbuf_copy_partial_pbuf)
+    pbuf_free                                0x08005459   Thumb Code   284  pbuf.o(i.pbuf_free)
+    pbuf_header_force                        0x08005615   Thumb Code    18  pbuf.o(i.pbuf_header_force)
+    pbuf_realloc                             0x08005669   Thumb Code   256  pbuf.o(i.pbuf_realloc)
+    pbuf_ref                                 0x08005815   Thumb Code    84  pbuf.o(i.pbuf_ref)
+    pbuf_remove_header                       0x080058c1   Thumb Code   100  pbuf.o(i.pbuf_remove_header)
+    pbuf_take                                0x08005975   Thumb Code   194  pbuf.o(i.pbuf_take)
+    sys_check_timeouts                       0x08005ca1   Thumb Code    74  timeouts.o(i.sys_check_timeouts)
+    sys_now                                  0x08005cf5   Thumb Code     6  main.o(i.sys_now)
+    sys_timeout                              0x08005d01   Thumb Code    66  timeouts.o(i.sys_timeout)
+    sys_timeouts_init                        0x08005ef9   Thumb Code    30  timeouts.o(i.sys_timeouts_init)
+    memp_REASSDATA                           0x08005f20   Data          12  memp.o(.constdata)
+    memp_FRAG_PBUF                           0x08005f2c   Data          12  memp.o(.constdata)
+    memp_SYS_TIMEOUT                         0x08005f38   Data          12  memp.o(.constdata)
+    memp_PBUF                                0x08005f44   Data          12  memp.o(.constdata)
+    memp_PBUF_POOL                           0x08005f50   Data          12  memp.o(.constdata)
+    memp_pools                               0x08005f5c   Data          20  memp.o(.constdata)
+    ip_addr_any                              0x08005f70   Data           4  ip4_addr.o(.constdata)
+    ip_addr_broadcast                        0x08005f74   Data           4  ip4_addr.o(.constdata)
+    ethbroadcast                             0x08005f78   Data           6  ethernet.o(.constdata)
+    ethzero                                  0x08005f7e   Data           6  ethernet.o(.constdata)
+    lwip_cyclic_timers                       0x08005f84   Data          16  timeouts.o(.constdata)
+    lwip_num_cyclic_timers                   0x08005f94   Data           4  timeouts.o(.constdata)
+    Region$$Table$$Base                      0x080060a8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080060c8   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000004   Data          16  system_stm32f10x.o(.data)
     sys_time                                 0x20000014   Data           4  main.o(.data)
-    buffer_ptr                               0x20000028   Data           4  enc28j60.o(.data)
-    enc_header                               0x2000002c   Data           4  enc28j60.o(.data)
-    frame_params                             0x20000030   Data           4  enc28j60.o(.data)
-    c_rx_ptr                                 0x20000034   Data           2  enc28j60.o(.data)
-    MAC_addr                                 0x20000038   Data           4  enc28j60.o(.data)
-    netif_list                               0x20000060   Data           4  netif.o(.data)
-    netif_default                            0x20000064   Data           4  netif.o(.data)
-    __stdout                                 0x2000007c   Data           4  stdout.o(.data)
-    ram_heap                                 0x200006b8   Data        1043  mem.o(.bss)
-    memp_memory_REASSDATA_base               0x20000acb   Data         163  memp.o(.bss)
-    memp_memory_FRAG_PBUF_base               0x20000b6e   Data         363  memp.o(.bss)
-    memp_memory_SYS_TIMEOUT_base             0x20000cd9   Data          51  memp.o(.bss)
-    memp_memory_PBUF_base                    0x20000d0c   Data          35  memp.o(.bss)
-    memp_memory_PBUF_POOL_base               0x20000d2f   Data         275  memp.o(.bss)
-    ip_data                                  0x20000f34   Data          24  ip.o(.bss)
-    __initial_sp                             0x20002f50   Data           0  startup_stm32f10x_xl.o(STACK)
+    netif_list                               0x20000040   Data           4  netif.o(.data)
+    netif_default                            0x20000044   Data           4  netif.o(.data)
+    __stdout                                 0x2000005c   Data           4  stdout.o(.data)
+    ram_heap                                 0x200006b4   Data        1043  mem.o(.bss)
+    memp_memory_REASSDATA_base               0x20000ac7   Data         163  memp.o(.bss)
+    memp_memory_FRAG_PBUF_base               0x20000b6a   Data         363  memp.o(.bss)
+    memp_memory_SYS_TIMEOUT_base             0x20000cd5   Data          51  memp.o(.bss)
+    memp_memory_PBUF_base                    0x20000d08   Data          35  memp.o(.bss)
+    memp_memory_PBUF_POOL_base               0x20000d2b   Data         275  memp.o(.bss)
+    ip_data                                  0x20000f30   Data          24  ip.o(.bss)
+    __initial_sp                             0x20002f48   Data           0  startup_stm32f10x_xl.o(STACK)
 
 
 
@@ -1511,214 +1465,210 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00006014, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00006128, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00005f94, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000060c8, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x00000130   Data   RO            3    RESET               startup_stm32f10x_xl.o
-    0x08000130   0x08000130   0x00000000   Code   RO         1776  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000130   0x08000130   0x00000004   Code   RO         2090    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x08000134   0x08000134   0x00000004   Code   RO         2093    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x08000138   0x08000138   0x00000000   Code   RO         2095    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x08000138   0x08000138   0x00000000   Code   RO         2097    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x08000138   0x08000138   0x00000008   Code   RO         2098    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x08000140   0x08000140   0x00000000   Code   RO         2100    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x08000140   0x08000140   0x00000000   Code   RO         2102    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x08000140   0x08000140   0x00000004   Code   RO         2091    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000130   0x08000130   0x00000000   Code   RO         1763  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000130   0x08000130   0x00000004   Code   RO         2077    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x08000134   0x08000134   0x00000004   Code   RO         2080    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000138   0x08000138   0x00000000   Code   RO         2082    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000138   0x08000138   0x00000000   Code   RO         2084    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000138   0x08000138   0x00000008   Code   RO         2085    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000140   0x08000140   0x00000000   Code   RO         2087    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x08000140   0x08000140   0x00000000   Code   RO         2089    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x08000140   0x08000140   0x00000004   Code   RO         2078    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x08000144   0x08000144   0x00000024   Code   RO            4    .text               startup_stm32f10x_xl.o
-    0x08000168   0x08000168   0x00000040   Code   RO         1813    .text               mc_w.l(memmovea.o)
-    0x080001a8   0x080001a8   0x00000024   Code   RO         1815    .text               mc_w.l(memseta.o)
-    0x080001cc   0x080001cc   0x0000001a   Code   RO         1819    .text               mc_w.l(memcmp.o)
-    0x080001e6   0x080001e6   0x0000002c   Code   RO         2107    .text               mc_w.l(uidiv.o)
+    0x08000168   0x08000168   0x00000040   Code   RO         1800    .text               mc_w.l(memmovea.o)
+    0x080001a8   0x080001a8   0x00000024   Code   RO         1802    .text               mc_w.l(memseta.o)
+    0x080001cc   0x080001cc   0x0000001a   Code   RO         1806    .text               mc_w.l(memcmp.o)
+    0x080001e6   0x080001e6   0x0000002c   Code   RO         2094    .text               mc_w.l(uidiv.o)
     0x08000212   0x08000212   0x00000002   PAD
-    0x08000214   0x08000214   0x00000024   Code   RO         2131    .text               mc_w.l(init.o)
-    0x08000238   0x08000238   0x00000000   Code   RO         2133    .text               mc_w.l(semi.o)
-    0x08000238   0x08000238   0x00000000   Code   RO         2142    .text               mc_w.l(iusesemip.o)
-    0x08000238   0x08000238   0x00000002   Code   RO          235    i.SetCoreClock      rcc.o
+    0x08000214   0x08000214   0x00000024   Code   RO         2118    .text               mc_w.l(init.o)
+    0x08000238   0x08000238   0x00000000   Code   RO         2120    .text               mc_w.l(semi.o)
+    0x08000238   0x08000238   0x00000000   Code   RO         2129    .text               mc_w.l(iusesemip.o)
+    0x08000238   0x08000238   0x00000002   Code   RO          238    i.SetCoreClock      rcc.o
     0x0800023a   0x0800023a   0x00000008   Code   RO           10    i.SetSysClock       system_stm32f10x.o
     0x08000242   0x08000242   0x00000002   PAD
     0x08000244   0x08000244   0x000000e0   Code   RO           11    i.SetSysClockTo72   system_stm32f10x.o
     0x08000324   0x08000324   0x00000010   Code   RO           55    i.SysTick_Handler   main.o
     0x08000334   0x08000334   0x00000060   Code   RO           13    i.SystemInit        system_stm32f10x.o
-    0x08000394   0x08000394   0x00000020   Code   RO         1916    i.__0printf$3       mc_w.l(printf3.o)
-    0x080003b4   0x080003b4   0x00000006   Code   RO          655    i.__get_PRIMASK     mem.o
-    0x080003ba   0x080003ba   0x0000000e   Code   RO         2149    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080003c8   0x080003c8   0x00000002   Code   RO         2150    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080003ca   0x080003ca   0x0000000e   Code   RO         2151    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080003d8   0x080003d8   0x00000006   Code   RO          656    i.__set_PRIMASK     mem.o
+    0x08000394   0x08000394   0x00000020   Code   RO         1903    i.__0printf$3       mc_w.l(printf3.o)
+    0x080003b4   0x080003b4   0x00000006   Code   RO          419    i.__get_PRIMASK     mem.o
+    0x080003ba   0x080003ba   0x0000000e   Code   RO         2136    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x080003c8   0x080003c8   0x00000002   Code   RO         2137    i.__scatterload_null  mc_w.l(handlers.o)
+    0x080003ca   0x080003ca   0x0000000e   Code   RO         2138    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080003d8   0x080003d8   0x00000006   Code   RO          420    i.__set_PRIMASK     mem.o
     0x080003de   0x080003de   0x00000002   PAD
-    0x080003e0   0x080003e0   0x000001b8   Code   RO         1923    i._printf_core      mc_w.l(printf3.o)
-    0x08000598   0x08000598   0x000000bc   Code   RO          746    i.do_memp_free_pool  memp.o
-    0x08000654   0x08000654   0x000000d0   Code   RO          747    i.do_memp_malloc_pool  memp.o
-    0x08000724   0x08000724   0x0000003c   Code   RO          251    i.enc28j60_Init     enc28j60.o
-    0x08000760   0x08000760   0x00000048   Code   RO          330    i.enc28j60_bank_changing  enc28j60_middleware.o
-    0x080007a8   0x080007a8   0x00000014   Code   RO          405    i.enc28j60_hw_cs_high  enc28j60_hardware.o
-    0x080007bc   0x080007bc   0x00000014   Code   RO          406    i.enc28j60_hw_cs_low  enc28j60_hardware.o
-    0x080007d0   0x080007d0   0x00000088   Code   RO          408    i.enc28j60_hw_read_data_16b  enc28j60_hardware.o
-    0x08000858   0x08000858   0x0000005c   Code   RO          409    i.enc28j60_hw_read_data_8b  enc28j60_hardware.o
-    0x080008b4   0x080008b4   0x00000068   Code   RO          411    i.enc28j60_hw_send_data_8b  enc28j60_hardware.o
-    0x0800091c   0x0800091c   0x0000001c   Code   RO          412    i.enc28j60_hw_send_log_8b  enc28j60_hardware.o
-    0x08000938   0x08000938   0x00000016   Code   RO          413    i.enc28j60_hw_send_log_msg  enc28j60_hardware.o
-    0x0800094e   0x0800094e   0x00000002   PAD
-    0x08000950   0x08000950   0x0000003c   Code   RO          414    i.enc28j60_hw_send_short_cmd  enc28j60_hardware.o
-    0x0800098c   0x0800098c   0x00000090   Code   RO          415    i.enc28j60_hw_spi_init  enc28j60_hardware.o
-    0x08000a1c   0x08000a1c   0x00000074   Code   RO          416    i.enc28j60_hw_uart_init  enc28j60_hardware.o
-    0x08000a90   0x08000a90   0x00000208   Code   RO          333    i.enc28j60_mid_init  enc28j60_middleware.o
-    0x08000c98   0x08000c98   0x00000010   Code   RO          252    i.enc28j60_prepare_to_tx  enc28j60.o
-    0x08000ca8   0x08000ca8   0x0000002a   Code   RO          334    i.enc28j60_read_buf  enc28j60_middleware.o
-    0x08000cd2   0x08000cd2   0x00000002   PAD
-    0x08000cd4   0x08000cd4   0x000001a4   Code   RO          335    i.enc28j60_read_reg  enc28j60_middleware.o
-    0x08000e78   0x08000e78   0x0000000e   Code   RO          255    i.enc28j60_read_rx_header  enc28j60.o
-    0x08000e86   0x08000e86   0x00000002   PAD
-    0x08000e88   0x08000e88   0x00000080   Code   RO          256    i.enc28j60_ready_to_send  enc28j60.o
-    0x08000f08   0x08000f08   0x000000b8   Code   RO          257    i.enc28j60_receive_packet  enc28j60.o
-    0x08000fc0   0x08000fc0   0x00000012   Code   RO          336    i.enc28j60_soft_reset  enc28j60_middleware.o
-    0x08000fd2   0x08000fd2   0x00000028   Code   RO          337    i.enc28j60_write_buf  enc28j60_middleware.o
-    0x08000ffa   0x08000ffa   0x00000002   PAD
-    0x08000ffc   0x08000ffc   0x000000e0   Code   RO          338    i.enc28j60_write_reg  enc28j60_middleware.o
-    0x080010dc   0x080010dc   0x0000002c   Code   RO          259    i.enc28j60_write_to_tx  enc28j60.o
-    0x08001108   0x08001108   0x00000314   Code   RO         1240    i.etharp_find_entry  etharp.o
-    0x0800141c   0x0800141c   0x00000040   Code   RO         1241    i.etharp_free_entry  etharp.o
-    0x0800145c   0x0800145c   0x000000d2   Code   RO         1243    i.etharp_input      etharp.o
-    0x0800152e   0x0800152e   0x00000002   PAD
-    0x08001530   0x08001530   0x00000224   Code   RO         1244    i.etharp_output     etharp.o
-    0x08001754   0x08001754   0x0000015c   Code   RO         1245    i.etharp_output_to_arp_index  etharp.o
-    0x080018b0   0x080018b0   0x000002d8   Code   RO         1246    i.etharp_query      etharp.o
-    0x08001b88   0x08001b88   0x0000018c   Code   RO         1247    i.etharp_raw        etharp.o
-    0x08001d14   0x08001d14   0x00000018   Code   RO         1248    i.etharp_request    etharp.o
-    0x08001d2c   0x08001d2c   0x0000002c   Code   RO         1249    i.etharp_request_dst  etharp.o
-    0x08001d58   0x08001d58   0x000000dc   Code   RO         1250    i.etharp_tmr        etharp.o
-    0x08001e34   0x08001e34   0x00000150   Code   RO         1251    i.etharp_update_arp_entry  etharp.o
-    0x08001f84   0x08001f84   0x000000c4   Code   RO         1512    i.ethernet_input    ethernet.o
-    0x08002048   0x08002048   0x000000f8   Code   RO         1513    i.ethernet_output   ethernet.o
-    0x08002140   0x08002140   0x00000054   Code   RO           56    i.ethernetif_init   main.o
-    0x08002194   0x08002194   0x00000012   Code   RO         2104    i.fputc             mc_w.l(fputc.o)
-    0x080021a6   0x080021a6   0x00000012   Code   RO         1345    i.icmp_dest_unreach  icmp.o
-    0x080021b8   0x080021b8   0x00000294   Code   RO         1346    i.icmp_input        icmp.o
-    0x0800244c   0x0800244c   0x00000128   Code   RO         1347    i.icmp_send_response  icmp.o
-    0x08002574   0x08002574   0x00000012   Code   RO         1348    i.icmp_time_exceeded  icmp.o
-    0x08002586   0x08002586   0x00000014   Code   RO         1540    i.inet_chksum       inet_chksum.o
-    0x0800259a   0x0800259a   0x00000056   Code   RO         1541    i.inet_chksum_pbuf  inet_chksum.o
-    0x080025f0   0x080025f0   0x0000004e   Code   RO         1452    i.ip4_addr_isbroadcast_u32  ip4_addr.o
-    0x0800263e   0x0800263e   0x00000002   PAD
-    0x08002640   0x08002640   0x00000298   Code   RO         1632    i.ip4_frag          ip4_frag.o
-    0x080028d8   0x080028d8   0x00000194   Code   RO         1395    i.ip4_input         ip4.o
-    0x08002a6c   0x08002a6c   0x00000034   Code   RO         1396    i.ip4_input_accept  ip4.o
-    0x08002aa0   0x08002aa0   0x00000036   Code   RO         1398    i.ip4_output_if     ip4.o
-    0x08002ad6   0x08002ad6   0x00000002   PAD
-    0x08002ad8   0x08002ad8   0x000001f8   Code   RO         1399    i.ip4_output_if_src  ip4.o
-    0x08002cd0   0x08002cd0   0x00000308   Code   RO         1633    i.ip4_reass         ip4_frag.o
-    0x08002fd8   0x08002fd8   0x00000094   Code   RO         1400    i.ip4_route         ip4.o
-    0x0800306c   0x0800306c   0x0000000a   Code   RO         1634    i.ip_frag_alloc_pbuf_custom_ref  ip4_frag.o
-    0x08003076   0x08003076   0x00000002   PAD
-    0x08003078   0x08003078   0x00000088   Code   RO         1635    i.ip_frag_free_pbuf_custom_ref  ip4_frag.o
-    0x08003100   0x08003100   0x00000310   Code   RO         1636    i.ip_reass_chain_frag_into_datagram_and_validate  ip4_frag.o
-    0x08003410   0x08003410   0x000000b4   Code   RO         1637    i.ip_reass_dequeue_datagram  ip4_frag.o
-    0x080034c4   0x080034c4   0x00000054   Code   RO         1638    i.ip_reass_enqueue_new_datagram  ip4_frag.o
-    0x08003518   0x08003518   0x000001f4   Code   RO         1639    i.ip_reass_free_complete_datagram  ip4_frag.o
-    0x0800370c   0x0800370c   0x00000088   Code   RO         1640    i.ip_reass_remove_oldest_datagram  ip4_frag.o
-    0x08003794   0x08003794   0x00000034   Code   RO         1641    i.ip_reass_tmr      ip4_frag.o
-    0x080037c8   0x080037c8   0x000000c0   Code   RO         1642    i.ipfrag_free_pbuf_custom  ip4_frag.o
-    0x08003888   0x08003888   0x0000003e   Code   RO           57    i.low_level_input   main.o
-    0x080038c6   0x080038c6   0x00000030   Code   RO           58    i.low_level_output  main.o
-    0x080038f6   0x080038f6   0x00000002   PAD
-    0x080038f8   0x080038f8   0x00000050   Code   RO         1702    i.lwip_cyclic_timer  timeouts.o
-    0x08003948   0x08003948   0x0000000c   Code   RO          484    i.lwip_htons        def.o
-    0x08003954   0x08003954   0x00000088   Code   RO          556    i.lwip_init         init.o
-    0x080039dc   0x080039dc   0x0000005e   Code   RO         1548    i.lwip_standard_chksum  inet_chksum.o
-    0x08003a3a   0x08003a3a   0x00000002   PAD
-    0x08003a3c   0x08003a3c   0x00000168   Code   RO           59    i.main              main.o
-    0x08003ba4   0x08003ba4   0x000001b0   Code   RO          658    i.mem_free          mem.o
-    0x08003d54   0x08003d54   0x0000005c   Code   RO          659    i.mem_init          mem.o
-    0x08003db0   0x08003db0   0x00000058   Code   RO          660    i.mem_link_valid    mem.o
-    0x08003e08   0x08003e08   0x000002bc   Code   RO          661    i.mem_malloc        mem.o
-    0x080040c4   0x080040c4   0x00000010   Code   RO          662    i.mem_to_ptr        mem.o
-    0x080040d4   0x080040d4   0x00000258   Code   RO          663    i.mem_trim          mem.o
-    0x0800432c   0x0800432c   0x00000028   Code   RO          748    i.memp_free         memp.o
-    0x08004354   0x08004354   0x00000020   Code   RO          750    i.memp_init         memp.o
-    0x08004374   0x08004374   0x0000002c   Code   RO          751    i.memp_init_pool    memp.o
-    0x080043a0   0x080043a0   0x00000024   Code   RO          752    i.memp_malloc       memp.o
-    0x080043c4   0x080043c4   0x000002bc   Code   RO          339    i.mw_test           enc28j60_middleware.o
-    0x08004680   0x08004680   0x000001c0   Code   RO          852    i.netif_add         netif.o
-    0x08004840   0x08004840   0x00000002   Code   RO          854    i.netif_do_ip_addr_changed  netif.o
-    0x08004842   0x08004842   0x00000026   Code   RO          855    i.netif_do_set_gw   netif.o
-    0x08004868   0x08004868   0x000000d8   Code   RO          856    i.netif_do_set_ipaddr  netif.o
-    0x08004940   0x08004940   0x00000026   Code   RO          857    i.netif_do_set_netmask  netif.o
-    0x08004966   0x08004966   0x00000002   Code   RO          861    i.netif_init        netif.o
-    0x08004968   0x08004968   0x000000c8   Code   RO          863    i.netif_issue_reports  netif.o
-    0x08004a30   0x08004a30   0x00000008   Code   RO          865    i.netif_null_output_ip4  netif.o
-    0x08004a38   0x08004a38   0x00000060   Code   RO          867    i.netif_set_addr    netif.o
-    0x08004a98   0x08004a98   0x0000000c   Code   RO          868    i.netif_set_default  netif.o
-    0x08004aa4   0x08004aa4   0x00000032   Code   RO          875    i.netif_set_up      netif.o
-    0x08004ad6   0x08004ad6   0x00000012   Code   RO         1022    i.pbuf_add_header   pbuf.o
-    0x08004ae8   0x08004ae8   0x000000dc   Code   RO         1024    i.pbuf_add_header_impl  pbuf.o
-    0x08004bc4   0x08004bc4   0x0000029c   Code   RO         1025    i.pbuf_alloc        pbuf.o
-    0x08004e60   0x08004e60   0x000000b0   Code   RO         1026    i.pbuf_alloc_reference  pbuf.o
-    0x08004f10   0x08004f10   0x00000052   Code   RO         1027    i.pbuf_alloced_custom  pbuf.o
-    0x08004f62   0x08004f62   0x00000002   PAD
-    0x08004f64   0x08004f64   0x0000013c   Code   RO         1028    i.pbuf_cat          pbuf.o
-    0x080050a0   0x080050a0   0x00000012   Code   RO         1030    i.pbuf_clen         pbuf.o
-    0x080050b2   0x080050b2   0x00000002   PAD
-    0x080050b4   0x080050b4   0x000000a4   Code   RO         1031    i.pbuf_clone        pbuf.o
-    0x08005158   0x08005158   0x00000020   Code   RO         1033    i.pbuf_copy         pbuf.o
-    0x08005178   0x08005178   0x000001ac   Code   RO         1035    i.pbuf_copy_partial_pbuf  pbuf.o
-    0x08005324   0x08005324   0x000001bc   Code   RO         1037    i.pbuf_free         pbuf.o
-    0x080054e0   0x080054e0   0x00000012   Code   RO         1042    i.pbuf_header_force  pbuf.o
-    0x080054f2   0x080054f2   0x00000022   Code   RO         1043    i.pbuf_header_impl  pbuf.o
-    0x08005514   0x08005514   0x0000001e   Code   RO         1044    i.pbuf_init_alloced_pbuf  pbuf.o
-    0x08005532   0x08005532   0x00000002   PAD
-    0x08005534   0x08005534   0x000001ac   Code   RO         1048    i.pbuf_realloc      pbuf.o
-    0x080056e0   0x080056e0   0x000000ac   Code   RO         1049    i.pbuf_ref          pbuf.o
-    0x0800578c   0x0800578c   0x000000b4   Code   RO         1050    i.pbuf_remove_header  pbuf.o
-    0x08005840   0x08005840   0x00000138   Code   RO         1054    i.pbuf_take         pbuf.o
-    0x08005978   0x08005978   0x000001e4   Code   RO          664    i.plug_holes        mem.o
-    0x08005b5c   0x08005b5c   0x00000010   Code   RO          665    i.ptr_to_mem        mem.o
-    0x08005b6c   0x08005b6c   0x00000054   Code   RO         1703    i.sys_check_timeouts  timeouts.o
-    0x08005bc0   0x08005bc0   0x0000000c   Code   RO           60    i.sys_now           main.o
-    0x08005bcc   0x08005bcc   0x000000c4   Code   RO         1705    i.sys_timeout       timeouts.o
-    0x08005c90   0x08005c90   0x00000134   Code   RO         1706    i.sys_timeout_abs   timeouts.o
-    0x08005dc4   0x08005dc4   0x00000028   Code   RO         1707    i.sys_timeouts_init  timeouts.o
-    0x08005dec   0x08005dec   0x00000020   Data   RO          261    .constdata          enc28j60.o
-    0x08005e0c   0x08005e0c   0x00000068   Data   RO          340    .constdata          enc28j60_middleware.o
-    0x08005e74   0x08005e74   0x00000050   Data   RO          755    .constdata          memp.o
-    0x08005ec4   0x08005ec4   0x00000008   Data   RO         1459    .constdata          ip4_addr.o
-    0x08005ecc   0x08005ecc   0x0000000c   Data   RO         1514    .constdata          ethernet.o
-    0x08005ed8   0x08005ed8   0x00000014   Data   RO         1710    .constdata          timeouts.o
-    0x08005eec   0x08005eec   0x00000041   Data   RO          557    .conststring        init.o
-    0x08005f2d   0x08005f2d   0x00000003   PAD
-    0x08005f30   0x08005f30   0x00000041   Data   RO         1253    .conststring        etharp.o
-    0x08005f71   0x08005f71   0x00000003   PAD
-    0x08005f74   0x08005f74   0x00000020   Data   RO         2147    Region$$Table       anon$$obj.o
+    0x080003e0   0x080003e0   0x000001b8   Code   RO         1910    i._printf_core      mc_w.l(printf3.o)
+    0x08000598   0x08000598   0x000000bc   Code   RO          510    i.do_memp_free_pool  memp.o
+    0x08000654   0x08000654   0x000000d0   Code   RO          511    i.do_memp_malloc_pool  memp.o
+    0x08000724   0x08000724   0x00000044   Code   RO         1611    i.enc28j60_bank_changing  enc28j60_ll.o
+    0x08000768   0x08000768   0x00000014   Code   RO         1685    i.enc28j60_hw_cs_high  enc28j60_port.o
+    0x0800077c   0x0800077c   0x00000014   Code   RO         1686    i.enc28j60_hw_cs_low  enc28j60_port.o
+    0x08000790   0x08000790   0x00000088   Code   RO         1688    i.enc28j60_hw_read_data_16b  enc28j60_port.o
+    0x08000818   0x08000818   0x0000005c   Code   RO         1689    i.enc28j60_hw_read_data_8b  enc28j60_port.o
+    0x08000874   0x08000874   0x00000098   Code   RO         1690    i.enc28j60_hw_send_data_16b  enc28j60_port.o
+    0x0800090c   0x0800090c   0x00000068   Code   RO         1691    i.enc28j60_hw_send_data_8b  enc28j60_port.o
+    0x08000974   0x08000974   0x0000001c   Code   RO         1692    i.enc28j60_hw_send_log_8b  enc28j60_port.o
+    0x08000990   0x08000990   0x00000016   Code   RO         1693    i.enc28j60_hw_send_log_msg  enc28j60_port.o
+    0x080009a6   0x080009a6   0x00000002   PAD
+    0x080009a8   0x080009a8   0x0000003c   Code   RO         1694    i.enc28j60_hw_send_short_cmd  enc28j60_port.o
+    0x080009e4   0x080009e4   0x00000090   Code   RO         1695    i.enc28j60_hw_spi_init  enc28j60_port.o
+    0x08000a74   0x08000a74   0x00000074   Code   RO         1696    i.enc28j60_hw_uart_init  enc28j60_port.o
+    0x08000ae8   0x08000ae8   0x00000070   Code   RO         1540    i.enc28j60_init     enc28j60.o
+    0x08000b58   0x08000b58   0x00000240   Code   RO         1614    i.enc28j60_ll_init  enc28j60_ll.o
+    0x08000d98   0x08000d98   0x00000008   Code   RO         1541    i.enc28j60_prepare_to_tx  enc28j60.o
+    0x08000da0   0x08000da0   0x00000030   Code   RO         1615    i.enc28j60_read_buf  enc28j60_ll.o
+    0x08000dd0   0x08000dd0   0x000001ac   Code   RO         1616    i.enc28j60_read_reg  enc28j60_ll.o
+    0x08000f7c   0x08000f7c   0x00000012   Code   RO         1543    i.enc28j60_read_rx_header  enc28j60.o
+    0x08000f8e   0x08000f8e   0x00000002   PAD
+    0x08000f90   0x08000f90   0x00000088   Code   RO         1544    i.enc28j60_ready_to_send  enc28j60.o
+    0x08001018   0x08001018   0x000000a8   Code   RO         1545    i.enc28j60_receive_packet  enc28j60.o
+    0x080010c0   0x080010c0   0x00000014   Code   RO         1617    i.enc28j60_soft_reset  enc28j60_ll.o
+    0x080010d4   0x080010d4   0x0000002e   Code   RO         1618    i.enc28j60_write_buf  enc28j60_ll.o
+    0x08001102   0x08001102   0x00000002   PAD
+    0x08001104   0x08001104   0x000000e4   Code   RO         1619    i.enc28j60_write_reg  enc28j60_ll.o
+    0x080011e8   0x080011e8   0x00000028   Code   RO         1547    i.enc28j60_write_to_tx  enc28j60.o
+    0x08001210   0x08001210   0x00000314   Code   RO         1004    i.etharp_find_entry  etharp.o
+    0x08001524   0x08001524   0x00000040   Code   RO         1005    i.etharp_free_entry  etharp.o
+    0x08001564   0x08001564   0x000000d2   Code   RO         1007    i.etharp_input      etharp.o
+    0x08001636   0x08001636   0x00000002   PAD
+    0x08001638   0x08001638   0x00000224   Code   RO         1008    i.etharp_output     etharp.o
+    0x0800185c   0x0800185c   0x0000015c   Code   RO         1009    i.etharp_output_to_arp_index  etharp.o
+    0x080019b8   0x080019b8   0x000002d8   Code   RO         1010    i.etharp_query      etharp.o
+    0x08001c90   0x08001c90   0x0000018c   Code   RO         1011    i.etharp_raw        etharp.o
+    0x08001e1c   0x08001e1c   0x00000018   Code   RO         1012    i.etharp_request    etharp.o
+    0x08001e34   0x08001e34   0x0000002c   Code   RO         1013    i.etharp_request_dst  etharp.o
+    0x08001e60   0x08001e60   0x000000dc   Code   RO         1014    i.etharp_tmr        etharp.o
+    0x08001f3c   0x08001f3c   0x00000150   Code   RO         1015    i.etharp_update_arp_entry  etharp.o
+    0x0800208c   0x0800208c   0x000000c4   Code   RO         1276    i.ethernet_input    ethernet.o
+    0x08002150   0x08002150   0x000000f8   Code   RO         1277    i.ethernet_output   ethernet.o
+    0x08002248   0x08002248   0x00000054   Code   RO           56    i.ethernetif_init   main.o
+    0x0800229c   0x0800229c   0x00000012   Code   RO         2091    i.fputc             mc_w.l(fputc.o)
+    0x080022ae   0x080022ae   0x00000012   Code   RO         1109    i.icmp_dest_unreach  icmp.o
+    0x080022c0   0x080022c0   0x00000294   Code   RO         1110    i.icmp_input        icmp.o
+    0x08002554   0x08002554   0x00000128   Code   RO         1111    i.icmp_send_response  icmp.o
+    0x0800267c   0x0800267c   0x00000012   Code   RO         1112    i.icmp_time_exceeded  icmp.o
+    0x0800268e   0x0800268e   0x00000014   Code   RO         1304    i.inet_chksum       inet_chksum.o
+    0x080026a2   0x080026a2   0x00000056   Code   RO         1305    i.inet_chksum_pbuf  inet_chksum.o
+    0x080026f8   0x080026f8   0x0000004e   Code   RO         1216    i.ip4_addr_isbroadcast_u32  ip4_addr.o
+    0x08002746   0x08002746   0x00000002   PAD
+    0x08002748   0x08002748   0x00000298   Code   RO         1396    i.ip4_frag          ip4_frag.o
+    0x080029e0   0x080029e0   0x00000194   Code   RO         1159    i.ip4_input         ip4.o
+    0x08002b74   0x08002b74   0x00000034   Code   RO         1160    i.ip4_input_accept  ip4.o
+    0x08002ba8   0x08002ba8   0x00000036   Code   RO         1162    i.ip4_output_if     ip4.o
+    0x08002bde   0x08002bde   0x00000002   PAD
+    0x08002be0   0x08002be0   0x000001f8   Code   RO         1163    i.ip4_output_if_src  ip4.o
+    0x08002dd8   0x08002dd8   0x00000308   Code   RO         1397    i.ip4_reass         ip4_frag.o
+    0x080030e0   0x080030e0   0x00000094   Code   RO         1164    i.ip4_route         ip4.o
+    0x08003174   0x08003174   0x0000000a   Code   RO         1398    i.ip_frag_alloc_pbuf_custom_ref  ip4_frag.o
+    0x0800317e   0x0800317e   0x00000002   PAD
+    0x08003180   0x08003180   0x00000088   Code   RO         1399    i.ip_frag_free_pbuf_custom_ref  ip4_frag.o
+    0x08003208   0x08003208   0x00000310   Code   RO         1400    i.ip_reass_chain_frag_into_datagram_and_validate  ip4_frag.o
+    0x08003518   0x08003518   0x000000b4   Code   RO         1401    i.ip_reass_dequeue_datagram  ip4_frag.o
+    0x080035cc   0x080035cc   0x00000054   Code   RO         1402    i.ip_reass_enqueue_new_datagram  ip4_frag.o
+    0x08003620   0x08003620   0x000001f4   Code   RO         1403    i.ip_reass_free_complete_datagram  ip4_frag.o
+    0x08003814   0x08003814   0x00000088   Code   RO         1404    i.ip_reass_remove_oldest_datagram  ip4_frag.o
+    0x0800389c   0x0800389c   0x00000034   Code   RO         1405    i.ip_reass_tmr      ip4_frag.o
+    0x080038d0   0x080038d0   0x000000c0   Code   RO         1406    i.ipfrag_free_pbuf_custom  ip4_frag.o
+    0x08003990   0x08003990   0x000002e4   Code   RO         1620    i.ll_test           enc28j60_ll.o
+    0x08003c74   0x08003c74   0x00000044   Code   RO           57    i.low_level_input   main.o
+    0x08003cb8   0x08003cb8   0x0000003c   Code   RO           58    i.low_level_output  main.o
+    0x08003cf4   0x08003cf4   0x00000050   Code   RO         1466    i.lwip_cyclic_timer  timeouts.o
+    0x08003d44   0x08003d44   0x0000000c   Code   RO          255    i.lwip_htons        def.o
+    0x08003d50   0x08003d50   0x00000088   Code   RO          327    i.lwip_init         init.o
+    0x08003dd8   0x08003dd8   0x0000005e   Code   RO         1312    i.lwip_standard_chksum  inet_chksum.o
+    0x08003e36   0x08003e36   0x00000002   PAD
+    0x08003e38   0x08003e38   0x0000015c   Code   RO           59    i.main              main.o
+    0x08003f94   0x08003f94   0x000001b0   Code   RO          422    i.mem_free          mem.o
+    0x08004144   0x08004144   0x0000005c   Code   RO          423    i.mem_init          mem.o
+    0x080041a0   0x080041a0   0x00000058   Code   RO          424    i.mem_link_valid    mem.o
+    0x080041f8   0x080041f8   0x000002bc   Code   RO          425    i.mem_malloc        mem.o
+    0x080044b4   0x080044b4   0x00000010   Code   RO          426    i.mem_to_ptr        mem.o
+    0x080044c4   0x080044c4   0x00000258   Code   RO          427    i.mem_trim          mem.o
+    0x0800471c   0x0800471c   0x00000028   Code   RO          512    i.memp_free         memp.o
+    0x08004744   0x08004744   0x00000020   Code   RO          514    i.memp_init         memp.o
+    0x08004764   0x08004764   0x0000002c   Code   RO          515    i.memp_init_pool    memp.o
+    0x08004790   0x08004790   0x00000024   Code   RO          516    i.memp_malloc       memp.o
+    0x080047b4   0x080047b4   0x000001c0   Code   RO          616    i.netif_add         netif.o
+    0x08004974   0x08004974   0x00000002   Code   RO          618    i.netif_do_ip_addr_changed  netif.o
+    0x08004976   0x08004976   0x00000026   Code   RO          619    i.netif_do_set_gw   netif.o
+    0x0800499c   0x0800499c   0x000000d8   Code   RO          620    i.netif_do_set_ipaddr  netif.o
+    0x08004a74   0x08004a74   0x00000026   Code   RO          621    i.netif_do_set_netmask  netif.o
+    0x08004a9a   0x08004a9a   0x00000002   Code   RO          625    i.netif_init        netif.o
+    0x08004a9c   0x08004a9c   0x000000c8   Code   RO          627    i.netif_issue_reports  netif.o
+    0x08004b64   0x08004b64   0x00000008   Code   RO          629    i.netif_null_output_ip4  netif.o
+    0x08004b6c   0x08004b6c   0x00000060   Code   RO          631    i.netif_set_addr    netif.o
+    0x08004bcc   0x08004bcc   0x0000000c   Code   RO          632    i.netif_set_default  netif.o
+    0x08004bd8   0x08004bd8   0x00000032   Code   RO          639    i.netif_set_up      netif.o
+    0x08004c0a   0x08004c0a   0x00000012   Code   RO          786    i.pbuf_add_header   pbuf.o
+    0x08004c1c   0x08004c1c   0x000000dc   Code   RO          788    i.pbuf_add_header_impl  pbuf.o
+    0x08004cf8   0x08004cf8   0x0000029c   Code   RO          789    i.pbuf_alloc        pbuf.o
+    0x08004f94   0x08004f94   0x000000b0   Code   RO          790    i.pbuf_alloc_reference  pbuf.o
+    0x08005044   0x08005044   0x00000052   Code   RO          791    i.pbuf_alloced_custom  pbuf.o
+    0x08005096   0x08005096   0x00000002   PAD
+    0x08005098   0x08005098   0x0000013c   Code   RO          792    i.pbuf_cat          pbuf.o
+    0x080051d4   0x080051d4   0x00000012   Code   RO          794    i.pbuf_clen         pbuf.o
+    0x080051e6   0x080051e6   0x00000002   PAD
+    0x080051e8   0x080051e8   0x000000a4   Code   RO          795    i.pbuf_clone        pbuf.o
+    0x0800528c   0x0800528c   0x00000020   Code   RO          797    i.pbuf_copy         pbuf.o
+    0x080052ac   0x080052ac   0x000001ac   Code   RO          799    i.pbuf_copy_partial_pbuf  pbuf.o
+    0x08005458   0x08005458   0x000001bc   Code   RO          801    i.pbuf_free         pbuf.o
+    0x08005614   0x08005614   0x00000012   Code   RO          806    i.pbuf_header_force  pbuf.o
+    0x08005626   0x08005626   0x00000022   Code   RO          807    i.pbuf_header_impl  pbuf.o
+    0x08005648   0x08005648   0x0000001e   Code   RO          808    i.pbuf_init_alloced_pbuf  pbuf.o
+    0x08005666   0x08005666   0x00000002   PAD
+    0x08005668   0x08005668   0x000001ac   Code   RO          812    i.pbuf_realloc      pbuf.o
+    0x08005814   0x08005814   0x000000ac   Code   RO          813    i.pbuf_ref          pbuf.o
+    0x080058c0   0x080058c0   0x000000b4   Code   RO          814    i.pbuf_remove_header  pbuf.o
+    0x08005974   0x08005974   0x00000138   Code   RO          818    i.pbuf_take         pbuf.o
+    0x08005aac   0x08005aac   0x000001e4   Code   RO          428    i.plug_holes        mem.o
+    0x08005c90   0x08005c90   0x00000010   Code   RO          429    i.ptr_to_mem        mem.o
+    0x08005ca0   0x08005ca0   0x00000054   Code   RO         1467    i.sys_check_timeouts  timeouts.o
+    0x08005cf4   0x08005cf4   0x0000000c   Code   RO           60    i.sys_now           main.o
+    0x08005d00   0x08005d00   0x000000c4   Code   RO         1469    i.sys_timeout       timeouts.o
+    0x08005dc4   0x08005dc4   0x00000134   Code   RO         1470    i.sys_timeout_abs   timeouts.o
+    0x08005ef8   0x08005ef8   0x00000028   Code   RO         1471    i.sys_timeouts_init  timeouts.o
+    0x08005f20   0x08005f20   0x00000050   Data   RO          519    .constdata          memp.o
+    0x08005f70   0x08005f70   0x00000008   Data   RO         1223    .constdata          ip4_addr.o
+    0x08005f78   0x08005f78   0x0000000c   Data   RO         1278    .constdata          ethernet.o
+    0x08005f84   0x08005f84   0x00000014   Data   RO         1474    .constdata          timeouts.o
+    0x08005f98   0x08005f98   0x00000020   Data   RO         1548    .constdata          enc28j60.o
+    0x08005fb8   0x08005fb8   0x00000068   Data   RO         1621    .constdata          enc28j60_ll.o
+    0x08006020   0x08006020   0x00000041   Data   RO          328    .conststring        init.o
+    0x08006061   0x08006061   0x00000003   PAD
+    0x08006064   0x08006064   0x00000041   Data   RO         1017    .conststring        etharp.o
+    0x080060a5   0x080060a5   0x00000003   PAD
+    0x080060a8   0x080060a8   0x00000020   Data   RO         2134    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08005f94, Size: 0x00002f50, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080060c8, Size: 0x00002f48, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08005f94   0x00000014   Data   RW           14    .data               system_stm32f10x.o
-    0x20000014   0x08005fa8   0x00000010   Data   RW           62    .data               main.o
-    0x20000024   0x08005fb8   0x00000018   Data   RW          262    .data               enc28j60.o
-    0x2000003c   0x08005fd0   0x00000001   Data   RW          341    .data               enc28j60_middleware.o
-    0x2000003d   0x08005fd1   0x00000003   PAD
-    0x20000040   0x08005fd4   0x0000000c   Data   RW          667    .data               mem.o
-    0x2000004c   0x08005fe0   0x00000014   Data   RW          756    .data               memp.o
-    0x20000060   0x08005ff4   0x00000009   Data   RW          876    .data               netif.o
-    0x20000069   0x08005ffd   0x00000001   Data   RW         1254    .data               etharp.o
-    0x2000006a   0x08005ffe   0x00000002   Data   RW         1401    .data               ip4.o
-    0x2000006c   0x08006000   0x00000006   Data   RW         1643    .data               ip4_frag.o
-    0x20000072   0x08006006   0x00000002   PAD
-    0x20000074   0x08006008   0x00000008   Data   RW         1711    .data               timeouts.o
-    0x2000007c   0x08006010   0x00000004   Data   RW         2106    .data               mc_w.l(stdout.o)
-    0x20000080        -       0x00000638   Zero   RW           61    .bss                main.o
-    0x200006b8        -       0x00000413   Zero   RW          666    .bss                mem.o
-    0x20000acb        -       0x00000377   Zero   RW          754    .bss                memp.o
-    0x20000e42   0x08006014   0x00000002   PAD
-    0x20000e44        -       0x000000f0   Zero   RW         1252    .bss                etharp.o
-    0x20000f34        -       0x00000018   Zero   RW         1612    .bss                ip.o
-    0x20000f4c   0x08006014   0x00000004   PAD
-    0x20000f50        -       0x00002000   Zero   RW            1    STACK               startup_stm32f10x_xl.o
+    0x20000000   0x080060c8   0x00000014   Data   RW           14    .data               system_stm32f10x.o
+    0x20000014   0x080060dc   0x0000000a   Data   RW           62    .data               main.o
+    0x2000001e   0x080060e6   0x00000002   PAD
+    0x20000020   0x080060e8   0x0000000c   Data   RW          431    .data               mem.o
+    0x2000002c   0x080060f4   0x00000014   Data   RW          520    .data               memp.o
+    0x20000040   0x08006108   0x00000009   Data   RW          640    .data               netif.o
+    0x20000049   0x08006111   0x00000001   Data   RW         1018    .data               etharp.o
+    0x2000004a   0x08006112   0x00000002   Data   RW         1165    .data               ip4.o
+    0x2000004c   0x08006114   0x00000006   Data   RW         1407    .data               ip4_frag.o
+    0x20000052   0x0800611a   0x00000002   PAD
+    0x20000054   0x0800611c   0x00000008   Data   RW         1475    .data               timeouts.o
+    0x2000005c   0x08006124   0x00000004   Data   RW         2093    .data               mc_w.l(stdout.o)
+    0x20000060        -       0x00000654   Zero   RW           61    .bss                main.o
+    0x200006b4        -       0x00000413   Zero   RW          430    .bss                mem.o
+    0x20000ac7        -       0x00000377   Zero   RW          518    .bss                memp.o
+    0x20000e3e   0x08006128   0x00000002   PAD
+    0x20000e40        -       0x000000f0   Zero   RW         1016    .bss                etharp.o
+    0x20000f30        -       0x00000018   Zero   RW         1376    .bss                ip.o
+    0x20000f48        -       0x00002000   Zero   RW            1    STACK               startup_stm32f10x_xl.o
 
 
 ==============================================================================
@@ -1729,9 +1679,9 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         12          0          0          0          0        477   def.o
-       446         74         32         24          0       9288   enc28j60.o
-       742         76          0          0          0       5970   enc28j60_hardware.o
-      2036        450        104          1          0      10571   enc28j60_middleware.o
+       482         74         32          0          0      10001   enc28j60.o
+      2154        444        104          0          0      11642   enc28j60_ll.o
+       894         80          0          0          0       6410   enc28j60_port.o
       3706        962         65          1        240      10788   etharp.o
        444        134         12          0          0       2630   ethernet.o
        992        298          0          0          0       9133   icmp.o
@@ -1741,7 +1691,7 @@ Image component sizes
       1162        162          0          2          0       5360   ip4.o
         78          0          8          0          0       8610   ip4_addr.o
       3514        998          0          6          0      11038   ip4_frag.o
-       582         80          0         16       1592     243527   main.o
+       588         80          0         10       1620     247935   main.o
       2440        894          0         12       1043      23704   mem.o
        548        220         80         20        887       9980   memp.o
       1110        356          0          9          0      12388   netif.o
@@ -1752,9 +1702,9 @@ Image component sizes
        708        300         20          8          0       6387   timeouts.o
 
     ----------------------------------------------------------------------
-     22992       6512        728        124      11984     418751   Object Totals
+     23300       6510        728         92      12008     425383   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        30          0          6          5          6          0   (incl. Padding)
+        26          0          6          4          2          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1800,15 +1750,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     23740       6542        728        128      11984     413131   Grand Totals
-     23740       6542        728        128      11984     413131   ELF Image Totals
-     23740       6542        728        128          0          0   ROM Totals
+     24048       6540        728         96      12008     419711   Grand Totals
+     24048       6540        728         96      12008     419711   ELF Image Totals
+     24048       6540        728         96          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                24468 (  23.89kB)
-    Total RW  Size (RW Data + ZI Data)             12112 (  11.83kB)
-    Total ROM Size (Code + RO Data + RW Data)      24596 (  24.02kB)
+    Total RO  Size (Code + RO Data)                24776 (  24.20kB)
+    Total RW  Size (RW Data + ZI Data)             12104 (  11.82kB)
+    Total ROM Size (Code + RO Data + RW Data)      24872 (  24.29kB)
 
 ==============================================================================
 

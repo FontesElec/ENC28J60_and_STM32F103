@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\CMSIS;.\User;.\User\core\inc;.\User\ENC28J60\Hardware\inc;.\User\ENC28J60\Middleware\inc;.\User\ENC28J60\Interaface\inc;.\User\arch;.\User\lwip\inc;.\User\lwip\inc\lwip</IncludePath>
+              <IncludePath>.\CMSIS;.\User;.\User\core\inc;.\User\arch;.\User\lwip\inc;.\User\lwip\inc\lwip;.\User\enc28j60\interface\inc;.\User\enc28j60\lowlayer\inc;.\User\enc28j60\port\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -406,26 +406,6 @@
               <FileName>rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\core\src\rcc.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>ENC28J60</GroupName>
-          <Files>
-            <File>
-              <FileName>enc28j60.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\ENC28J60\Interaface\src\enc28j60.c</FilePath>
-            </File>
-            <File>
-              <FileName>enc28j60_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\ENC28J60\Middleware\src\enc28j60_middleware.c</FilePath>
-            </File>
-            <File>
-              <FileName>enc28j60_hardware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\ENC28J60\Hardware\src\enc28j60_hardware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -516,6 +496,26 @@
               <FileName>sys_arch.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\arch\sys_arch.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>ENC28J60</GroupName>
+          <Files>
+            <File>
+              <FileName>enc28j60.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\enc28j60\interface\src\enc28j60.c</FilePath>
+            </File>
+            <File>
+              <FileName>enc28j60_ll.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\enc28j60\lowlayer\src\enc28j60_ll.c</FilePath>
+            </File>
+            <File>
+              <FileName>enc28j60_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\enc28j60\port\src\enc28j60_port.c</FilePath>
             </File>
           </Files>
         </Group>
